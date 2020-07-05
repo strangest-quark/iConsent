@@ -1,0 +1,24 @@
+{
+  "Quickbooks": "குவிக்புக்ஸ்",
+  "Axis Bank": "ஆக்சிஸ் வங்கி",
+  "Mint": "மின்ட்",
+  "Citibank": "சிட்டி வங்கி",
+
+  "font": "MeeraInimai-Regular",
+  "lan": "ta",
+  "fontsize": 20,
+
+  "text1": "{account} கணக்கை {mode} விரும்புகிறது",
+  "text2": "உங்கள் {datatype} தரவை {type} {mode} அனுமதிக்கும்",
+
+  "audio1": "{fiu} உங்கள் {account} கணக்கைக் {mode} விரும்புகிறது",
+  "audio2": "இது உங்கள் {datatype} தரவை {type} {mode} அனுமதிக்கும்",
+
+  "view": "பார்க்க",
+  "store": "சேமிக்க",
+  "one time": "ஒரு முறை",
+  "periodic": "பல முறை",
+  "deposit": "வைப்பு",
+  "savings": "சேமிப்பு",
+  "summary": "சுருக்க"
+}

@@ -1,0 +1,9 @@
+{
+  "fip": "Axis Bank",
+  "fiu": "Quickbooks",
+  "datatype": "summary",
+  "account": "deposit",
+  "mode": "store",
+  "type": "one time",
+  "language": "hindi"
+}
