@@ -4,6 +4,7 @@
 Python 3.7+
 
     brew install imagemagick
+    brew install cairo
     pip install -r requirements.txt
  
 ## Add fonts to Imagemagick
