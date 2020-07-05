@@ -1,0 +1,25 @@
+{
+  "Quickbooks": "Quickbooks",
+  "Axis Bank": "Axis Bank",
+  "Mint": "Mint",
+  "Citibank": "Citibank",
+
+  "font": "Charter",
+  "lan": "kn",
+  "fontsize": 30,
+
+  "text1": "{mode} your {account} account details",
+  "text2": "{type} {mode} of your {datatype} data",
+
+  "audio1": "{fiu} wants to {mode} your {account} account details from {fip}",
+  "audio2": "This will be a {type} {mode} of your {datatype} data",
+
+  "view": "view",
+  "store": "store",
+  "one time": "one time",
+  "periodic": "periodic",
+  "savings": "savings",
+  "summary": "summary",
+  "deposit": "deposit",
+  "transactions": "transactions"
+}
