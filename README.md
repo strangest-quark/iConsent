@@ -6,6 +6,8 @@ Python 3.7+
     brew install imagemagick
     brew install cairo
     pip install -r requirements.txt
+    
+Create empty folders in assets. Like /assets/video and /assets/audio.
  
 ## Add fonts to Imagemagick
 http://www.bigbing.net/2016/08/11/add-new-font-imagemagick-mac-osx/
