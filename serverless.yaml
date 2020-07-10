@@ -11,7 +11,6 @@ package:
     - .dockerignore
     - .gitignore
     - Dockerfile
-    - input.json
     - LICENSE
     - package.json
     - package-lock.json
@@ -34,15 +33,14 @@ provider:
   runtime: python3.8
   stage: dev
   region: us-west-2
+  timeout: 15
+  role: arn:aws:iam::699850692529:role/lambda-s3-role
 
 functions:
   app:
     handler: wsgi_handler.handler
     events:
-      - http: ANY /
-      - http: 'ANY {proxy+}'
-
-layers:
-  layerOne:
-    package:
-      artifact: code.zip
+      - http: POST video
+    layers:
+      - arn:aws:lambda:us-west-2:699850692529:layer:code:1
+      - arn:aws:lambda:us-west-2:699850692529:layer:weasyprint:1

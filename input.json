@@ -1,9 +1,9 @@
 {
-  "fip": "Axis Bank",
-  "fiu": "Quickbooks",
-  "datatype": "summary",
-  "account": "deposit",
-  "mode": "store",
-  "type": "one time",
-  "language": "malayalam"
+  "fip": "Citibank",
+  "fiu": "Mint",
+  "datatype": "transactions",
+  "account": "savings",
+  "mode": "view",
+  "type": "periodic",
+  "language": "english"
 }

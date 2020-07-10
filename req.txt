@@ -27,3 +27,5 @@ tqdm==4.47.0
 urllib3==1.25.9
 Werkzeug==1.0.1
 flask_cors==3.0.8
+boto3
+numpy

@@ -3,15 +3,17 @@ from moviepy.editor import *
 import gizeh as gz
 from gtts import gTTS
 import os
+import boto3
+import uuid
 
 VIDEO_SIZE = (640, 240)
 BLUE = (59 / 255, 89 / 255, 152 / 255)
 GREEN = (176 / 255, 210 / 255, 63 / 255)
 WHITE = (255, 255, 255)
 WHITE_GIZEH = (1, 1, 1)
-SB_LOGO_PATH_PREFIX = './assets/logo/'
-SB_AUDIO_PATH_PREFIX = './assets/audio/'
-SB_VIDEO_PATH_PREFIX = './assets/video/'
+SB_LOGO_PATH_PREFIX = '/var/task/assets/logo/'
+SB_AUDIO_PATH_PREFIX = '/tmp/'
+SB_VIDEO_PATH_PREFIX = '/tmp/'
 DURATION = 5
 
 
@@ -28,6 +30,7 @@ class Video:
     def text_to_speech(self, text, index, lan):
         language = lan
         myobj = gTTS(text=text, lang=language, slow=False)
+        os.chdir('/tmp')
         myobj.save(SB_AUDIO_PATH_PREFIX+"audio-" + str(index) + '.mp3')
 
     def fill_text(self, text):
@@ -72,10 +75,12 @@ class Video:
 
         new_audioclip = CompositeAudioClip([audioclip])
         video.audio = new_audioclip
+        os.chdir('/tmp')
         video.write_videofile(SB_VIDEO_PATH_PREFIX+self.input_map.get("fiu")+'-1.mp4', fps=10)
         return video
 
     def generate_video_part_2(self):
+        os.chdir("/var/task/")
         type_logo = mpy.ImageClip(SB_LOGO_PATH_PREFIX + self.image_map.get(self.input_map.get("type"))). \
             set_position((150, 40)).resize(height=100)
         data_logo = mpy.ImageClip(SB_LOGO_PATH_PREFIX + self.image_map.get(self.input_map.get("datatype"))). \
@@ -97,6 +102,7 @@ class Video:
             col_opacity=1).set_duration(audioclip.duration)
         new_audioclip = CompositeAudioClip([audioclip])
         video.audio = new_audioclip
+        os.chdir('/tmp')
         video.write_videofile(SB_VIDEO_PATH_PREFIX+self.input_map.get("fiu") + '-2.mp4', fps=10)
         return video
 
@@ -107,7 +113,14 @@ class Video:
         video2 = VideoFileClip(SB_VIDEO_PATH_PREFIX+self.input_map.get("fiu")+'-2.mp4')
         final_clip = concatenate_videoclips([video1, video2])
         final_clip.write_videofile(SB_VIDEO_PATH_PREFIX + self.input_map.get("fiu") + '-' + self.input_map.get('language') + '.mp4')
+        s3 = boto3.resource("s3")
+        bucket_name = "iconsent-video"
+        key = str(uuid.uuid4())
+        s3.meta.client.upload_file(SB_VIDEO_PATH_PREFIX + self.input_map.get("fiu") + '-' + self.input_map.get('language') + '.mp4', bucket_name, key+".mp4")
+        location = boto3.client('s3').get_bucket_location(Bucket=bucket_name)['LocationConstraint']
+        url = "https://s3-%s.amazonaws.com/%s/%s" % (location, bucket_name, key+".mp4")
         os.remove(SB_VIDEO_PATH_PREFIX+self.input_map.get("fiu")+'-1.mp4')
         os.remove(SB_VIDEO_PATH_PREFIX+self.input_map.get("fiu")+'-2.mp4')
         os.remove(SB_AUDIO_PATH_PREFIX+'audio-1.mp3')
         os.remove(SB_AUDIO_PATH_PREFIX+'audio-2.mp3')
+        return url
