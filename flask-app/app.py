@@ -15,7 +15,7 @@ def video():
     input_map = request.get_json()
     print(input_map)
     req = {"req": input_map}
-    url = lambda_client.invoke(FunctionName="video-generator",
+    url = lambda_client.invoke(FunctionName="video-generator-dev-app",
                                InvocationType='RequestResponse',
                                Payload=json.dumps(req)
                                )

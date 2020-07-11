@@ -36,4 +36,4 @@ functions:
     events:
       - http: POST video
     layers:
-      - arn:aws:lambda:us-west-2:699850692529:layer:code:1
+      - arn:aws:lambda:ap-south-1:699850692529:layer:iconsent-dependency-layer:1
