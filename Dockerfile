@@ -23,7 +23,7 @@ RUN sed -i s:/usr/share/fonts:/opt/fonts: /opt/fonts/fonts.conf
 ENV FONTCONFIG_PATH="/opt/fonts"
 
 WORKDIR /opt
-ADD ./video/requirements.txt .
+ADD video-generator .
 RUN pipenv install -r requirements.txt
 RUN mkdir -p python/lib/python3.8/site-packages
 RUN pipenv lock -r > requirements.txt
@@ -31,7 +31,7 @@ RUN pip install -r requirements.txt --no-deps -t python/lib/python3.8/site-packa
 
 # run test
 WORKDIR /opt
-COPY ./video .
+COPY video-generator .
 RUN pipenv run python debug.py
 
 # package lambda layer
