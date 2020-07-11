@@ -1,12 +1,12 @@
 import time
 import json
-from frame_1 import Frame1
-from frame_2 import Frame2
-from frame_3 import Frame3
-from frame_4 import Frame4
-from frame_5 import Frame5
-from frame_6 import Frame6
-from frame_7 import Frame7
+from frames.frame_1 import Frame1
+from frames.frame_2 import Frame2
+from frames.frame_3 import Frame3
+from frames.frame_4 import Frame4
+from frames.frame_5 import Frame5
+from frames.frame_6 import Frame6
+from frames.frame_7 import Frame7
 from worker import main
 from config.config import ProductionConfig
 from moviepy.editor import *
@@ -44,9 +44,9 @@ def handler(event, context):
     key = str(uuid.uuid4())
     s3.meta.client.upload_file(
         config.SB_VIDEO_PATH_PREFIX + config.input_map.get("fiu") + '-' + txnId + '-' + config.input_map.get(
-            'language') + '.mp4', config.bucket_name, key + ".mp4")
-    location = boto3.client('s3').get_bucket_location(Bucket=config.bucket_name)['LocationConstraint']
+            'language') + '.mp4', config.RESULT_S3_BUCKET, key + ".mp4")
+    location = boto3.client('s3').get_bucket_location(Bucket=config.RESULT_S3_BUCKET)['LocationConstraint']
 
     #response
-    url = "https://s3-%s.amazonaws.com/%s/%s" % (location, config.bucket_name, key + ".mp4")
+    url = "https://s3-%s.amazonaws.com/%s/%s" % (location, config.RESULT_S3_BUCKET, key + ".mp4")
     return url

@@ -1,5 +1,5 @@
 class Config(object):
-    RESULT_S3_BUCKET = 'iconsent-video'
+    RESULT_S3_BUCKET = 'iconsent-videos'
     image_map = dict()
     lang_map = dict()
     input_map = dict()

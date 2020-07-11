@@ -30,9 +30,9 @@ RUN pipenv lock -r > requirements.txt
 RUN pip install -r requirements.txt --no-deps -t python/lib/python3.8/site-packages
 
 # run test
-WORKDIR /opt
-COPY video-generator .
-RUN pipenv run python debug.py
+# WORKDIR /opt
+# COPY video-generator .
+# RUN pipenv run python debug.py
 
 # package lambda layer
 WORKDIR /opt

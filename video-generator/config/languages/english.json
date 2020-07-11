@@ -5,7 +5,7 @@
   "Citibank": "Citibank",
 
   "font": "Charter",
-  "lan": "en",
+  "lan": "en-IN",
   "fontsize": 30,
 
   "text1": "Access your linked {account} account details",
