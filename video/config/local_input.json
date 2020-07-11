@@ -1,0 +1,16 @@
+{
+  "fip": "Citibank",
+  "fiu": "Mint",
+  "datatype": "transactions",
+  "account": "savings",
+  "mode": "store",
+  "type": "periodic",
+  "language": "english",
+  "dataLife": "1 month",
+  "consentFrom": "Jul 2020",
+  "consentTo": "Dec 2021",
+  "fiFrom": "Jan 2020",
+  "fiTo": "Apr 2020",
+  "datalife": "15 days",
+  "frequency": "1 week"
+}

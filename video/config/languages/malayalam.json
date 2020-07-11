@@ -1,0 +1,25 @@
+{
+  "Quickbooks": "ക്വിക്ക്ബുക്ക്",
+  "Axis Bank": "ആക്സിസ് ബാങ്ക്",
+  "Mint": "മിന്റർ",
+  "Citibank": "സിറ്റിബാങ്ക്",
+
+  "font": "BalooChettan2-Medium",
+  "lan": "ml",
+  "fontsize": 20,
+
+  "text1": "{mode} നിങ്ങളുടെ {account} അക്കൗണ്ട് വിശദാംശങ്ങൾ",
+  "text2": "{type} {mode} ഡാറ്റയുടെ {datatype} ഡാറ്റയുടെ",
+
+  "audio1": "നിങ്ങളുടെ {account} അക്കൗണ്ട് വിശദാംശങ്ങൾ {fip} നിന്ന് {mode} {fiu} ആഗ്രഹിക്കുന്നു",
+  "audio2": "ഇത് നിങ്ങളുടെ {type} ഡാറ്റയുടെ {mode} {datatype} be ആയിരിക്കും",
+
+  "view": "കാണാൻ",
+  "store": "സംഭരിക്കാൻ",
+  "one time": "ഒരിക്കൽ",
+  "periodic": "ആനുകാലികം",
+  "savings": "സേവിംഗ്സ്",
+  "summary": "സംഗ്രഹ",
+  "deposit": "നിക്ഷേപ",
+  "transactions": "ഇടപാടുകൾ"
+}

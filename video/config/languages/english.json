@@ -1,0 +1,35 @@
+{
+  "Quickbooks": "Quickbooks",
+  "Axis Bank": "Axis Bank",
+  "Mint": "Mint",
+  "Citibank": "Citibank",
+
+  "font": "Charter",
+  "lan": "en",
+  "fontsize": 30,
+
+  "text1": "Access your linked {account} account details",
+  "text2": "Linked accounts",
+  "text3": "{mode} your {datatype} data",
+  "text4": "Your account data range",
+  "text5": "{type} {mode} every {frequency}",
+  "text6": "For {datalife} the data will be {mode}d",
+  "text7": "The consent range",
+
+  "audio1": "{fiu} wants to access your linked {account} account details",
+  "audio2": "The accounts that you're giving {fiu} consent are, {fip}",
+  "audio3": "{fiu} wants to {mode} your {datatype} data",
+  "audio4": "Your {datatype} from {fiFrom} to {fiTo} will be fetched.",
+  "audio5": "{fiu} will do a {type} {mode} your data every {frequency}",
+  "audio6": "{fiu} will {mode} your fetched data only for a period of {datalife}",
+  "audio7": "This consent is valid from {consentFrom} till {consentTo}",
+
+  "view": "view",
+  "store": "store",
+  "one time": "one time",
+  "periodic": "periodic",
+  "savings": "savings",
+  "summary": "summary",
+  "deposit": "deposit",
+  "transactions": "transactions"
+}
