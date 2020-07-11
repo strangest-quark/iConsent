@@ -23,16 +23,16 @@ RUN sed -i s:/usr/share/fonts:/opt/fonts: /opt/fonts/fonts.conf
 ENV FONTCONFIG_PATH="/opt/fonts"
 
 WORKDIR /opt
-ADD req.txt .
-RUN pipenv install -r req.txt
+ADD ./video/requirements.txt .
+RUN pipenv install -r requirements.txt
 RUN mkdir -p python/lib/python3.8/site-packages
-RUN pipenv lock -r > req.txt
-RUN pip install -r req.txt --no-deps -t python/lib/python3.8/site-packages
+RUN pipenv lock -r > requirements.txt
+RUN pip install -r requirements.txt --no-deps -t python/lib/python3.8/site-packages
 
 # run test
 WORKDIR /opt
-COPY . .
-RUN pipenv run python main.py
+COPY ./video .
+RUN pipenv run python debug.py
 
 # package lambda layer
 WORKDIR /opt

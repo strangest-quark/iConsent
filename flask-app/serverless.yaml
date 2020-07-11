@@ -6,15 +6,8 @@ package:
   exclude:
     - node_modules/**
     - '!node_modules/node-fetch/**'
-    - env/**
-    - code.zip
-    - .dockerignore
-    - .gitignore
-    - Dockerfile
-    - LICENSE
     - package.json
     - package-lock.json
-    - README.md
     - serverless.yaml
 
 plugins:
@@ -32,8 +25,9 @@ provider:
   name: aws
   runtime: python3.8
   stage: dev
-  region: us-west-2
-  timeout: 15
+  region: ap-south-1
+  memorySize: 512
+  timeout: 28
   role: arn:aws:iam::699850692529:role/lambda-s3-role
 
 functions:
@@ -43,4 +37,3 @@ functions:
       - http: POST video
     layers:
       - arn:aws:lambda:us-west-2:699850692529:layer:code:1
-      - arn:aws:lambda:us-west-2:699850692529:layer:weasyprint:1

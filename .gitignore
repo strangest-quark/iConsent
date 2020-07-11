@@ -135,4 +135,4 @@ dmypy.json
 node_modules
 .serverless/
 package-lock.json
-code.zip
+video-packages.zip

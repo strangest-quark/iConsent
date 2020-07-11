@@ -1,9 +1,0 @@
-{
-  "fip": "Citibank",
-  "fiu": "Mint",
-  "datatype": "transactions",
-  "account": "savings",
-  "mode": "view",
-  "type": "periodic",
-  "language": "english"
-}
