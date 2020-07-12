@@ -3,6 +3,7 @@ from moviepy.editor import *
 import gizeh as gz
 from gtts import gTTS
 import os
+from frames.text_generator.straight_text import straight_text
 
 
 class Frame3(object):
@@ -47,14 +48,16 @@ class Frame3(object):
     def generate_video_part(self, txnId):
         if not self.config.LOCAL:
             os.chdir("/var/task/")
+        W, H = self.config.VIDEO_SIZE
         mode_logo = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX + self.image_map.get(self.input_map.get("type"))). \
-            set_position((150, 40)).resize(height=100)
+            set_position((W/2-200, H/5)).resize(height=150)
         data_logo = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX + self.image_map.get(self.input_map.get("datatype"))). \
-            set_position((350, 40)).resize(height=100)
+            set_position((W/2+50, H/5)).resize(height=170)
         self.text_to_speech(self.fill_text(Frame3.lang_map.get('audio3')), Frame3.lang_map.get('lan'), txnId)
         audioclip = AudioFileClip(self.config.SB_AUDIO_PATH_PREFIX + "audio" + '-' + txnId + "-3.mp3")
         Frame3.map['text3'] = self.fill_text(Frame3.lang_map.get('text3'))
-        text = mpy.VideoClip(self.render_text3, duration=self.config.DURATION)
+        straight_text(Frame3.map['text3'], Frame3.lang_map.get('font'), Frame3.lang_map.get('fontsize3'), txnId, 3)
+        text = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX+'-text-3-' + txnId+'.png')
         video = mpy.CompositeVideoClip(
             [
                 mode_logo,
@@ -68,4 +71,5 @@ class Frame3(object):
         new_audioclip = CompositeAudioClip([audioclip])
         video.audio = new_audioclip
         os.remove(self.config.SB_AUDIO_PATH_PREFIX + 'audio-' + txnId + '-3.mp3')
+        os.remove(self.config.SB_LOGO_PATH_PREFIX+'-text-3-' + txnId+'.png')
         return video, 3

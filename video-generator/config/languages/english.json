@@ -3,11 +3,16 @@
   "Axis Bank": "Axis Bank",
   "Mint": "Mint",
   "Citibank": "Citibank",
-
-  "font": "Charter",
+  "font": "OpenSans-ExtraBold",
   "lan": "en-IN",
   "fontsize": 30,
-
+  "fontsize1": 25,
+  "fontsize2": 30,
+  "fontsize3": 30,
+  "fontsize4": 30,
+  "fontsize5": 30,
+  "fontsize6": 30,
+  "fontsize7": 30,
   "text1": "Access your linked {account} account details",
   "text2": "Linked accounts",
   "text3": "{mode} your {datatype} data",
@@ -23,7 +28,6 @@
   "audio5": "{fiu} will do a {type} {mode} your data every {frequency}",
   "audio6": "{fiu} will {mode} your fetched data only for a period of {datalife}",
   "audio7": "This consent is valid from {consentFrom} till {consentTo}",
-
   "view": "view",
   "store": "store",
   "one time": "one time",
@@ -31,5 +35,17 @@
   "savings": "savings",
   "summary": "summary",
   "deposit": "deposit",
-  "transactions": "transactions"
+  "transactions": "transactions",
+  "01": "January",
+  "02": "February",
+  "03": "March",
+  "04": "April",
+  "05": "May",
+  "06": "June",
+  "07": "July",
+  "08": "August",
+  "09": "September",
+  "10": "October",
+  "11": "November",
+  "12": "December"
 }

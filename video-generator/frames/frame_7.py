@@ -3,6 +3,8 @@ from moviepy.editor import *
 import gizeh as gz
 from gtts import gTTS
 import os
+from frames.text_generator.calendar import calendar
+from frames.text_generator.straight_text import straight_text
 
 
 class Frame7(object):
@@ -47,16 +49,25 @@ class Frame7(object):
     def generate_video_part(self, txnId):
         if not self.config.LOCAL:
             os.chdir("/var/task/")
-        calendar_logo = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX + self.image_map.get('calendar')). \
-            set_position((250, 40)).resize(width=100)
+        W, H = self.config.VIDEO_SIZE
+        calendar(self.config, 'consentFrom', txnId)
+        calendar(self.config, 'consentTo', txnId)
+        bgImage = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX + "bg_7.png")
+        calendar_from_logo = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX + 'consentFrom-' + txnId + '.png'). \
+            set_position((W/2-200, H/5)).resize(width=150)
+        calendar_to_logo = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX + 'consentTo-' + txnId + '.png'). \
+            set_position((W/2+50, H/5)).resize(width=150)
         self.text_to_speech(self.fill_text(Frame7.lang_map.get('audio7')), Frame7.lang_map.get('lan'), txnId)
         audioclip = AudioFileClip(self.config.SB_AUDIO_PATH_PREFIX + "audio" + '-' + txnId + "-7.mp3")
         Frame7.map['text7'] = self.fill_text(Frame7.lang_map.get('text7'))
-        text = mpy.VideoClip(self.render_text7, duration=self.config.DURATION)
+        straight_text(Frame7.map['text7'], Frame7.lang_map.get('font'), Frame7.lang_map.get('fontsize7'), txnId, 7)
+        text = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX+'-text-7-' + txnId+'.png')
         video = mpy.CompositeVideoClip(
             [
-                calendar_logo,
-                text.set_position(('center', calendar_logo.size[1] + 40)),
+                bgImage,
+                calendar_from_logo,
+                calendar_to_logo,
+                text.set_position(('center', calendar_to_logo.size[1] + 20)),
             ],
             size=self.config.VIDEO_SIZE). \
             on_color(
@@ -66,4 +77,7 @@ class Frame7(object):
         new_audioclip = CompositeAudioClip([audioclip])
         video.audio = new_audioclip
         os.remove(self.config.SB_AUDIO_PATH_PREFIX + 'audio-' + txnId + '-7.mp3')
+        os.remove(self.config.SB_LOGO_PATH_PREFIX+'-text-7-' + txnId+'.png')
+        os.remove(self.config.SB_LOGO_PATH_PREFIX + 'consentFrom-' + txnId + '.png')
+        os.remove(self.config.SB_LOGO_PATH_PREFIX + 'consentTo-' + txnId + '.png')
         return video, 7

@@ -3,7 +3,7 @@ class Config(object):
     image_map = dict()
     lang_map = dict()
     input_map = dict()
-    VIDEO_SIZE = (640, 240)
+    VIDEO_SIZE = (640, 360)
     BLUE = (59 / 255, 89 / 255, 152 / 255)
     GREEN = (176 / 255, 210 / 255, 63 / 255)
     WHITE = (255, 255, 255)
@@ -13,11 +13,11 @@ class Config(object):
 
 class DevelopmentConfig(Config):
     LOCAL = True
-    SB_LOGO_PATH_PREFIX = '/Users/sn5/git/other/iConsent/video/assets/logo/'
-    SB_AUDIO_PATH_PREFIX = '/Users/sn5/git/other/iConsent/video/assets/'
-    SB_VIDEO_PATH_PREFIX = '/Users/sn5/git/other/iConsent/video/assets/'
-    LANG_PATH = '/Users/sn5/git/other/iConsent/video/config/languages/'
-    CONFIG_PATH = '/Users/sn5/git/other/iConsent/video/config/'
+    SB_LOGO_PATH_PREFIX = '/Users/sn5/git/other/iConsent/video-generator/assets/logo/'
+    SB_AUDIO_PATH_PREFIX = '/Users/sn5/git/other/iConsent/video-generator/assets/'
+    SB_VIDEO_PATH_PREFIX = '/Users/sn5/git/other/iConsent/video-generator/assets/'
+    LANG_PATH = '/Users/sn5/git/other/iConsent/video-generator/config/languages/'
+    CONFIG_PATH = '/Users/sn5/git/other/iConsent/video-generator/config/'
 
 
 class ProductionConfig(Config):

@@ -3,6 +3,7 @@ from moviepy.editor import *
 import gizeh as gz
 from gtts import gTTS
 import os
+from frames.text_generator.straight_text import straight_text
 
 
 class Frame1(object):
@@ -34,29 +35,21 @@ class Frame1(object):
             text = text[:start] + fill + text[end + 1:]
         return text.capitalize()
 
-    @staticmethod
-    def render_text1(t):
-        WHITE_GIZEH = (1, 1, 1)
-        BLUE = (59 / 255, 89 / 255, 152 / 255)
-        surface = gz.Surface(640, 60, bg_color=WHITE_GIZEH)
-        text = gz.text(Frame1.map.get('text1'), fontfamily=Frame1.lang_map.get('font'),
-                       fontsize=Frame1.lang_map.get('fontsize'), fontweight='bold', fill=BLUE, xy=(320, 40))
-        text.draw(surface)
-        return surface.get_npimage()
-
     def generate_video_part(self, txnId):
         if not self.config.LOCAL:
             os.chdir("/var/task/")
+        W, H = self.config.VIDEO_SIZE
         fiu_logo = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX + self.image_map.get(self.input_map.get("fiu"))). \
-            set_position((40, 40)).resize(width=200)
+            set_position((W/2-200, H/5)).resize(width=200)
         double_arrow = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX + self.image_map.get("double arrow")). \
-            set_position((270, 50)).resize(height=50)
+            set_position((W/2, H/5)).resize(height=50)
         account_logo = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX + self.image_map.get(self.input_map.get("account"))). \
-            set_position((350, 40)).resize(width=100)
+            set_position((W/2+100, H/5)).resize(width=100)
         self.text_to_speech(self.fill_text(Frame1.lang_map.get('audio1')), Frame1.lang_map.get('lan'), txnId)
         audioclip = AudioFileClip(self.config.SB_AUDIO_PATH_PREFIX + "audio-" + txnId + "-1.mp3")
         Frame1.map['text1'] = self.fill_text(Frame1.lang_map.get('text1'))
-        text = mpy.VideoClip(self.render_text1, duration=self.config.DURATION)
+        straight_text(Frame1.map['text1'], Frame1.lang_map.get('font'), Frame1.lang_map.get('fontsize1'), txnId, 1)
+        text = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX+'-text-1-' + txnId+'.png')
         video = mpy.CompositeVideoClip(
             [
                 fiu_logo,
@@ -72,4 +65,5 @@ class Frame1(object):
         new_audioclip = CompositeAudioClip([audioclip])
         video.audio = new_audioclip
         os.remove(self.config.SB_AUDIO_PATH_PREFIX + 'audio-' + txnId + '-1.mp3')
+        os.remove(self.config.SB_LOGO_PATH_PREFIX+'-text-1-' + txnId+'.png')
         return video, 1
