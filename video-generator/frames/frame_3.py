@@ -56,8 +56,8 @@ class Frame3(object):
         self.text_to_speech(self.fill_text(Frame3.lang_map.get('audio3')), Frame3.lang_map.get('lan'), txnId)
         audioclip = AudioFileClip(self.config.SB_AUDIO_PATH_PREFIX + "audio" + '-' + txnId + "-3.mp3")
         Frame3.map['text3'] = self.fill_text(Frame3.lang_map.get('text3'))
-        straight_text(Frame3.map['text3'], Frame3.lang_map.get('font'), Frame3.lang_map.get('fontsize3'), txnId, 3)
-        text = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX+'-text-3-' + txnId+'.png')
+        straight_text(Frame3.map['text3'], Frame3.lang_map.get('font'), Frame3.lang_map.get('fontsize3'), txnId, 3, self.config)
+        text = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX_WRITE+'-text-3-' + txnId+'.png')
         video = mpy.CompositeVideoClip(
             [
                 mode_logo,
@@ -71,5 +71,5 @@ class Frame3(object):
         new_audioclip = CompositeAudioClip([audioclip])
         video.audio = new_audioclip
         os.remove(self.config.SB_AUDIO_PATH_PREFIX + 'audio-' + txnId + '-3.mp3')
-        os.remove(self.config.SB_LOGO_PATH_PREFIX+'-text-3-' + txnId+'.png')
+        os.remove(self.config.SB_LOGO_PATH_PREFIX_WRITE+'-text-3-' + txnId+'.png')
         return video, 3

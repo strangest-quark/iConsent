@@ -41,19 +41,16 @@ class Frame1(object):
         W, H = self.config.VIDEO_SIZE
         fiu_logo = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX + self.image_map.get(self.input_map.get("fiu"))). \
             set_position((W/2-200, H/5)).resize(width=200)
-        double_arrow = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX + self.image_map.get("double arrow")). \
-            set_position((W/2, H/5)).resize(height=50)
         account_logo = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX + self.image_map.get(self.input_map.get("account"))). \
-            set_position((W/2+100, H/5)).resize(width=100)
+            set_position((W/2+50, H/5)).resize(width=100)
         self.text_to_speech(self.fill_text(Frame1.lang_map.get('audio1')), Frame1.lang_map.get('lan'), txnId)
         audioclip = AudioFileClip(self.config.SB_AUDIO_PATH_PREFIX + "audio-" + txnId + "-1.mp3")
         Frame1.map['text1'] = self.fill_text(Frame1.lang_map.get('text1'))
-        straight_text(Frame1.map['text1'], Frame1.lang_map.get('font'), Frame1.lang_map.get('fontsize1'), txnId, 1)
-        text = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX+'-text-1-' + txnId+'.png')
+        straight_text(Frame1.map['text1'], Frame1.lang_map.get('font'), Frame1.lang_map.get('fontsize1'), txnId, 1, self.config)
+        text = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX_WRITE+'-text-1-' + txnId+'.png')
         video = mpy.CompositeVideoClip(
             [
                 fiu_logo,
-                double_arrow,
                 account_logo,
                 text.set_position(('center', fiu_logo.size[1] + 40)),
             ],
@@ -65,5 +62,5 @@ class Frame1(object):
         new_audioclip = CompositeAudioClip([audioclip])
         video.audio = new_audioclip
         os.remove(self.config.SB_AUDIO_PATH_PREFIX + 'audio-' + txnId + '-1.mp3')
-        os.remove(self.config.SB_LOGO_PATH_PREFIX+'-text-1-' + txnId+'.png')
+        os.remove(self.config.SB_LOGO_PATH_PREFIX_WRITE+'-text-1-' + txnId+'.png')
         return video, 1

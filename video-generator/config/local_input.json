@@ -5,7 +5,7 @@
   "account": "savings",
   "mode": "store",
   "type": "periodic",
-  "language": "hindi",
+  "language": "english",
   "dataLife": "1 month",
   "consentFrom": "2020-07-03",
   "consentTo": "2021-12-06",

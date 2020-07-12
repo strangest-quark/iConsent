@@ -18,12 +18,15 @@ class DevelopmentConfig(Config):
     SB_VIDEO_PATH_PREFIX = '/Users/sn5/git/other/iConsent/video-generator/assets/'
     LANG_PATH = '/Users/sn5/git/other/iConsent/video-generator/config/languages/'
     CONFIG_PATH = '/Users/sn5/git/other/iConsent/video-generator/config/'
-
+    FONT_PATH = '/Users/sn5/git/other/iConsent/video-generator/assets/fonts/'
+    SB_LOGO_PATH_PREFIX_WRITE='/Users/sn5/git/other/iConsent/video-generator/assets/logo/'
 
 class ProductionConfig(Config):
     LOCAL = False
     SB_LOGO_PATH_PREFIX = '/var/task/assets/logo/'
+    SB_LOGO_PATH_PREFIX_WRITE='/tmp/'
     SB_AUDIO_PATH_PREFIX = '/tmp/'
     SB_VIDEO_PATH_PREFIX = '/tmp/'
     LANG_PATH = '/var/task/config/languages/'
     CONFIG_PATH = '/var/task/config/'
+    FONT_PATH = '/var/task/assets/fonts/'

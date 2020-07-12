@@ -54,15 +54,15 @@ class Frame4(object):
         calendar(self.config, 'fiFrom', txnId)
         calendar(self.config, 'fiTo', txnId)
         bgImage = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX + "bg_7.png")
-        calendar_from_logo = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX + 'fiFrom-' + txnId + '.png'). \
+        calendar_from_logo = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX_WRITE + 'fiFrom-' + txnId + '.png'). \
             set_position((W / 2 - 200, H / 5)).resize(width=150)
-        calendar_to_logo = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX + 'fiTo-' + txnId + '.png'). \
+        calendar_to_logo = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX_WRITE + 'fiTo-' + txnId + '.png'). \
             set_position((W / 2 + 50, H / 5)).resize(width=150)
         self.text_to_speech(self.fill_text(Frame4.lang_map.get('audio4')), Frame4.lang_map.get('lan'), txnId)
         audioclip = AudioFileClip(self.config.SB_AUDIO_PATH_PREFIX + "audio" + '-' + txnId + "-4.mp3")
         Frame4.map['text4'] = self.fill_text(Frame4.lang_map.get('text4'))
-        straight_text(Frame4.map['text4'], Frame4.lang_map.get('font'), Frame4.lang_map.get('fontsize7'), txnId, 4)
-        text = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX + '-text-4-' + txnId + '.png')
+        straight_text(Frame4.map['text4'], Frame4.lang_map.get('font'), Frame4.lang_map.get('fontsize7'), txnId, 4, self.config)
+        text = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX_WRITE + '-text-4-' + txnId + '.png')
         video = mpy.CompositeVideoClip(
             [
                 bgImage,
@@ -78,7 +78,7 @@ class Frame4(object):
         new_audioclip = CompositeAudioClip([audioclip])
         video.audio = new_audioclip
         os.remove(self.config.SB_AUDIO_PATH_PREFIX + 'audio-' + txnId + '-4.mp3')
-        os.remove(self.config.SB_LOGO_PATH_PREFIX + '-text-4-' + txnId + '.png')
-        os.remove(self.config.SB_LOGO_PATH_PREFIX + 'fiFrom-' + txnId + '.png')
-        os.remove(self.config.SB_LOGO_PATH_PREFIX + 'fiTo-' + txnId + '.png')
+        os.remove(self.config.SB_LOGO_PATH_PREFIX_WRITE + '-text-4-' + txnId + '.png')
+        os.remove(self.config.SB_LOGO_PATH_PREFIX_WRITE + 'fiFrom-' + txnId + '.png')
+        os.remove(self.config.SB_LOGO_PATH_PREFIX_WRITE + 'fiTo-' + txnId + '.png')
         return video, 4

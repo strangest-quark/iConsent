@@ -54,8 +54,8 @@ class Frame2(object):
         self.text_to_speech(self.fill_text(Frame2.lang_map.get('audio2')), Frame2.lang_map.get('lan'), txnId)
         audioclip = AudioFileClip(self.config.SB_AUDIO_PATH_PREFIX + "audio" + '-' + txnId + "-2.mp3")
         Frame2.map['text2'] = self.fill_text(Frame2.lang_map.get('text2'))
-        straight_text(Frame2.map['text2'], Frame2.lang_map.get('font'), Frame2.lang_map.get('fontsize2'), txnId, 2)
-        text = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX+'-text-2-' + txnId+'.png')
+        straight_text(Frame2.map['text2'], Frame2.lang_map.get('font'), Frame2.lang_map.get('fontsize2'), txnId, 2, self.config)
+        text = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX_WRITE+'-text-2-' + txnId+'.png')
         video = mpy.CompositeVideoClip(
             [
                 fip_logo,
@@ -68,5 +68,5 @@ class Frame2(object):
         new_audioclip = CompositeAudioClip([audioclip])
         video.audio = new_audioclip
         os.remove(self.config.SB_AUDIO_PATH_PREFIX + 'audio-' + txnId + '-2.mp3')
-        os.remove(self.config.SB_LOGO_PATH_PREFIX+'-text-2-' + txnId+'.png')
+        os.remove(self.config.SB_LOGO_PATH_PREFIX_WRITE+'-text-2-' + txnId+'.png')
         return video, 2
