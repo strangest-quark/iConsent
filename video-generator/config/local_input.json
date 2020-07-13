@@ -1,6 +1,6 @@
 {
   "fip": "Citibank",
-  "fiu": "Mint",
+  "fiu": "Quickbooks",
   "datatype": "transactions",
   "account": "savings",
   "mode": "store",

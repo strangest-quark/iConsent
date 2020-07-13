@@ -4,6 +4,7 @@ import gizeh as gz
 from gtts import gTTS
 import os
 from frames.text_generator.straight_text import straight_text
+from googletrans import Translator
 
 
 class Frame3(object):
@@ -15,6 +16,7 @@ class Frame3(object):
         self.input_map = config.input_map
         self.image_map = config.image_map
         self.config = config
+        self.translator = Translator()
 
     def text_to_speech(self, text, lan, txnId):
         language = lan
@@ -30,8 +32,10 @@ class Frame3(object):
             key = text[start + 1:end]
             if self.input_map.get(key) in Frame3.lang_map:
                 fill = Frame3.lang_map.get(self.input_map.get(key))
-            else:
+            elif Frame3.lang_map.get('lan') == 'en-IN':
                 fill = self.input_map.get(key)
+            else:
+                fill = self.translator.translate(self.input_map.get(key), dest=Frame3.lang_map.get('lan')).text
             text = text[:start] + fill + text[end + 1:]
         return text.capitalize()
 
@@ -49,10 +53,11 @@ class Frame3(object):
         if not self.config.LOCAL:
             os.chdir("/var/task/")
         W, H = self.config.VIDEO_SIZE
+        bgImage = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX + "bg_3.png")
         mode_logo = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX + self.image_map.get(self.input_map.get("type"))). \
-            set_position((W/2-200, H/5)).resize(height=150)
+            set_position((W/2-200, H/5)).resize(height=self.config.ICON_SIZE)
         data_logo = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX + self.image_map.get(self.input_map.get("datatype"))). \
-            set_position((W/2+50, H/5)).resize(height=170)
+            set_position((W/2+50, H/5)).resize(height=self.config.ICON_SIZE)
         self.text_to_speech(self.fill_text(Frame3.lang_map.get('audio3')), Frame3.lang_map.get('lan'), txnId)
         audioclip = AudioFileClip(self.config.SB_AUDIO_PATH_PREFIX + "audio" + '-' + txnId + "-3.mp3")
         Frame3.map['text3'] = self.fill_text(Frame3.lang_map.get('text3'))
@@ -60,6 +65,7 @@ class Frame3(object):
         text = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX_WRITE+'-text-3-' + txnId+'.png')
         video = mpy.CompositeVideoClip(
             [
+                bgImage,
                 mode_logo,
                 data_logo,
                 text.set_position(('center', mode_logo.size[1] + 40)),

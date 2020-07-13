@@ -4,6 +4,7 @@ import gizeh as gz
 from gtts import gTTS
 import os
 from frames.text_generator.straight_text import straight_text
+from googletrans import Translator
 
 
 class Frame2(object):
@@ -15,6 +16,7 @@ class Frame2(object):
         self.input_map = config.input_map
         self.image_map = config.image_map
         self.config = config
+        self.translator = Translator()
 
     def text_to_speech(self, text, lan, txnId):
         language = lan
@@ -30,8 +32,10 @@ class Frame2(object):
             key = text[start + 1:end]
             if self.input_map.get(key) in Frame2.lang_map:
                 fill = Frame2.lang_map.get(self.input_map.get(key))
-            else:
+            elif Frame2.lang_map.get('lan') == 'en-IN':
                 fill = self.input_map.get(key)
+            else:
+                fill = self.translator.translate(self.input_map.get(key), dest=self.Frame2.lang_map.get('lan')).text
             text = text[:start] + fill + text[end + 1:]
         return text.capitalize()
 
@@ -49,8 +53,9 @@ class Frame2(object):
         if not self.config.LOCAL:
             os.chdir("/var/task/")
         W, H = self.config.VIDEO_SIZE
+        bgImage = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX + "bg_2.png")
         fip_logo = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX + self.image_map.get(self.input_map.get("fip"))). \
-            set_position((W/2-150, H/5)).resize(height=100)
+            set_position((W/2-200, H/5+80)).resize(height=self.config.ICON_SIZE-50)
         self.text_to_speech(self.fill_text(Frame2.lang_map.get('audio2')), Frame2.lang_map.get('lan'), txnId)
         audioclip = AudioFileClip(self.config.SB_AUDIO_PATH_PREFIX + "audio" + '-' + txnId + "-2.mp3")
         Frame2.map['text2'] = self.fill_text(Frame2.lang_map.get('text2'))
@@ -58,8 +63,9 @@ class Frame2(object):
         text = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX_WRITE+'-text-2-' + txnId+'.png')
         video = mpy.CompositeVideoClip(
             [
+                bgImage,
                 fip_logo,
-                text.set_position(('center', fip_logo.size[1] + 40)),
+                text.set_position((W/5+50, H/5)),
             ],
             size=self.config.VIDEO_SIZE). \
             on_color(

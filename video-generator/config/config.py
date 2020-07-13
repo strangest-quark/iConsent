@@ -9,6 +9,9 @@ class Config(object):
     WHITE = (255, 255, 255)
     WHITE_GIZEH = (1, 1, 1)
     DURATION = 5
+    ICON_HEIGHT=150
+    ICON_WIDTH=100
+    ICON_SIZE=100
 
 
 class DevelopmentConfig(Config):
