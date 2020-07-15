@@ -26,7 +26,7 @@ class DownloadWorker(Thread):
                 self.queue.task_done()
 
 
-def main(video_obj_arr, txnId):
+def main(video_obj_arr, txnId, n):
     ts = time()
     # Create a queue to communicate with the worker threads
     queue = Queue()
@@ -38,7 +38,7 @@ def main(video_obj_arr, txnId):
         worker.daemon = True
         worker.start()
     # Put the tasks into the queue as a tuple
-    for i in range(1, 8):
+    for i in range(1, n):
         logger.info('Queueing {}'.format(i))
         queue.put((video_obj_arr[i-1], txnId))
     # Causes the main thread to wait for the queue to finish processing all the tasks

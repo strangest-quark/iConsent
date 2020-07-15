@@ -12,6 +12,9 @@
   "deposit": "deposit.png",
   "calendar": "consentFrom.png",
   "view": "view.png",
-  "store": "store.png",
-  "left_arrow": "left_arrow.gif"
+  "store": "store.gif",
+  "stream": "stream.gif",
+  "query": "query.gif",
+  "left_arrow": "left_arrow.gif",
+  "phone": "phone.png"
 }

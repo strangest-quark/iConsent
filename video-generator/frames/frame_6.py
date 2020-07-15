@@ -44,8 +44,8 @@ class Frame6(object):
             os.chdir("/var/task/")
         W, H = self.config.VIDEO_SIZE
         bgImage = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX + "bg_6.png")
-        mode_logo = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX + self.image_map.get(self.input_map.get("mode"))). \
-            set_position((W/2-50, H/5)).resize(width=self.config.ICON_SIZE)
+        mode_logo = VideoFileClip(self.config.SB_LOGO_PATH_PREFIX + self.image_map.get(self.input_map.get("mode"))). \
+            set_position((W/2-self.config.ICON_SIZE/2, H/5)).resize(width=self.config.ICON_SIZE)
         self.text_to_speech(self.fill_text(Frame6.lang_map.get('audio6')), Frame6.lang_map.get('lan'), txnId)
         audioclip = AudioFileClip(self.config.SB_AUDIO_PATH_PREFIX + "audio" + '-' + txnId + "-6.mp3")
         Frame6.map['text6'] = self.fill_text(Frame6.lang_map.get('text6'))

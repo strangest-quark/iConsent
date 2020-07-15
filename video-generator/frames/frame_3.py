@@ -54,10 +54,16 @@ class Frame3(object):
             os.chdir("/var/task/")
         W, H = self.config.VIDEO_SIZE
         bgImage = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX + "bg_3.png")
-        mode_logo = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX + self.image_map.get(self.input_map.get("type"))). \
-            set_position((W/2-200, H/5)).resize(height=self.config.ICON_SIZE)
-        data_logo = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX + self.image_map.get(self.input_map.get("datatype"))). \
-            set_position((W/2+50, H/5)).resize(height=self.config.ICON_SIZE)
+        phone_logo = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX + self.image_map.get('phone')).\
+            set_position((W/2-self.config.ICON_SIZE*2, H/5)).resize(height=self.config.ICON_SIZE)
+        if 'gif' in self.image_map.get(self.input_map.get('mode')):
+            mode_logo = VideoFileClip(self.config.SB_LOGO_PATH_PREFIX + self.image_map.get(self.input_map.get('mode'))). \
+                set_position((W/2-self.config.ICON_SIZE/2, H/5)).resize(height=self.config.ICON_SIZE)
+        else:
+            mode_logo = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX + self.image_map.get(self.input_map.get('mode'))). \
+                set_position((W / 2 - self.config.ICON_SIZE / 2, H / 5)).resize(height=self.config.ICON_SIZE)
+        data_logo = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX + self.image_map.get(self.input_map.get("datatype"))).\
+            set_position((W/2+self.config.ICON_SIZE, H/5)).resize(height=self.config.ICON_SIZE)
         self.text_to_speech(self.fill_text(Frame3.lang_map.get('audio3')), Frame3.lang_map.get('lan'), txnId)
         audioclip = AudioFileClip(self.config.SB_AUDIO_PATH_PREFIX + "audio" + '-' + txnId + "-3.mp3")
         Frame3.map['text3'] = self.fill_text(Frame3.lang_map.get('text3'))
@@ -66,6 +72,7 @@ class Frame3(object):
         video = mpy.CompositeVideoClip(
             [
                 bgImage,
+                phone_logo,
                 mode_logo,
                 data_logo,
                 text.set_position(('center', mode_logo.size[1] + 40)),

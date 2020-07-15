@@ -5,6 +5,7 @@
   "Citibank": "ಸಿಟಿಬ್ಯಾಂಕ್",
   "font": "BalooTamma2-ExtraBold",
   "lan": "kn",
+
   "fontsize": 30,
   "fontsize1": 20,
   "fontsize2": 20,
@@ -13,17 +14,18 @@
   "fontsize5": 20,
   "fontsize6": 20,
   "fontsize7": 20,
+
   "text1": "ನಿಮ್ಮ ಲಿಂಕ್ ಮಾಡಿದ {account} ಖಾತೆ ವಿವರಗಳನ್ನು ಪ್ರವೇಶಿಸಿ",
   "text2": "ಲಿಂಕ್ ಮಾಡಿದ ಖಾತೆಗಳು",
-  "text3": "{mode} ನಿಮ್ಮ {datatype} ಡೇಟಾ",
+  "text3": "{mode} ನಿಮ್ಮ {datatype} ಮಾಹಿತಿ",
   "text4": "ನಿಮ್ಮ ಖಾತೆ ಡೇಟಾ ಶ್ರೇಣಿ",
   "text5": "{type} {mode} ಪ್ರತಿಯೊಂದೂ {frequency}",
   "text6": "ನಿಮ್ಮ ಡೇಟಾವನ್ನು {datalife} {mode}",
   "text7": "ಒಪ್ಪಿಗೆ ಶ್ರೇಣಿ",
 
   "audio1": "ನಿಮ್ಮ ಲಿಂಕ್ ಮಾಡಿದ ಉಳಿತಾಯ ಖಾತೆ ವಿವರಗಳನ್ನು ಪ್ರವೇಶಿಸಲು {fiu} ಬಯಸಿದೆ",
-  "audio2": "ನೀವು {fiu} ಒಪ್ಪಿಗೆ ನೀಡುತ್ತಿರುವ ಖಾತೆಗಳು, {fip}",
-  "audio3": "{fiu} ನಿಮ್ಮ {datatype} ಡೇಟಾವನ್ನು {mode} ಮಾಡಲು ಬಯಸುತ್ತದೆ",
+  "audio2": "ನೀವು {fiu}ಗೆ ಒಪ್ಪಿಗೆ ನೀಡುತ್ತಿರುವ ಖಾತೆಗಳು, {fip}",
+  "audio3": "{fiu} ನಿಮ್ಮ {datatype} ಡೇಟಾವನ್ನು {mode} ಬಯಸುತ್ತದೆ",
   "audio4": "{fiFrom} ನಿಂದ {fiTo} ವರೆಗೆ ನಿಮ್ಮ {datatype} ತರಲಾಗಿದೆ",
   "audio5": "{fiu} {type} {mode} ನಿಮ್ಮ ಡೇಟಾವನ್ನು ಪ್ರತಿ {frequency} ಮಾಡುತ್ತದೆ",
   "audio6": "ಇದು ನಿಮ್ಮ ಪಡೆದ ಡೇಟಾವನ್ನು {datalife} ಅವಧಿಗೆ ಮಾತ್ರ {mode}",
@@ -36,7 +38,9 @@
   "savings": "ಉಳಿತಾಯ",
   "summary": "ಸಾರಾಂಶ",
   "deposit": "ಠೇವಣಿ",
-  "transactions": "ವ್ಯವಹಾರಗಳು",
+  "transactions": "ವ್ಯವಹಾರಗಳ",
+
+  
   "01": "ಜನವರಿ",
   "02": "ಫೆಬ್ರವರಿ",
   "03": "ಮಾರ್ಚ್",
