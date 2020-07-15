@@ -1,6 +1,5 @@
 import moviepy.editor as mpy
 from moviepy.editor import *
-import gizeh as gz
 from gtts import gTTS
 import os
 from frames.text_generator.straight_text import straight_text

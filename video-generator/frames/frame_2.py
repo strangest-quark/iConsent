@@ -1,6 +1,5 @@
 import moviepy.editor as mpy
 from moviepy.editor import *
-import gizeh as gz
 from gtts import gTTS
 import os
 from frames.text_generator.straight_text import straight_text
@@ -39,15 +38,6 @@ class Frame2(object):
             text = text[:start] + fill + text[end + 1:]
         return text.capitalize()
 
-    @staticmethod
-    def render_text2(t):
-        WHITE_GIZEH = (1, 1, 1)
-        BLUE = (59 / 255, 89 / 255, 152 / 255)
-        surface = gz.Surface(640, 60, bg_color=WHITE_GIZEH)
-        text = gz.text(Frame2.map.get('text2'), fontfamily=Frame2.lang_map.get('font'),
-                       fontsize=Frame2.lang_map.get('fontsize'), fontweight='bold', fill=BLUE, xy=(320, 40))
-        text.draw(surface)
-        return surface.get_npimage()
 
     def generate_video_part(self, txnId):
         if not self.config.LOCAL:
