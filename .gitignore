@@ -136,3 +136,4 @@ node_modules
 .serverless/
 package-lock.json
 video-packages.zip
+video-generator/new
