@@ -55,7 +55,7 @@ class Frame2(object):
         W, H = self.config.VIDEO_SIZE
         bgImage = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX + "bg_2.png")
         fip_logo = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX + self.image_map.get(self.input_map.get("fip"))). \
-            set_position((W/2-200, H/5+80)).resize(height=self.config.ICON_SIZE-50)
+            set_position((W/4-self.config.BANK_ICON_SIZE/3, H/3)).resize(height=self.config.BANK_ICON_SIZE)
         self.text_to_speech(self.fill_text(Frame2.lang_map.get('audio2')), Frame2.lang_map.get('lan'), txnId)
         audioclip = AudioFileClip(self.config.SB_AUDIO_PATH_PREFIX + "audio" + '-' + txnId + "-2.mp3")
         Frame2.map['text2'] = self.fill_text(Frame2.lang_map.get('text2'))

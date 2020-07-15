@@ -3,7 +3,7 @@
   "fiu": "Mint",
   "datatype": "summary",
   "account": "deposit",
-  "mode": "view",
+  "mode": "query",
   "type": "one time",
   "language": "hindi",
   "dataLife": "1 month",

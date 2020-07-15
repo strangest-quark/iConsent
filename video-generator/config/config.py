@@ -12,6 +12,7 @@ class Config(object):
     ICON_HEIGHT=150
     ICON_WIDTH=100
     ICON_SIZE=100
+    BANK_ICON_SIZE = 120
 
 
 class DevelopmentConfig(Config):
