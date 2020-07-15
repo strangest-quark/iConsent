@@ -26,8 +26,12 @@ def handler(event, context):
 
     # worker threads for frames
     video_obj_arr = []
+    video_obj_arr = []
     for i in range(1, 8):
-        video_obj_arr.append(eval('Frame' + str(i))(config))
+        if i == 6 and config.input_map.get('mode') != 'store':
+            continue
+        else:
+            video_obj_arr.append(eval('Frame' + str(i))(config))
     _start = time.time()
     txnId = str(uuid.uuid4())
     out_queue = main(video_obj_arr, txnId)
