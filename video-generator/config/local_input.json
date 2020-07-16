@@ -1,0 +1,16 @@
+{
+  "fip": "Axis Bank",
+  "fiu": "Mint",
+  "datatype": "summary",
+  "account": "deposit",
+  "mode": "query",
+  "type": "one time",
+  "language": "hindi",
+  "dataLife": "1 month",
+  "consentFrom": "2020-07-03",
+  "consentTo": "2021-12-06",
+  "fiFrom": "2018-12-06",
+  "fiTo": "2020-07-03",
+  "datalife": "15 days",
+  "frequency": "1 week"
+}

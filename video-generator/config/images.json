@@ -1,0 +1,20 @@
+{
+  "Mint": "mint.png",
+  "Axis Bank": "axis.png",
+  "Citibank": "citi.png",
+  "Quickbooks": "quickbooks.png",
+  "one time": "single.png",
+  "periodic": "periodic.png",
+  "summary": "summary.png",
+  "transactions": "transactions.png",
+  "double arrow": "arrow.png",
+  "savings": "savings.png",
+  "deposit": "deposit.png",
+  "calendar": "consentFrom.png",
+  "view": "view.png",
+  "store": "store.gif",
+  "stream": "stream.gif",
+  "query": "query.gif",
+  "left_arrow": "left_arrow.gif",
+  "phone": "phone.png"
+}

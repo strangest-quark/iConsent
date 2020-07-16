@@ -1,0 +1,39 @@
+# serverless.yml
+
+service: iConsent
+
+package:
+  exclude:
+    - node_modules/**
+    - '!node_modules/node-fetch/**'
+    - package.json
+    - package-lock.json
+    - serverless.yaml
+
+plugins:
+  - serverless-python-requirements
+  - serverless-wsgi
+
+custom:
+  wsgi:
+    app: app.app
+    packRequirements: false
+  pythonRequirements:
+    dockerizePip: non-linux
+
+provider:
+  name: aws
+  runtime: python3.8
+  stage: dev
+  region: ap-south-1
+  memorySize: 512
+  timeout: 28
+  role: arn:aws:iam::699850692529:role/lambda-s3-role
+
+functions:
+  app:
+    handler: wsgi_handler.handler
+    events:
+      - http: POST video
+    layers:
+      - arn:aws:lambda:ap-south-1:699850692529:layer:iconsent-dependency-layer:1

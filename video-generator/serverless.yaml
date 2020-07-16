@@ -1,0 +1,28 @@
+# serverless.yml
+
+service: video-generator
+
+package:
+  exclude:
+    - node_modules/**
+    - '!node_modules/node-fetch/**'
+    - package.json
+    - package-lock.json
+    - serverless.yaml
+    - new/**
+
+provider:
+  name: aws
+  runtime: python3.8
+  stage: dev
+  region: ap-south-1
+  timeout: 25
+  memorySize: 3008
+  role: arn:aws:iam::699850692529:role/lambda-s3-role
+
+functions:
+  app:
+    handler: handler.handler
+    layers:
+      - arn:aws:lambda:ap-south-1:699850692529:layer:code-2:1
+      - arn:aws:lambda:ap-south-1:699850692529:layer:image-magick:1

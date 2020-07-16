@@ -1,0 +1,24 @@
+{
+  "name": "iConsent",
+  "version": "1.0.0",
+  "description": "## Setup Python 3.7+",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/strangest-quark/iConsent.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/strangest-quark/iConsent/issues"
+  },
+  "homepage": "https://github.com/strangest-quark/iConsent#readme",
+  "devDependencies": {
+    "serverless-python-requirements": "^5.1.0",
+    "serverless-wsgi": "^1.7.5"
+  }
+}
