@@ -27,3 +27,7 @@ Based out of serverless framework
 
     cd video-generator
     sls deploy
+
+## Troubleshooting
+* ImageMagick on MacOS does not load fonts: https://github.com/tlk/homebrew-imagemagick-x11
+
