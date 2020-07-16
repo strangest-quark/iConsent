@@ -16,7 +16,7 @@ import './registerServiceWorker'
 import App from './App.vue'
 
 /* Default title tag */
-const defaultDocumentTitle = 'Admin One Bulma'
+const defaultDocumentTitle = 'iConsent - oneMoney AA'
 
 /* Collapse mobile aside menu on route change & set document title from route meta */
 router.afterEach(to => {
