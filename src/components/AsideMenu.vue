@@ -52,13 +52,57 @@ export default {
   data () {
     return {
       currentLabel: '',
-      previousActiveId: 1
-    }
-  },
-  props: {
-    menu: {
-      type: Array,
-      default: () => []
+      previousActiveId: 1,
+      menu: [
+        {
+          id: 1,
+          label: 'Pending',
+          icon: 'clock',
+          path: '/pending-consents',
+          class: 'active',
+          type: 'consent'
+        },
+        {
+          id: 2,
+          label: 'Active',
+          icon: 'file',
+          path: '/active-consents',
+          class: '',
+          type: 'consent'
+        },
+        {
+          id: 3,
+          label: 'Paused',
+          icon: 'pause',
+          path: '/paused-consents',
+          class: '',
+          type: 'consent'
+        },
+        {
+          id: 4,
+          label: 'Inactive',
+          icon: 'stop',
+          path: '/inactive-consents',
+          class: '',
+          type: 'consent'
+        },
+        {
+          id: 5,
+          label: 'Linked',
+          icon: 'link',
+          path: '/linked-accounts',
+          class: '',
+          type: 'account'
+        },
+        {
+          id: 6,
+          label: 'Active',
+          icon: 'layers-off',
+          path: '/delinked-accounts',
+          class: '',
+          type: 'account'
+        }
+      ]
     }
   },
   methods: {
@@ -85,7 +129,6 @@ export default {
     },
     menuClick (item) {
       this.setActive(item.id)
-      console.log(item)
       if (this.$router.currentRoute.path !== item.path) {
         this.$router.push(item).catch(() => {})
       }
