@@ -32,3 +32,8 @@ section.hero.is-hero-bar {
     }
   }
 }
+
+.hero.is-fullheight {
+  max-height: 100vh;
+  min-height: 0vh;
+}

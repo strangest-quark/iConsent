@@ -13,9 +13,6 @@ export default new Vuex.Store({
     /* NavBar */
     isNavBarVisible: true,
 
-    /* FooterBar */
-    isFooterBarVisible: true,
-
     /* Aside */
     isAsideVisible: true,
     isAsideMobileExpanded: false
@@ -58,6 +55,31 @@ export default new Vuex.Store({
       }
 
       state.isAsideMobileExpanded = isShow
+    },
+
+    // login page hide left
+    asideHolderHide (state, payload = null) {
+      const htmlClassName1 = 'has-aside-left'
+      const htmlClassName2 = 'has-aside-expanded'
+      const htmlClassName3 = 'has-navbar-fixed-top'
+      const htmlClassName4 = 'has-aside-mobile-transition'
+
+      let isShow
+
+      if (payload !== null) {
+        isShow = payload
+      } else {
+        isShow = !state.isAsideVisible
+      }
+
+      if (isShow) {
+        document.documentElement.classList.add(htmlClassName1, htmlClassName2, htmlClassName3, htmlClassName4)
+      } else {
+        document.documentElement.classList.remove(htmlClassName1, htmlClassName2, htmlClassName3, htmlClassName4)
+      }
+
+      state.isAsideVisible = isShow
+      state.isNavBarVisible = isShow
     }
   },
   actions: {
