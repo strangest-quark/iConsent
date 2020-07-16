@@ -1,5 +1,7 @@
 # iConsent-UI
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/679ce57f-f995-4feb-a1b1-b084a79075b6/deploy-status)](https://app.netlify.com/sites/iconsent/deploys)
+
 Setup environment variables by refering to `.env` file
 
 ## Project setup
