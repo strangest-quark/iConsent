@@ -122,7 +122,7 @@ export default {
       }
     },
     setActive (id) {
-      if (this.previousActiveId === id) return
+      // if (this.previousActiveId === id) return
       this.menu.find(item => item.id === this.previousActiveId).class = ''
       this.menu.find(item => item.id === id).class = 'active'
       this.previousActiveId = id
@@ -183,7 +183,7 @@ export default {
   border-radius: 20px;
   background: #079aff;
   color: #ffffff;
-  font-weight: bold;
+  /* font-weight: bold; */
 }
 .strana .menu-item.active {
   border-radius: 20px;
