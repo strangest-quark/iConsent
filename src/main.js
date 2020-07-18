@@ -1,5 +1,6 @@
 /* Styles */
 import '@/scss/main.scss'
+import '@/css/bank.css'
 
 /* Core */
 import Vue from 'vue'
