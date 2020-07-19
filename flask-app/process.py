@@ -124,7 +124,9 @@ def check_if_key_exists(consentArtefactId):
         }
     )
     if 'Item' in response.keys():
-        return True, response
+        res = response['Item']
+        res.pop('video_req')
+        return True, res
     else:
         return False, None
 
