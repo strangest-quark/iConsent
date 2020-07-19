@@ -1,0 +1,166 @@
+{
+    "consents": {
+        "active": [],
+        "pending": [
+            {
+                "eventID": "a24f1f91-527e-412c-8620-49d9838cbac4",
+                "timeStamp": "2020-07-19T05:49:28.000Z",
+                "eventType": "CONSENT_REQUEST",
+                "transactionID": "4a4adbbe-29ae-11e8-a8d7-0289437bf331",
+                "refParentEventId": null,
+                "refLoginSessionId": null,
+                "refUserId": "229f7ecf-2924-42f1-9952-04392c27344a",
+                "refFIUId": "finprobank",
+                "status": "PENDING",
+                "noOfConsents": null,
+                "startTime": "2020-07-19T05:49:28.000Z",
+                "expireTime": "2020-12-30T11:39:57.000Z",
+                "refConsentArtefactId": null,
+                "purposeId": null,
+                "purposeText": "Wealth management service",
+                "datarangeFrom": "2018-12-06T11:39:57.000Z",
+                "datarangeTo": "2020-07-03T14:25:33.000Z",
+                "frequencyUnit": "MONTH",
+                "frequencyValue": 1,
+                "consentTypes": "TRANSACTIONS,PROFILE,SUMMARY",
+                "fiu_name": "Awesome Digital Bank",
+                "data_life_value": 1,
+                "data_life_unit": "MONTH",
+                "fetch_type": "ONETIME",
+                "actionStatus": null,
+                "actionStatusMsg": null,
+                "fiu_session_id": null,
+                "fiuID": "finprobank",
+                "consentStatus": "PENDING",
+                "consentID": null,
+                "purposeCategoryType": null,
+                "purpose": null,
+                "consentArtefactID": "a24f1f91-527e-412c-8620-49d9838cbac4",
+                "linkedAccounts": 0,
+                "consentUpdatedAt": null
+            }
+        ],
+        "paused": [],
+        "inactive": [],
+        "rejected": [],
+        "revoked": [
+            {
+                "eventID": "41f64f74-7822-44cf-b63b-523e313785a2",
+                "timeStamp": "2020-07-19T05:49:37.000Z",
+                "eventType": "CONSENT_REQUEST",
+                "transactionID": "4a4adbbe-29ae-11e8-a8d7-0289437bf331",
+                "refParentEventId": null,
+                "refLoginSessionId": null,
+                "refUserId": "229f7ecf-2924-42f1-9952-04392c27344a",
+                "refFIUId": "finprobank",
+                "status": "APPROVED",
+                "noOfConsents": 3,
+                "startTime": "2020-07-19T05:49:37.000Z",
+                "expireTime": "2020-12-30T11:39:57.000Z",
+                "refConsentArtefactId": null,
+                "purposeId": null,
+                "purposeText": "Wealth management service",
+                "datarangeFrom": "2018-12-06T11:39:57.000Z",
+                "datarangeTo": "2020-07-03T14:25:33.000Z",
+                "frequencyUnit": "MONTH",
+                "frequencyValue": 1,
+                "consentTypes": "TRANSACTIONS,PROFILE,SUMMARY",
+                "fiu_name": "Awesome Digital Bank",
+                "data_life_value": 1,
+                "data_life_unit": "MONTH",
+                "fetch_type": "PERIODIC",
+                "actionStatus": null,
+                "actionStatusMsg": null,
+                "fiu_session_id": null,
+                "fiuID": "finprobank",
+                "consentStatus": "REVOKED",
+                "consentID": "5d124f73-5190-4a42-93e8-978aa4899e0e",
+                "purposeCategoryType": "string",
+                "purpose": null,
+                "consentArtefactID": "41f64f74-7822-44cf-b63b-523e313785a2",
+                "linkedAccounts": 3,
+                "consentUpdatedAt": "2020-07-19T07:22:17.000Z"
+            }
+        ],
+        "showViewAll": true
+    },
+    "notifications": [],
+    "bankAccounts": [
+        {
+            "userAccountID": 5793,
+            "userID": "229f7ecf-2924-42f1-9952-04392c27344a",
+            "fipID": "finsharebank",
+            "FIPName": "Universal Bank",
+            "fiType": "RECURRING_DEPOSIT",
+            "accountType": "DEFAULT",
+            "accountRefNumber": "399e2868-7ec5-4b36-9366-bac266a69720",
+            "linkRefNumber": "b65c1cb9-00ba-44b5-87f8-fc2629568ca1",
+            "maskedAccountNumber": "XXXXXXXXXX6329",
+            "updatedAt": "2020-07-12T12:08:39.000Z",
+            "nickName": "RECURRING_DEPOSIT",
+            "status": "linked",
+            "consentArtefacts": [
+                {
+                    "consentArtefactId": "41f64f74-7822-44cf-b63b-523e313785a2",
+                    "createTime": "2020-07-19T07:22:17.128Z",
+                    "startTime": "2020-07-19T05:49:36.738Z",
+                    "expireTime": "2020-12-30T11:39:57.153Z",
+                    "purpose": null,
+                    "status": "REVOKED"
+                }
+            ]
+        },
+        {
+            "userAccountID": 5792,
+            "userID": "229f7ecf-2924-42f1-9952-04392c27344a",
+            "fipID": "finsharebank",
+            "FIPName": "Universal Bank",
+            "fiType": "TERM-DEPOSIT",
+            "accountType": "DEFAULT",
+            "accountRefNumber": "ba1d414e-8dfe-4b95-9501-4797615cd016",
+            "linkRefNumber": "4fc3e2b4-58d9-4c15-b63f-c2cbff4ecba1",
+            "maskedAccountNumber": "XXXXXXXXXX6329",
+            "updatedAt": "2020-07-12T12:08:39.000Z",
+            "nickName": "TERM-DEPOSIT",
+            "status": "linked",
+            "consentArtefacts": [
+                {
+                    "consentArtefactId": "41f64f74-7822-44cf-b63b-523e313785a2",
+                    "createTime": "2020-07-19T07:22:17.128Z",
+                    "startTime": "2020-07-19T05:49:36.738Z",
+                    "expireTime": "2020-12-30T11:39:57.153Z",
+                    "purpose": null,
+                    "status": "REVOKED"
+                }
+            ]
+        },
+        {
+            "userAccountID": 5791,
+            "userID": "229f7ecf-2924-42f1-9952-04392c27344a",
+            "fipID": "finsharebank",
+            "FIPName": "Universal Bank",
+            "fiType": "DEPOSIT",
+            "accountType": "SAVINGS",
+            "accountRefNumber": "55646c75-6db7-4482-bedf-ce84c3a21c6f",
+            "linkRefNumber": "b9e9c0b1-7d7e-4b81-baad-09dc1cb69159",
+            "maskedAccountNumber": "XXXXXXXXXX6329",
+            "updatedAt": "2020-07-12T12:08:39.000Z",
+            "nickName": "DEPOSIT",
+            "status": "linked",
+            "consentArtefacts": [
+                {
+                    "consentArtefactId": "41f64f74-7822-44cf-b63b-523e313785a2",
+                    "createTime": "2020-07-19T07:22:17.128Z",
+                    "startTime": "2020-07-19T05:49:36.738Z",
+                    "expireTime": "2020-12-30T11:39:57.153Z",
+                    "purpose": null,
+                    "status": "REVOKED"
+                }
+            ]
+        }
+    ],
+    "unLinkedBankAccounts": [],
+    "status": true,
+    "language": "hindi",
+    "session": "a1a9a193a55e22801d33dd4fdb6e4fcc:201c93a059f8710474b693f628a3f06afa5be114009e0ecfedaa4aa43de69836f4c5f0271cfa5ad1338557e9882fe60f67906b713822f36e4b5c1ce5f805328d"
+}
