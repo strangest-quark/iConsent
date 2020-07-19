@@ -3,6 +3,7 @@ from flask_cors import CORS, cross_origin
 import boto3
 import json
 from process import process
+import requests
 
 app = Flask(__name__)
 CORS(app)
@@ -27,7 +28,13 @@ def video():
 @app.route("/dashboard", methods=['POST'])
 @cross_origin()
 def dashboard():
-    dashboard_obj = request.get_json()
+    session = request.headers['sessionId']
+    url = 'https://api-sandbox.onemoney.in/app/dashboard'
+    headers = {'sessionId': session, 'Content-Type': 'application/json'}
+    req = requests.get(url, headers=headers)
+    dashboard_obj =  json.loads(req.content)
+    dashboard_obj['language'] = request.headers['language']
+    dashboard_obj['session'] = request.headers['sessionId']
     print(dashboard_obj)
     res_map = process(dashboard_obj)
     return jsonify(res_map)
