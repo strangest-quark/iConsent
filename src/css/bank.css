@@ -66,8 +66,8 @@ ul {
 }
 
 .banklist {
-  width: 375px;
-  height: 200px;
+  /* width: 375px;
+  height: 200px; */
   overflow-y: scroll;
 }
 
@@ -87,8 +87,8 @@ ul {
   padding: calc(var(--gutter) / 8);
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background: none;
+  justify-content: left;
+  /* align-items: center; */
+  /* background: none; */
   border-radius: 8px;
 }

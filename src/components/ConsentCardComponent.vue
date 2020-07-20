@@ -1,0 +1,76 @@
+<template>
+  <div class="card">
+    <header v-if="title" class="card-header consent-card-header">
+      <!-- <p class="card-header-title logo">
+        <img src="@/assets/FIU_Logo/quickbooks.jpg" />
+      </p>
+      <span class="card-header-icon card-header-end" aria-label="verified">
+        Verified <b-icon icon="shield-check" custom-size="default"/>
+      </span>-->
+    </header>
+    <div class="card-content">
+      <slot />
+    </div>
+    <footer class="card-footer">
+      <span class="card-footer-item reject">
+        <b-icon icon="close" custom-size="default" />
+        <a href="#">Reject</a>
+      </span>
+       <span class="card-footer-item approve">
+           <b-icon icon="check-circle-outline" custom-size="default" />
+        <a href="#">Approve</a>
+      </span>
+      <span class="card-footer-item more">
+          <b-icon icon="arrow-right-circle-outline" custom-size="default" />
+        <a href="#">More</a>
+      </span>
+    </footer>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'CardComponent',
+  props: {
+    title: {
+      type: String,
+      default: null
+    },
+    icon: {
+      type: String,
+      default: null
+    },
+    headerIcon: {
+      type: String,
+      default: null
+    }
+  },
+  methods: {}
+}
+</script>
+
+<style scoped>
+.logo {
+  max-width: 10rem;
+}
+.card-header-end {
+  text-align: right;
+}
+.card-footer-item.reject a{
+  /* background-color: #F26C63 !important; */
+  /* color: white */
+    font-weight: bold;
+color: #E11A50
+}
+.card-footer-item.approve a,card-footer-item.approve{
+  /* background-color: #99D25C !important; */
+  font-weight: bold;
+  color: #03B072
+}
+
+.card-footer-item.more a,card-footer-item.more{
+  /* background-color: #99D25C !important; */
+  font-weight: bold;
+  color: #666666
+}
+</style>

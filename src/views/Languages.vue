@@ -1,0 +1,121 @@
+<template>
+  <div>
+    <!-- <Language msg="Welcome to Your Vue.js App" /> -->
+
+    <div class="section">
+      <div class="columns is-multiline">
+        <div
+          v-for="(i,index) in languages"
+          :key="index"
+          class="language-options column is-one-quarter"
+        >
+        <div class="card">
+          <div @click="changeLocale(i.language)"  :class="i.class">
+            <div class="card-content">
+              <div class="media">
+                <div class="media-left">
+                  <figure class="image is-48x48">
+                    <span class="display-letter">{{i.displayLetter}}</span>
+                  </figure>
+                </div>
+                <div class="media-content">
+                  <p class="title is-4">{{i.displayLanguage}}</p>
+                  <p class="subtitle is-6">{{ i.title }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+// import Language from '@/components/Language.vue'
+import i18n from '@/plugins/i18n'
+export default {
+  components: {
+    // Language
+  },
+  data () {
+    return {
+      previousActiveLanguage: 'en',
+      languages: [
+        {
+          flag: 'us',
+          language: 'en',
+          title: 'English',
+          displayMessage: 'Hello',
+          displayLetter: 'A',
+          displayLanguage: 'English',
+          class: 'active'
+        },
+        {
+          flag: 'in',
+          language: 'ta',
+          title: 'Tamil',
+          displayMessage: 'வணக்கம்',
+          displayLetter: 'அ',
+          displayLanguage: 'தமிழ்',
+          class: ''
+        },
+        {
+          flag: 'in',
+          language: 'ml',
+          title: 'Malayalam',
+          displayMessage: 'ഹലോ',
+          displayLetter: 'എ',
+          displayLanguage: 'മലയാളം',
+          class: ''
+        },
+        {
+          flag: 'in',
+          language: 'hi',
+          title: 'Hindi',
+          displayMessage: 'नमस्ते',
+          displayLetter: 'आ',
+          displayLanguage: 'हिन्दी',
+          class: ''
+        }
+      ]
+    }
+  },
+  methods: {
+    setActive (language) {
+    //   if (this.previousActiveLanguage === language) return
+      this.languages.find(item => item.language === this.previousActiveLanguage).class = ''
+      this.languages.find(item => item.language === language).class = 'active'
+      this.previousActiveLanguage = language
+    },
+    activeLanguage (language) {
+      return i18n.locale === language
+    },
+    changeLocale (locale) {
+      this.setActive(locale)
+      i18n.locale = locale
+    }
+  }
+}
+</script>
+
+<style>
+.display-letter {
+  font-size: 2rem;
+}
+.language-options .card {
+  background: aliceblue;
+}
+
+.language-options .card .active{
+  background: #99D25C;
+border: 1px solid gray;
+border-radius: 5px;
+}
+
+.language-options .content .icon {
+  height: 1rem;
+  color: green;
+}
+</style>

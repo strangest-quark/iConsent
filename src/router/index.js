@@ -2,12 +2,10 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import SignIn from '../views/SignIn.vue'
-import PendingConsents from '../views/PendingConsents.vue'
-import ActiveConsents from '../views/ActiveConsents.vue'
-import PausedConsents from '../views/PausedConsents.vue'
-import InactiveConsents from '../views/InactiveConsents.vue'
-import LinkedAccounts from '../views/LinkedAccounts.vue'
-import DelinkedAccounts from '../views/DelinkedAccounts.vue'
+import Language from '../views/Languages.vue'
+import Dashboard from '../views/Dashboard.vue'
+import Consents from '../views/Consents.vue'
+import Accounts from '../views/Accounts.vue'
 
 Vue.use(VueRouter)
 
@@ -23,34 +21,24 @@ const routes = [
     component: Home
   },
   {
-    path: '/pending-consents',
-    name: 'pending-consents',
-    component: PendingConsents
+    path: '/language',
+    name: 'language',
+    component: Language
   },
   {
-    path: '/active-consents',
-    name: 'active-consents',
-    component: ActiveConsents
+    path: '/dashboard',
+    name: 'dashboard',
+    component: Dashboard
   },
   {
-    path: '/paused-consents',
-    name: 'paused-consents',
-    component: PausedConsents
+    path: '/consents',
+    name: 'consents',
+    component: Consents
   },
   {
-    path: '/inactive-consents',
-    name: 'inactive-consents',
-    component: InactiveConsents
-  },
-  {
-    path: '/linked-accounts',
-    name: 'linked-accounts',
-    component: LinkedAccounts
-  },
-  {
-    path: '/delinked-accounts',
-    name: 'delinked-accounts',
-    component: DelinkedAccounts
+    path: '/accounts',
+    name: 'accounts',
+    component: Accounts
   }
 ]
 
