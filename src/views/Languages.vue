@@ -9,23 +9,23 @@
           :key="index"
           class="language-options column is-one-quarter"
         >
-        <div class="card">
-          <div @click="changeLocale(i.language)"  :class="i.class">
-            <div class="card-content">
-              <div class="media">
-                <div class="media-left">
-                  <figure class="image is-48x48">
-                    <span class="display-letter">{{i.displayLetter}}</span>
-                  </figure>
-                </div>
-                <div class="media-content">
-                  <p class="title is-4">{{i.displayLanguage}}</p>
-                  <p class="subtitle is-6">{{ i.title }}</p>
+          <div class="card">
+            <div @click="changeLocale(i.language)" :class="i.class">
+              <div class="card-content">
+                <div class="media">
+                  <div class="media-left">
+                    <figure class="image is-48x48">
+                      <span class="display-letter">{{i.displayLetter}}</span>
+                    </figure>
+                  </div>
+                  <div class="media-content">
+                    <p class="title is-4">{{i.displayLanguage}}</p>
+                    <p class="subtitle is-6">{{ i.title }}</p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
         </div>
       </div>
     </div>
@@ -54,6 +54,15 @@ export default {
         },
         {
           flag: 'in',
+          language: 'hi',
+          title: 'Hindi',
+          displayMessage: 'नमस्ते',
+          displayLetter: 'आ',
+          displayLanguage: 'हिन्दी',
+          class: ''
+        },
+        {
+          flag: 'in',
           language: 'ta',
           title: 'Tamil',
           displayMessage: 'வணக்கம்',
@@ -69,18 +78,12 @@ export default {
           displayLetter: 'എ',
           displayLanguage: 'മലയാളം',
           class: ''
-        },
-        {
-          flag: 'in',
-          language: 'hi',
-          title: 'Hindi',
-          displayMessage: 'नमस्ते',
-          displayLetter: 'आ',
-          displayLanguage: 'हिन्दी',
-          class: ''
         }
       ]
     }
+  },
+  mounted () {
+    this.setActive(localStorage.getItem('user-language'))
   },
   methods: {
     setActive (language) {
@@ -90,10 +93,11 @@ export default {
       this.previousActiveLanguage = language
     },
     activeLanguage (language) {
-      return i18n.locale === language
+      return localStorage.getItem('user-language') === language
     },
     changeLocale (locale) {
       this.setActive(locale)
+      localStorage.setItem('user-language', locale)
       i18n.locale = locale
     }
   }
@@ -108,10 +112,10 @@ export default {
   background: aliceblue;
 }
 
-.language-options .card .active{
-  background: #99D25C;
-border: 1px solid gray;
-border-radius: 5px;
+.language-options .card .active {
+  background: #99d25c;
+  border: 1px solid gray;
+  border-radius: 5px;
 }
 
 .language-options .content .icon {

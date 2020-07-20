@@ -9,7 +9,7 @@
           </h1>
           </div>
           <div class="column">
-          <h3 v-html="getLabelSplitted(label)" class="subtitle is-spaced"></h3>
+          <h3 v-html="getLabelSplitted($t('dashboard'+label))" class="subtitle is-spaced"></h3>
           </div>
         </div>
       </div>

@@ -53,14 +53,14 @@
                 type="is-primary"
                 icon="account-multiple"
                 :number="3"
-                label="Consents Pending"
+                label="ConsentsPending"
               />
               <card-widget
                 class="column tile is-child active-consent"
                 type="is-info"
                 icon="cart-outline"
                 :number="2"
-                label="Consents Active"
+                label="ConsentsActive"
               />
             </tiles>
           </div>
