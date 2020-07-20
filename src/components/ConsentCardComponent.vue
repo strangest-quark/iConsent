@@ -1,13 +1,5 @@
 <template>
   <div class="card">
-    <header v-if="title" class="card-header consent-card-header">
-      <!-- <p class="card-header-title logo">
-        <img src="@/assets/FIU_Logo/quickbooks.jpg" />
-      </p>
-      <span class="card-header-icon card-header-end" aria-label="verified">
-        Verified <b-icon icon="shield-check" custom-size="default"/>
-      </span>-->
-    </header>
     <div class="card-content">
       <slot />
     </div>
