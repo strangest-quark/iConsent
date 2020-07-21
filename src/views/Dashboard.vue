@@ -2,6 +2,7 @@
   <div class="section is-fluid">
     <div class="columns is-multiline">
       <div class="column content-left">
+            <welcome-card/>
         <dashboard-nav />
         <div class="dashboard-consents">
         <div v-for="i in 3" :key="i" >
@@ -83,6 +84,7 @@ import Tiles from '@/components/Tiles'
 import CardWidget from '@/components/CardWidget'
 import BankList from '@/components/BankList'
 import Video from '@/components/Video'
+import WelcomeCard from '@/components/WelcomeCard'
 
 export default {
   components: {
@@ -91,7 +93,8 @@ export default {
     Tiles,
     CardWidget,
     BankList,
-    Video
+    Video,
+    WelcomeCard
   },
   data () {
     return {

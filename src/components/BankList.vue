@@ -1,14 +1,18 @@
 <template>
-  <div class="banklist">
-    <ul class="hs full">
-      <div class="item-one">
-        <h2>
-          Select
-          <br />Accounts
-        </h2>
+  <div class="row">
+    <div class="left">
+      <h1>
+        Select
+        <br />Accounts
+      </h1>
+    </div>
+    <div class="right">
+      <div class="banklist">
+        <ul class="hs full">
+          <Bank v-for="bank in banks" :bank="bank" :haveCheckBox="haveCheckBox" :key="bank.id" />
+        </ul>
       </div>
-      <Bank v-for="bank in banks" :bank="bank" :key="bank.id" />
-    </ul>
+    </div>
   </div>
 </template>
 
@@ -43,7 +47,8 @@ export default {
           accType: 'Savings',
           accNo: 9545
         }
-      ]
+      ],
+      haveCheckBox: false
     }
   }
 }
