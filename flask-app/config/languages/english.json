@@ -24,6 +24,8 @@
   "deposit": "deposit",
   "transactions": "transactions",
 
+  "tagline": "{fiu} wants to access your linked {type} account details",
+
   "RECURRING_DEPOSIT": "Recurring Deposit",
   "TERM-DEPOSIT": "Term Deposit",
   "DEPOSIT": "Deposit",

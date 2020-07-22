@@ -137,8 +137,38 @@ def put_key(consent_map):
     )
 
 
+def fill_text(text, input_map):
+    while '{' in text:
+        start = text.find('{')
+        end = text.find('}')
+        key = text[start + 1:end]
+        if isinstance(input_map.get(key), list):
+            fill = ''
+            i = 0
+            for ele in input_map.get(key):
+                if len(input_map.get(key)) > 1 and i == len(input_map.get(key)) - 1:
+                    fill = fill[:-1] + ' ' + lang_map.get('and') + ' ' + lang_map.get(ele)
+                else:
+                    fill = fill + lang_map.get(ele) + ','
+                i = i + 1
+            if fill[-1] == ',':
+                fill = fill[:-1]
+            text = text[:start] + fill + text[end + 1:]
+            continue
+        else:
+            k = input_map.get(key)
+        if k in lang_map:
+            fill = lang_map.get(k)
+        elif lang_map.get('lan') == 'en-IN':
+            fill = k
+        else:
+            fill = ""
+        text = text[:start] + fill + text[end + 1:]
+    return text.capitalize()
+
+
 def consent_proc(consent, random_fiu, lan, session, fips):
-    keyExists, res = check_if_key_exists(consent['consentArtefactID']+'-'+lan)
+    keyExists, res = check_if_key_exists(consent['consentArtefactID'] + '-' + lan)
     if keyExists:
         return res
     consent_map = dict()
@@ -146,8 +176,8 @@ def consent_proc(consent, random_fiu, lan, session, fips):
     video_req = dict()
     video_req['fiu'] = random_fiu
     video_req['fip'] = fips
-    video_req['datatype'] = ','.join(consent_artefact['info']['ConsentDetail']['consentTypes']).lower()
-    video_req['account'] = ','.join(consent_artefact['info']['ConsentDetail']['fiTypes']).lower()
+    video_req['datatype'] = [x.lower() for x in consent_artefact['info']['ConsentDetail']['consentTypes']]
+    video_req['account'] = [x.lower() for x in consent_artefact['info']['ConsentDetail']['fiTypes']]
     video_req['mode'] = consent_artefact['info']['ConsentDetail']['consentMode'].lower()
     video_req['type'] = consent_artefact['info']['ConsentDetail']['fetchType'].lower()
     video_req['language'] = lan
@@ -163,10 +193,11 @@ def consent_proc(consent, random_fiu, lan, session, fips):
     req = {"req": video_req}
 
     consent_map['consentArtefactID'] = consent['consentArtefactID']
-    consent_map['consentId'] = consent['consentArtefactID']+'-'+lan
+    consent_map['consentId'] = consent['consentArtefactID'] + '-' + lan
     consent_map['fiu'] = lang_map[random_fiu]
     consent_map['validTill'] = lang_map['validTill'] + ' ' + date_proc(consent['expireTime'])
     consent_map['isVerified'] = True
+    consent_map['tagline'] = fill_text(lang_map['tagline'], {"fiu": random_fiu, "type": video_req['account']})
     if random_fiu in non_verified:
         consent_map['isVerified'] = False
     consent_map['fiu_logo'] = "https://s3-ap-south-1.amazonaws.com/%s/%s" % (config.LOGO_BUCKET, image_map[random_fiu])

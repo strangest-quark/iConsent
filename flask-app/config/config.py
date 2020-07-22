@@ -1,6 +1,6 @@
 class Config(object):
     VIDEO_BUCKET = 'iconsent-videos'
-    LOGO_BUCKET = 'iconset-logos'
+    LOGO_BUCKET = 'iconsent-logos'
 
 
 class DevelopmentConfig(Config):
