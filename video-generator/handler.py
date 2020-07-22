@@ -32,7 +32,7 @@ def handler(event, context):
         else:
             video_obj_arr.append(eval('Frame' + str(i))(config))
     _start = time.time()
-    txnId = str(uuid.uuid4())
+    txnId = config.input_map['consentArtefactID']
     out_queue = main(video_obj_arr, txnId, len(video_obj_arr))
     frames = list(out_queue.queue)
     frames.sort(key=lambda x: x[1])
@@ -44,10 +44,11 @@ def handler(event, context):
 
     # s3 upload
     s3 = boto3.resource("s3")
-    key = str(uuid.uuid4())
+    key = txnId + '-' + config.input_map.get(
+            'language')
     s3.meta.client.upload_file(
         config.SB_VIDEO_PATH_PREFIX + config.input_map.get("fiu") + '-' + txnId + '-' + config.input_map.get(
-            'language') + '.mp4', config.RESULT_S3_BUCKET, key + ".mp4")
+            'language') + '.mp4', config.RESULT_S3_BUCKET, key + '.mp4')
     location = boto3.client('s3').get_bucket_location(Bucket=config.RESULT_S3_BUCKET)['LocationConstraint']
 
     #response

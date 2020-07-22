@@ -29,12 +29,27 @@ class Frame2(object):
             start = text.find('{')
             end = text.find('}')
             key = text[start + 1:end]
-            if self.input_map.get(key) in Frame2.lang_map:
-                fill = Frame2.lang_map.get(self.input_map.get(key))
-            elif Frame2.lang_map.get('lan') == 'en-IN':
-                fill = self.input_map.get(key)
+            if isinstance(self.input_map.get(key), list):
+                fill = ''
+                i = 0
+                for ele in self.input_map.get(key):
+                    if len(self.input_map.get(key)) > 1 and i == len(self.input_map.get(key)) - 1:
+                        fill = fill[:-1] + ' ' + Frame2.lang_map.get('and') + ' ' + Frame2.lang_map.get(ele)
+                    else:
+                        fill = fill + Frame2.lang_map.get(ele) + ','
+                    i = i+1
+                if fill[-1] == ',':
+                    fill = fill[:-1]
+                text = text[:start] + fill + text[end + 1:]
+                continue
             else:
-                fill = self.translator.translate(self.input_map.get(key), dest=self.Frame2.lang_map.get('lan')).text
+                k = self.input_map.get(key)
+            if k in Frame2.lang_map:
+                fill = Frame2.lang_map.get(k)
+            elif Frame2.lang_map.get('lan') == 'en-IN':
+                fill = k
+            else:
+                fill = self.translator.translate(k, dest=self.Frame2.lang_map.get('lan')).text
             text = text[:start] + fill + text[end + 1:]
         return text.capitalize()
 
@@ -44,7 +59,7 @@ class Frame2(object):
             os.chdir("/var/task/")
         W, H = self.config.VIDEO_SIZE
         bgImage = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX + "bg_2.png")
-        fip_logo = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX + self.image_map.get(self.input_map.get("fip"))). \
+        fip_logo = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX + self.image_map.get(self.input_map.get("fip")[0])). \
             set_position((W/4-self.config.BANK_ICON_SIZE/3, H/3)).resize(height=self.config.BANK_ICON_SIZE)
         self.text_to_speech(self.fill_text(Frame2.lang_map.get('audio2')), Frame2.lang_map.get('lan'), txnId)
         audioclip = AudioFileClip(self.config.SB_AUDIO_PATH_PREFIX + "audio" + '-' + txnId + "-2.mp3")

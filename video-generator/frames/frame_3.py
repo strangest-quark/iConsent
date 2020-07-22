@@ -29,12 +29,27 @@ class Frame3(object):
             start = text.find('{')
             end = text.find('}')
             key = text[start + 1:end]
-            if self.input_map.get(key) in Frame3.lang_map:
-                fill = Frame3.lang_map.get(self.input_map.get(key))
-            elif Frame3.lang_map.get('lan') == 'en-IN':
-                fill = self.input_map.get(key)
+            if isinstance(self.input_map.get(key), list):
+                fill = ''
+                i = 0
+                for ele in self.input_map.get(key):
+                    if len(self.input_map.get(key)) > 1 and i == len(self.input_map.get(key)) - 1:
+                        fill = fill[:-1] + ' ' + Frame3.lang_map.get('and') + ' ' + Frame3.lang_map.get(ele)
+                    else:
+                        fill = fill + Frame3.lang_map.get(ele) + ','
+                    i = i+1
+                if fill[-1] == ',':
+                    fill = fill[:-1]
+                text = text[:start] + fill + text[end + 1:]
+                continue
             else:
-                fill = self.translator.translate(self.input_map.get(key), dest=Frame3.lang_map.get('lan')).text
+                k = self.input_map.get(key)
+            if k in Frame3.lang_map:
+                fill = Frame3.lang_map.get(k)
+            elif Frame3.lang_map.get('lan') == 'en-IN':
+                fill = k
+            else:
+                fill = self.translator.translate(k, dest=Frame3.lang_map.get('lan')).text
             text = text[:start] + fill + text[end + 1:]
         return text.capitalize()
 
@@ -51,7 +66,7 @@ class Frame3(object):
         else:
             mode_logo = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX + self.image_map.get(self.input_map.get('mode'))). \
                 set_position((W / 2 - self.config.ICON_SIZE / 2, H / 5)).resize(height=self.config.ICON_SIZE)
-        data_logo = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX + self.image_map.get(self.input_map.get("datatype"))).\
+        data_logo = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX + self.image_map.get(','.join(self.input_map.get("datatype")))).\
             set_position((W/2+self.config.ICON_SIZE, H/5)).resize(height=self.config.ICON_SIZE)
         self.text_to_speech(self.fill_text(Frame3.lang_map.get('audio3')), Frame3.lang_map.get('lan'), txnId)
         audioclip = AudioFileClip(self.config.SB_AUDIO_PATH_PREFIX + "audio" + '-' + txnId + "-3.mp3")
