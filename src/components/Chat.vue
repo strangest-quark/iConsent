@@ -3,12 +3,16 @@
     <div class="row">
     <div class="left">
   <div class="container">
-    <h1><b>Hi Ikram!</b></h1>
-    <p>Good to see you again.</p>
+    <h1><b>Need Help?</b></h1>
+    <p>Our support can help you <br/>
+understand your data rights better</p>
+<b-button type="is-link" style="margin-top: 5%">
+    Chat
+</b-button>
   </div>
     </div>
     <div class="right">
-  <img src="@/assets/Mask Group.png" alt="Avatar" style="width:100%">
+  <img src="@/assets/chat-icon.png" alt="Avatar">
   </div>
 </div>
 </div>
@@ -16,14 +20,14 @@
 
 <script>
 export default {
-  name: 'WelcomeCard'
+  name: 'Chat'
 }
 </script>
 
 <style scoped>
 .card {
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  background-color: #C7EE9D;
+  background-color: #F5F5F7;
   transition: 0.3s;
   width: 100%;
   height: 30%;
@@ -38,8 +42,12 @@ export default {
   display: flex;
 }
 
+img{
+    width:100%;
+}
+
 .left {
-  flex: 70%;
+  flex: 60%;
   margin-top: auto;
 margin-bottom: auto;
 }
@@ -49,10 +57,11 @@ margin-bottom: auto;
 }
 
 h1{
-  font-size: 2rem;
+  font-size: large;
 }
 
 p{
-  font-size: 1rem;
+  font-size: medium;
+  padding-top: 1%
 }
 </style>

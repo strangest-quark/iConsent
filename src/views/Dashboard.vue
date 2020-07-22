@@ -65,8 +65,11 @@
               />
             </tiles>
           </div>
-          <div class="row">
-            <BankList />
+          <div class="row" style="padding-top: 5%">
+            <BankList :line1="line1" :line2="line2" :haveCheckBox="false"/>
+          </div>
+          <div style="margin-top: 10vh" class="row">
+            <Chat style="padding: 4% 4% 4% 0%"/>
           </div>
         </div>
       </div>
@@ -85,6 +88,7 @@ import CardWidget from '@/components/CardWidget'
 import BankList from '@/components/BankList'
 import Video from '@/components/Video'
 import WelcomeCard from '@/components/WelcomeCard'
+import Chat from '@/components/Chat'
 
 export default {
   components: {
@@ -94,11 +98,15 @@ export default {
     CardWidget,
     BankList,
     Video,
-    WelcomeCard
+    WelcomeCard,
+    Chat
   },
   data () {
     return {
-      isImageModalActive: false
+      isImageModalActive: false,
+      haveCheckBox: false,
+      line1: 'Your',
+      line2: 'Accounts'
     }
   }
 }
