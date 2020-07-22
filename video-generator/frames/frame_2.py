@@ -68,7 +68,7 @@ class Frame2(object):
         total_width = int(max(widths) * 2)
         max_height = max(heights) * int(math.ceil(num_images/2))
         
-        combined_image = Image.new('RGB', (total_width, max_height))
+        combined_image = Image.new('RGBA', (total_width, max_height), (0,0,0,0))
         
         x_offset = 0
         y_offset = 0
@@ -99,7 +99,7 @@ class Frame2(object):
         #Transparent background for odd number of fips
         # transparent_area = (50,80,100,200)
         # mask = Image.new('L', combined_image.size, color=255)
-        # draw = ImageDraw.Draw(mask) 
+        # draw = ImageDraw.Draw(mask)
         # draw.rectangle(transparent_area, fill=0)
         # combined_image.putalpha(mask)
         combined_image.save(self.config.SB_LOGO_PATH_PREFIX + 'combined_banks.png')
@@ -152,4 +152,5 @@ class Frame2(object):
         video.audio = new_audioclip
         os.remove(self.config.SB_AUDIO_PATH_PREFIX + 'audio-' + txnId + '-2.mp3')
         os.remove(self.config.SB_LOGO_PATH_PREFIX_WRITE+'-text-2-' + txnId+'.png')
+        os.remove(self.config.SB_LOGO_PATH_PREFIX_WRITE + 'combined_banks.png')
         return video, 2

@@ -1,5 +1,5 @@
 {
-  "fip": ["Axis Bank", "Citibank"],
+  "fip": ["Axis Bank", "Citibank", "HDFC Bank"],
   "fiu": "Mint",
   "datatype": ["summary", "profile"],
   "account": "deposit",
