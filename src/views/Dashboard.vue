@@ -68,6 +68,9 @@
           <div class="row">
             <BankList :line1="line1" :line2="line2" :haveCheckBox="false"/>
           </div>
+          <div style="padding-top: 20%" class="row">
+            <Chat style="padding: 4% 4% 4% 0%"/>
+          </div>
         </div>
       </div>
       <b-modal class="video" :active.sync="isImageModalActive">
@@ -85,6 +88,7 @@ import CardWidget from '@/components/CardWidget'
 import BankList from '@/components/BankList'
 import Video from '@/components/Video'
 import WelcomeCard from '@/components/WelcomeCard'
+import Chat from '@/components/Chat'
 
 export default {
   components: {
@@ -94,7 +98,8 @@ export default {
     CardWidget,
     BankList,
     Video,
-    WelcomeCard
+    WelcomeCard,
+    Chat
   },
   data () {
     return {
