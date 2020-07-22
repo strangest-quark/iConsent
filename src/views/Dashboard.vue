@@ -65,10 +65,10 @@
               />
             </tiles>
           </div>
-          <div class="row">
+          <div class="row" style="padding-top: 5%">
             <BankList :line1="line1" :line2="line2" :haveCheckBox="false"/>
           </div>
-          <div style="padding-top: 20%" class="row">
+          <div style="margin-top: 10vh" class="row">
             <Chat style="padding: 4% 4% 4% 0%"/>
           </div>
         </div>

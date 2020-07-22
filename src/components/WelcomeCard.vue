@@ -49,10 +49,10 @@ margin-bottom: auto;
 }
 
 h1{
-  font-size: xx-large;
+  font-size: 2rem;
 }
 
 p{
-  font-size: larger;
+  font-size: 1rem;
 }
 </style>
