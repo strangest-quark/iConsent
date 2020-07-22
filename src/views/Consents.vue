@@ -1,10 +1,10 @@
 <template>
-<div class="row">
-    <div class="left">
+  <div class="columns is-multiline">
+      <div class="column is-two-fifths content-left">
         <h1> Consents </h1>
-        <ConsentIcons style="width: 70%;"/>
+        <ConsentIcons/>
     </div>
-      <div class="right">
+      <div class="column content-right is-hidden-mobile">
       </div>
 </div>
 </template>
@@ -18,21 +18,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.row {
-  display: flex;
-  width: 100%;
-}
-
-.left {
-  flex: 50%;
-  margin-top: auto;
-  margin-bottom: auto;
-}
-
-.right {
-  width: 50%;
-  text-align: center;
-}
-</style>
