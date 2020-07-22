@@ -1,10 +1,14 @@
+import numpy as np
+import math
 import moviepy.editor as mpy
+import PIL
 from moviepy.editor import *
 from gtts import gTTS
 import os
 from frames.text_generator.straight_text import straight_text
 from googletrans import Translator
-
+from PIL import Image
+from PIL import ImageDraw
 
 class Frame2(object):
     map = dict()
@@ -38,14 +42,82 @@ class Frame2(object):
             text = text[:start] + fill + text[end + 1:]
         return text.capitalize()
 
+    def concatenate_images(self, imgList):
+        W, H = self.config.VIDEO_SIZE
+
+        images = [Image.open(self.config.SB_LOGO_PATH_PREFIX + self.image_map.get(img)) for img in imgList]
+        num_images = len(images)
+
+        widths, heights = zip(*(i.size for i in images))
+
+        total_width = int(max(widths) * 2)
+        max_height = max(heights) * int(math.ceil(num_images/2))
+        
+        combined_image = Image.new('RGB', (total_width, max_height))
+        
+        x_offset = 0
+        y_offset = 0
+
+        if num_images % 2 == 0:
+            for index, im in enumerate(images):
+                print(im)
+                if index % 2 == 0:
+                    combined_image.paste(im, (x_offset, y_offset))
+                    x_offset += im.size[0]
+                else:
+                    combined_image.paste(im, (x_offset, y_offset))
+                    x_offset = 0
+                    y_offset += im.size[1]
+        else:
+            for index in range(len(images) - 1):
+                im = images[index]
+                if index % 2 == 0:
+                    combined_image.paste(im, (x_offset, y_offset))
+                    x_offset += im.size[0]
+                else:
+                    combined_image.paste(im, (x_offset, y_offset))
+                    x_offset = 0
+                    y_offset += im.size[1]
+                last_image = images[len(images) - 1]
+                combined_image.paste(last_image, (int(x_offset + images[0].size[0]/2), y_offset))
+
+        #Transparent background for odd number of fips
+        # transparent_area = (50,80,100,200)
+        # mask = Image.new('L', combined_image.size, color=255)
+        # draw = ImageDraw.Draw(mask) 
+        # draw.rectangle(transparent_area, fill=0)
+        # combined_image.putalpha(mask)
+        combined_image.save(self.config.SB_LOGO_PATH_PREFIX + 'combined_banks.png')
+        return combined_image
+
 
     def generate_video_part(self, txnId):
         if not self.config.LOCAL:
             os.chdir("/var/task/")
         W, H = self.config.VIDEO_SIZE
         bgImage = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX + "bg_2.png")
-        fip_logo = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX + self.image_map.get(self.input_map.get("fip"))). \
-            set_position((W/4-self.config.BANK_ICON_SIZE/3, H/3)).resize(height=self.config.BANK_ICON_SIZE)
+        fipList = self.input_map.get("fip")
+        
+        fip_x_position = 0
+        fip_y_position = 0
+        fip_img_path = ''
+
+        num_images_pow = pow(2, len(fipList))
+
+        if len(fipList) == 1: 
+            fip_x_position = W/4-self.config.BANK_ICON_SIZE/3
+            fip_img_path = self.image_map.get(fipList[0])
+            fip_y_position = H/4
+        else:
+            fip_x_position = W/6-self.config.BANK_ICON_SIZE/3
+            fip_y_position = int(H/num_images_pow)
+            final_image = self.concatenate_images(fipList)
+            fip_img_path = 'combined_banks.png'
+
+        height_final_image = self.config.BANK_ICON_SIZE * int(math.ceil(len(fipList)/2))
+
+        fip_logo = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX + fip_img_path). \
+            set_position((fip_x_position, fip_y_position)).resize(height=height_final_image)
         self.text_to_speech(self.fill_text(Frame2.lang_map.get('audio2')), Frame2.lang_map.get('lan'), txnId)
         audioclip = AudioFileClip(self.config.SB_AUDIO_PATH_PREFIX + "audio" + '-' + txnId + "-2.mp3")
         Frame2.map['text2'] = self.fill_text(Frame2.lang_map.get('text2'))
