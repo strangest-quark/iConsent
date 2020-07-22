@@ -66,7 +66,7 @@
             </tiles>
           </div>
           <div class="row">
-            <BankList />
+            <BankList :line1="line1" :line2="line2" :haveCheckBox="false"/>
           </div>
         </div>
       </div>
@@ -98,7 +98,10 @@ export default {
   },
   data () {
     return {
-      isImageModalActive: false
+      isImageModalActive: false,
+      haveCheckBox: false,
+      line1: 'Your',
+      line2: 'Accounts'
     }
   }
 }

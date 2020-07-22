@@ -2,8 +2,8 @@
   <div class="row">
     <div class="left">
       <h1>
-        Select
-        <br />Accounts
+        {{line1}}
+        <br />{{line2}}
       </h1>
     </div>
     <div class="right">
@@ -22,6 +22,11 @@ export default {
   name: 'BankList',
   components: {
     Bank
+  },
+  props: {
+    line1: String,
+    line2: String,
+    haveCheckBox: Boolean
   },
   data () {
     return {
@@ -47,8 +52,7 @@ export default {
           accType: 'Savings',
           accNo: 9545
         }
-      ],
-      haveCheckBox: false
+      ]
     }
   }
 }
