@@ -5,7 +5,7 @@
         <b-icon v-if="icon" :icon="icon" custom-size="default"/>
         {{ title }}
       </p>
-      <a v-if="headerIcon" href="#" class="card-header-icon" aria-label="more options" @click.prevent="headerIconClick">
+      <a v-if="headerIcon" href="#" class="card-header-icon" aria-label="more options">
         <b-icon :icon="headerIcon" custom-size="default"/>
       </a>
     </header>
@@ -30,11 +30,6 @@ export default {
     headerIcon: {
       type: String,
       default: null
-    }
-  },
-  methods: {
-    headerIconClick () {
-      this.$emit('header-icon-click')
     }
   }
 }

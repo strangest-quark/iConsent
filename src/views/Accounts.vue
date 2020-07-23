@@ -1,5 +1,5 @@
 <template>
     <div>
-        <h1> Pending Consent </h1>
+        <h1> Accounts </h1>
     </div>
 </template>

@@ -2,18 +2,15 @@
   <card-component>
     <div class="level is-mobile">
       <div class="level-item">
-        <div class="is-widget-label">
-          <h3 class="subtitle is-spaced">
-            {{ label }}
-          </h3>
-          <h1 class="title">
-            <growing-number :value="number" :prefix="prefix" :suffix="suffix"/>
+        <div class="is-widget-label columns is-vcentered">
+          <div class="">
+          <h1 class="title is-2">
+            <growing-number :value="number" :prefix="prefix" :suffix="suffix" />
           </h1>
-        </div>
-      </div>
-      <div v-if="icon" class="level-item has-widget-icon">
-        <div class="is-widget-icon">
-          <b-icon :icon="icon" size="is-large" :type="type"/>
+          </div>
+          <div class="column">
+          <h3 v-html="getLabelSplitted($t('dashboard'+label))" class="subtitle is-spaced"></h3>
+          </div>
         </div>
       </div>
     </div>
@@ -26,6 +23,11 @@ import GrowingNumber from '@/components/GrowingNumber'
 export default {
   name: 'CardWidget',
   components: { GrowingNumber, CardComponent },
+  methods: {
+    getLabelSplitted (label) {
+      return label.replace(' ', '<br>')
+    }
+  },
   props: {
     icon: {
       type: String,
@@ -54,3 +56,12 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.subtitle{
+  color: rgba(0, 0, 0, 0.900) !important;
+}
+.title {
+  color: rgba(0, 0, 0, 0.800)
+}
+</style>

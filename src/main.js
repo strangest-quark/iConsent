@@ -16,6 +16,13 @@ import './registerServiceWorker'
 /* Vue. Main component */
 import App from './App.vue'
 
+// Language Support
+import i18n from '@/plugins/i18n'
+
+import FlagIcon from 'vue-flag-icon'
+
+Vue.use(FlagIcon)
+
 /* Default title tag */
 const defaultDocumentTitle = 'iConsent - oneMoney AA'
 
@@ -37,5 +44,6 @@ Vue.use(Buefy)
 new Vue({
   router,
   store,
+  i18n,
   render: h => h(App)
 }).$mount('#app')

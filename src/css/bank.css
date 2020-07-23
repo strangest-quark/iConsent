@@ -1,13 +1,14 @@
-input{
-    margin-right: 100px;
+.checkbox{
+    padding-right: 60%;
 }
 
 :root {
   --gutter: 20px;
 }
 
-h2{
-    font-weight: bold;
+h1{
+    font-weight: bolder;
+    font-size: large;
 }
 
 .app {
@@ -38,7 +39,7 @@ h2{
 .hs {
   display: grid;
   grid-gap: calc(var(--gutter) / 2);
-  grid-template-columns: 20px repeat(4, calc(50% - var(--gutter) * 2)) 10px;
+  grid-template-columns: 20px repeat(3, calc(50% - var(--gutter) * 2)) 10px;
   grid-template-rows: minmax(150px, 1fr);
 
   overflow-x: scroll;
@@ -66,8 +67,8 @@ ul {
 }
 
 .banklist {
-  width: 375px;
-  height: 200px;
+  /* width: 375px;
+  height: 200px; */
   overflow-y: scroll;
 }
 
@@ -84,11 +85,26 @@ ul {
 
 .item-one{
   scroll-snap-align: center;
-  padding: calc(var(--gutter) / 8);
+  padding: calc(var(--gutter) / 2 * 1.5);
+  width: fit-content;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   background: none;
   border-radius: 8px;
+}
+
+.row {
+  display: flex;
+  width: 100%;
+}
+
+.left {
+  flex: 10%;
+  margin-top: auto;
+margin-bottom: auto;
+}
+
+.right {
+  width: 90%;
 }

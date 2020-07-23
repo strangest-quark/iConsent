@@ -1,6 +1,6 @@
 <template>
   <div class="item">
-    <input type="checkbox" id="checkbox" v-model="checked" />
+    <b-checkbox v-if="haveCheckBox" class="checkbox"  :value="true" type="is-success"></b-checkbox>
     <img :src="require('@/assets/' + bank.imgName)" style="height:45px; margin-bottom: 10px;" />
     <h1>
       <strong>{{bank.name}}</strong>
@@ -15,7 +15,8 @@
 <script>
 export default {
   props: {
-    bank: Object
+    bank: Object,
+    haveCheckBox: Boolean
   }
 }
 </script>

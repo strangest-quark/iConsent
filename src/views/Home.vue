@@ -56,7 +56,7 @@ export default {
     }
   },
   mounted () {
-    this.$router.push('/pending-consents').catch(() => {})
+    this.$router.push('/dashboard').catch(() => {})
     this.fillChartData()
 
     this.$buefy.snackbar.open({
