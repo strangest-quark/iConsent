@@ -144,6 +144,7 @@ export default {
 
 .dashboard-consents{
   overflow-y: scroll;
-  height:70vh;
+  height:50vh;
 }
+
 </style>
