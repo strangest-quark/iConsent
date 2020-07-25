@@ -21,10 +21,14 @@ import i18n from '@/plugins/i18n'
 
 import FlagIcon from 'vue-flag-icon'
 
+import ProgressBar from 'vuejs-progress-bar'
+
 // Spinners
 import VueSpinners from 'vue-spinners'
 
 Vue.use(VueSpinners)
+
+Vue.use(ProgressBar)
 
 Vue.use(FlagIcon)
 
