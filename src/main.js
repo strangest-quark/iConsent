@@ -46,7 +46,7 @@ new Vue({
   store,
   i18n,
   watch: {
-    "$route": () => {
+    $route: () => {
       window.Appcues.page()
     }
   },
