@@ -45,5 +45,10 @@ new Vue({
   router,
   store,
   i18n,
+  watch: {
+    $route: () => {
+      window.Appcues.page()
+    }
+  },
   render: h => h(App)
 }).$mount('#app')
