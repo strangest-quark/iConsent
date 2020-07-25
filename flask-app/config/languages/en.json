@@ -24,13 +24,29 @@
   "deposit": "deposit",
   "transactions": "transactions",
 
-  "tagline": "{fiu} wants to access your linked {type} account details",
+  "tagline": "{fiu} wants to access your linked {type} accounts",
+  "warn": "Please read carefully before you accept",
+  "q1": "Why does {fiu} need this data?",
+  "q2": "What range of my data will be accessed?",
+  "q3": "Till when is this consent valid?",
+  "q4": "What access will {fiu} have?",
+  "ans1": "For {purpose}",
+  "from": "From",
+  "to": "To",
 
   "RECURRING_DEPOSIT": "Recurring Deposit",
   "TERM-DEPOSIT": "Term Deposit",
   "DEPOSIT": "Deposit",
 
   "validTill": "Valid Till",
+
+  "hover periodic": "Fetch every {frequency}",
+  "hover one time": "One time fetch",
+
+  "hover store": "Store for {datalife}",
+  "hover view": "Only data view",
+  "hover stream": "Stream your data",
+  "hover query": "Query your data",
 
   "01": "January",
   "02": "February",
@@ -43,5 +59,14 @@
   "09": "September",
   "10": "October",
   "11": "November",
-  "12": "December"
+  "12": "December",
+
+  "month": "month",
+  "months": "months",
+  "week": "week",
+  "weeks": "weeks",
+  "days": "days",
+  "day": "day",
+  "year": "year",
+  "years": "years"
 }

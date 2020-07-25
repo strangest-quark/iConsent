@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
 import boto3
 import json
-from process import process
+from process import process, consent_res
 import requests
 
 app = Flask(__name__)
@@ -23,6 +23,16 @@ def video():
     url = json.loads(url['Payload'].read())
     res = {"url": url}
     return jsonify(res)
+
+
+@app.route("/consent", methods=['POST'])
+@cross_origin()
+def consent():
+    session = request.headers['sessionId']
+    consentArtefactId = request.headers['consentArtefactId']
+    fiu = request.headers['fiu']
+    language = request.headers['language']
+    return jsonify(consent_res(consentArtefactId, session, fiu, language))
 
 
 @app.route("/dashboard", methods=['POST'])

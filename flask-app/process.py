@@ -215,3 +215,53 @@ def account_proc(account, random_fip):
     fip_map['fip_accType'] = lang_map[account['nickName']]
     fip_map['endingNumber'] = account['maskedAccountNumber'][-4:]
     return fip_map
+
+
+def consent_res(consentArtefactId, session, fiu, lan):
+    global lang_map
+    global image_map
+    with open(config.LANG_PATH + lan + ".json", "r") as read_file:
+        lang_map = json.load(read_file)
+    with open(config.CONFIG_PATH + 'images.json', "r") as read_file:
+        image_map = json.load(read_file)
+    consent_artefact = json.loads(consent_artefact_get({"consentArtefactID": consentArtefactId}, session))
+    input_map = {
+        "fiu": fiu,
+        "type": [x.lower() for x in consent_artefact['info']['ConsentDetail']['fiTypes']],
+        "from": date_proc(consent_artefact['info']['ConsentDetail']['FIDataRange']['from']),
+        "to": date_proc(consent_artefact['info']['ConsentDetail']['FIDataRange']['to']),
+        "valid": date_proc(consent_artefact['info']['ConsentDetail']['consentExpiry']),
+        "purpose": consent_artefact['info']['ConsentDetail']['Purpose']['text'],
+        "datatype": [x.lower() for x in consent_artefact['info']['ConsentDetail']['consentTypes']],
+        "mode": consent_artefact['info']['ConsentDetail']['consentMode'].lower(),
+        "frequency": (str(consent_artefact['info']['ConsentDetail']['Frequency']['value']) + ' ' +
+                      consent_artefact['info']['ConsentDetail']['Frequency']['unit']).lower(),
+        "datalife": (str(consent_artefact['info']['ConsentDetail']['DataLife']['value']) + ' ' +
+                     consent_artefact['info']['ConsentDetail']['DataLife']['unit']).lower(),
+        "fetchType": consent_artefact['info']['ConsentDetail']['fetchType'].lower()
+    }
+    consent = dict()
+    consent['tagline'] = fill_text(lang_map['tagline'], input_map)
+    consent['q1'] = fill_text(lang_map['q1'], input_map)
+    consent['q2'] = lang_map['q2']
+    consent['q3'] = lang_map['q3']
+    consent['q4'] = fill_text(lang_map['q4'], input_map)
+    consent['ans1'] = fill_text(lang_map['ans1'], input_map).capitalize()
+    consent['from'] = lang_map['from']
+    consent['to'] = lang_map['to']
+    consent['fromDate'] = input_map['from']
+    consent['toDate'] = input_map['to']
+    consent['validTill'] = lang_map['validTill'] + ' ' + input_map['valid']
+    input_map['datalife'] = frequency_proc(input_map['datalife'])
+    input_map['frequency'] = frequency_proc(input_map['frequency'])
+    consent['card1'] = input_map['fetchType']
+    consent['hover1'] = fill_text(lang_map['hover ' + input_map['fetchType']], input_map)
+    consent['card2'] = input_map['mode']
+    consent['hover2'] = fill_text(lang_map['hover ' + input_map['mode']], input_map)
+    return consent
+
+
+def frequency_proc(freq):
+    freq = freq.split(' ')
+    freq[1] = lang_map[freq[1]]
+    return ' '.join(freq)

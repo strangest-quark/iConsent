@@ -34,7 +34,26 @@ functions:
   app:
     handler: wsgi_handler.handler
     events:
-      - http: POST video
-      - http: POST dashboard
+      - http:
+         path: video
+         method: post
+         cors: true
+      - http:
+         path: video
+         method: get
+         cors: true
+         origin:
+         headers:
+           - sessionId
+           - language
+      - http:
+          path: consent
+          method: get
+          cors: true
+          origin:
+          headers:
+            - consentArtefactId
+            - fiu
+            - language
     layers:
       - arn:aws:lambda:ap-south-1:699850692529:layer:iconsent-dependency-layer:1
