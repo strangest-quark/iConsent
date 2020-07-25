@@ -6,6 +6,7 @@ import Language from '../views/Languages.vue'
 import Dashboard from '../views/Dashboard.vue'
 import Consents from '../views/Consents.vue'
 import Accounts from '../views/Accounts.vue'
+import ConsentDecision from '../views/ConsentDecision.vue'
 
 Vue.use(VueRouter)
 
@@ -39,6 +40,11 @@ const routes = [
     path: '/accounts',
     name: 'accounts',
     component: Accounts
+  },
+  {
+    path: '/consents/decision',
+    name: 'consentdecision',
+    component: ConsentDecision
   }
 ]
 
