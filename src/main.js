@@ -48,6 +48,7 @@ new Vue({
   watch: {
     $route: () => {
       window.Appcues.page()
+      window.Appcues.anonymous()
     }
   },
   render: h => h(App)
