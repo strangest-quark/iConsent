@@ -10,7 +10,7 @@ def calendar(config, key, txnId):
     msg3 = config.lang_map[config.input_map[key].split('-')[1]]
     font1 = ImageFont.truetype(config.FONT_PATH+'OpenSans-ExtraBold.ttf', 175)
     font2 = ImageFont.truetype(config.FONT_PATH+'OpenSans-ExtraBold.ttf', 500)
-    font3 = ImageFont.truetype(config.FONT_PATH+config.lang_map['font']+'.ttf', 175)
+    font3 = ImageFont.truetype(config.FONT_PATH+config.lang_map['font']+'.ttf', config.lang_map['calendar_font_size'])
     w, h = draw.textsize(msg1, font=font1)
     draw.text(((W-w)/2, 200), msg1, (255, 255, 255), font=font1)
     w, h = draw.textsize(msg2, font=font2)

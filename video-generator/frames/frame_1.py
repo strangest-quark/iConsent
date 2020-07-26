@@ -24,11 +24,18 @@ class Frame1(object):
             os.chdir('/tmp')
         myobj.save(self.config.SB_AUDIO_PATH_PREFIX + "audio-" + txnId + '-1.mp3')
 
-    def fill_text(self, text):
+    def fill_text(self, text, iter):
         while '{' in text:
             start = text.find('{')
             end = text.find('}')
             key = text[start + 1:end]
+            if key in self.config.static_keys:
+                if iter == 1:
+                    text = list(text)
+                    text[start] = '('
+                    text[end] = ')'
+                    text = ''.join(text)
+                    continue
             if isinstance(self.input_map.get(key), list):
                 fill = ''
                 i = 0
@@ -46,12 +53,13 @@ class Frame1(object):
                 k = self.input_map.get(key)
             if k in Frame1.lang_map:
                 fill = Frame1.lang_map.get(k)
-            elif Frame1.lang_map.get('lan') == 'en-IN':
-                fill = k
             else:
-                fill = self.translator.translate(k, dest=Frame1.lang_map.get('lan')).text
+                fill = k
             text = text[:start] + fill + text[end + 1:]
-        return text.capitalize()
+        if iter == 1:
+            return self.translator.translate(text, dest=Frame1.lang_map.get('lan')).text.replace('(', '{').replace(')', '}')
+        else:
+            return text
 
     def generate_video_part(self, txnId):
         if not self.config.LOCAL:
@@ -64,9 +72,9 @@ class Frame1(object):
             set_position((W/2-30, H/5)).resize(height=self.config.ICON_SIZE)
         account_logo = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX + self.image_map.get(self.input_map.get("account"))). \
             set_position((W/2+100, H/5)).resize(height=self.config.ICON_SIZE)
-        self.text_to_speech(self.fill_text(Frame1.lang_map.get('audio1')), Frame1.lang_map.get('lan'), txnId)
+        self.text_to_speech(self.fill_text(self.fill_text(Frame1.lang_map.get('audio1'), 1), 2), Frame1.lang_map.get('lan'), txnId)
         audioclip = AudioFileClip(self.config.SB_AUDIO_PATH_PREFIX + "audio-" + txnId + "-1.mp3")
-        Frame1.map['text1'] = self.fill_text(Frame1.lang_map.get('text1'))
+        Frame1.map['text1'] = self.fill_text(self.fill_text(Frame1.lang_map.get('text1'), 1), 2)
         straight_text(Frame1.map['text1'], Frame1.lang_map.get('font'), Frame1.lang_map.get('fontsize1'), txnId, 1, self.config)
         text = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX_WRITE+'-text-1-' + txnId+'.png')
         video = mpy.CompositeVideoClip(

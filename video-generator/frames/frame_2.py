@@ -28,11 +28,18 @@ class Frame2(object):
             os.chdir('/tmp')
         myobj.save(self.config.SB_AUDIO_PATH_PREFIX + "audio-" + txnId + '-2.mp3')
 
-    def fill_text(self, text):
+    def fill_text(self, text, iter):
         while '{' in text:
             start = text.find('{')
             end = text.find('}')
             key = text[start + 1:end]
+            if key in self.config.static_keys:
+                if iter == 1:
+                    text = list(text)
+                    text[start] = '('
+                    text[end] = ')'
+                    text = ''.join(text)
+                    continue
             if isinstance(self.input_map.get(key), list):
                 fill = ''
                 i = 0
@@ -50,12 +57,13 @@ class Frame2(object):
                 k = self.input_map.get(key)
             if k in Frame2.lang_map:
                 fill = Frame2.lang_map.get(k)
-            elif Frame2.lang_map.get('lan') == 'en-IN':
-                fill = k
             else:
-                fill = self.translator.translate(k, dest=self.Frame2.lang_map.get('lan')).text
+                fill = k
             text = text[:start] + fill + text[end + 1:]
-        return text.capitalize()
+        if iter == 1:
+            return self.translator.translate(text, dest=Frame2.lang_map.get('lan')).text.replace('(', '{').replace(')', '}')
+        else:
+            return text
 
     def concatenate_images(self, imgList):
         W, H = self.config.VIDEO_SIZE
@@ -133,9 +141,9 @@ class Frame2(object):
 
         fip_logo = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX + fip_img_path). \
             set_position((fip_x_position, fip_y_position)).resize(height=height_final_image)
-        self.text_to_speech(self.fill_text(Frame2.lang_map.get('audio2')), Frame2.lang_map.get('lan'), txnId)
-        audioclip = AudioFileClip(self.config.SB_AUDIO_PATH_PREFIX + "audio" + '-' + txnId + "-2.mp3")
-        Frame2.map['text2'] = self.fill_text(Frame2.lang_map.get('text2'))
+        self.text_to_speech(self.fill_text(self.fill_text(Frame2.lang_map.get('audio2'), 1), 2), Frame2.lang_map.get('lan'), txnId)
+        audioclip = AudioFileClip(self.config.SB_AUDIO_PATH_PREFIX + "audio-" + txnId + "-2.mp3")
+        Frame2.map['text2'] = self.fill_text(self.fill_text(Frame2.lang_map.get('text2'), 1), 2)
         straight_text(Frame2.map['text2'], Frame2.lang_map.get('font'), Frame2.lang_map.get('fontsize2'), txnId, 2, self.config)
         text = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX_WRITE+'-text-2-' + txnId+'.png')
         video = mpy.CompositeVideoClip(

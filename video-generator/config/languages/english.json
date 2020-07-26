@@ -27,6 +27,7 @@
   "fontsize5": 30,
   "fontsize6": 30,
   "fontsize7": 30,
+  "calendar_font_size": 175,
 
   "text1": "Access your linked {account} account details",
   "text2": "Linked accounts",

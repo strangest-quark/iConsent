@@ -1,8 +1,20 @@
 {
   "Quickbooks": "ಕ್ವಿಕ್ಬುಕ್",
-  "Axis Bank": "ಆಕ್ಸಿಸ್ ಬ್ಯಾಂಕ್",
   "Mint": "ಪುದೀನ",
+  "Monito":"Monito",
+  "Zoho": "Zoho",
+  "Freshworks": "Freshworks" ,
+  "ClearTax": "ClearTax" ,
+  "FastBooks": "FastBooks",
+  "EasyTax": "EasyTax",
+  "Paisato": "Paisato",
+
+  "Axis Bank": "ಆಕ್ಸಿಸ್ ಬ್ಯಾಂಕ್",
   "Citibank": "ಸಿಟಿಬ್ಯಾಂಕ್",
+  "HDFC Bank": "HDFC Bank",
+  "ICICI Bank": "ICICI Bank",
+  "SBI": "SBI",
+
   "font": "BalooTamma2-ExtraBold",
   "lan": "kn",
 
@@ -39,6 +51,10 @@
   "summary": "ಸಾರಾಂಶ",
   "deposit": "ಠೇವಣಿ",
   "transactions": "ವ್ಯವಹಾರಗಳ",
+  "profile": "profile",
+
+
+  "and": "ಮತ್ತು",
 
   
   "01": "ಜನವರಿ",

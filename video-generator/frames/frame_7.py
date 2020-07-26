@@ -25,11 +25,18 @@ class Frame7(object):
             os.chdir('/tmp')
         myobj.save(self.config.SB_AUDIO_PATH_PREFIX + "audio-" + txnId + '-7.mp3')
 
-    def fill_text(self, text):
+    def fill_text(self, text, iter):
         while '{' in text:
             start = text.find('{')
             end = text.find('}')
             key = text[start + 1:end]
+            if key in self.config.static_keys:
+                if iter == 1:
+                    text = list(text)
+                    text[start] = '('
+                    text[end] = ')'
+                    text = ''.join(text)
+                    continue
             if isinstance(self.input_map.get(key), list):
                 fill = ''
                 i = 0
@@ -47,12 +54,13 @@ class Frame7(object):
                 k = self.input_map.get(key)
             if k in Frame7.lang_map:
                 fill = Frame7.lang_map.get(k)
-            elif Frame7.lang_map.get('lan') == 'en-IN':
-                fill = k
             else:
-                fill = self.translator.translate(k, dest=Frame7.lang_map.get('lan')).text
+                fill = k
             text = text[:start] + fill + text[end + 1:]
-        return text.capitalize()
+        if iter == 1:
+            return self.translator.translate(text, dest=Frame7.lang_map.get('lan')).text.replace('(', '{').replace(')', '}')
+        else:
+            return text
 
 
     def generate_video_part(self, txnId):
@@ -66,9 +74,9 @@ class Frame7(object):
             set_position((W/2-170, H/4)).resize(width=self.config.ICON_SIZE)
         calendar_to_logo = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX_WRITE + 'consentTo-' + txnId + '.png'). \
             set_position((W/2+80, H/4)).resize(width=self.config.ICON_SIZE)
-        self.text_to_speech(self.fill_text(Frame7.lang_map.get('audio7')), Frame7.lang_map.get('lan'), txnId)
-        audioclip = AudioFileClip(self.config.SB_AUDIO_PATH_PREFIX + "audio" + '-' + txnId + "-7.mp3")
-        Frame7.map['text7'] = self.fill_text(Frame7.lang_map.get('text7'))
+        self.text_to_speech(self.fill_text(self.fill_text(Frame7.lang_map.get('audio7'), 1), 2), Frame7.lang_map.get('lan'), txnId)
+        audioclip = AudioFileClip(self.config.SB_AUDIO_PATH_PREFIX + "audio-" + txnId + "-7.mp3")
+        Frame7.map['text7'] = self.fill_text(self.fill_text(Frame7.lang_map.get('text7'), 1), 2)
         straight_text(Frame7.map['text7'], Frame7.lang_map.get('font'), Frame7.lang_map.get('fontsize7'), txnId, 7, self.config)
         text = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX_WRITE+'-text-7-' + txnId+'.png')
         video = mpy.CompositeVideoClip(

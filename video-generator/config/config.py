@@ -13,6 +13,7 @@ class Config(object):
     ICON_WIDTH=100
     ICON_SIZE=100
     BANK_ICON_SIZE = 120
+    static_keys = ['fip', 'fiu']
 
 
 class DevelopmentConfig(Config):
