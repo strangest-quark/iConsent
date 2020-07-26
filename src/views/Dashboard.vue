@@ -1,48 +1,22 @@
 <template>
   <div class="section is-fluid">
-    <div class="columns is-multiline">
+    <div v-if="isLoading" class="is-center">
+      <bounce :loading="isLoading"></bounce>
+    </div>
+    <div v-if="!isLoading" class="columns is-multiline">
       <div class="column content-left">
-            <welcome-card/>
-        <dashboard-nav />
+        <!-- <welcome-card /> -->
+        <dashboard-nav pending=true active=true inactive=true @tabChanged="dashboardTabChanged" />
         <div class="dashboard-consents">
-        <div v-for="i in 3" :key="i" >
-          <consent-card-component
-            title="Performance"
-            icon="finance"
-          >
-            <div class="rows">
-              <div class="row columns is-mobile is-vcentered">
-                <div class="logo column" align="left">
-                  <img src="@/assets/FIU_Logo/quickbooks.jpg" />
-                </div>
-                <div class="column is-gray" align="right">
-                  Verified
-                  <b-icon icon="shield-check" custom-size="default" />
-                </div>
-              </div>
-              <div class="row">
-                <h2
-                  class="title is-6"
-                >Intuit quickbooks is requesting for access to your banking data</h2>
-              </div>
-               <div class="row columns my-1">
-                <div class="column is-gray" align="left">
-                  <h2 class="is-7">Valid till 20 Oct 2020</h2>
-                </div>
-              </div>
-              <div class="row columns is-mobile">
-                <div @click="isImageModalActive = true" class="play-video-trigger column" align="left">
-                  <b-icon icon="play-circle" size="is-small" />
-                  <a class="is-6">How does it work?</a>
-                </div>
-                 <div class="column is-gray is-two-fifths" align="right">
-                  <h2 class="is-8">Report Fraud</h2>
-                </div>
-              </div>
-            </div>
-          </consent-card-component>
-          <p></p>
-        </div>
+          <div v-if="isActiveTab === 0">
+            <pending-consents :data="dashboardData.pending" />
+          </div>
+          <div v-else-if="isActiveTab === 1">
+            <active-consents :data="dashboardData.active" />
+          </div>
+          <div v-else-if="isActiveTab === 2">
+            <inactive-consents :data="dashboardData.inactive" />
+          </div>
         </div>
       </div>
       <div class="column is-two-fifths content-right is-hidden-mobile">
@@ -53,23 +27,23 @@
                 class="column tile is-child pending-consent"
                 type="is-primary"
                 icon="account-multiple"
-                :number="3"
+                :number="dashboardData.pending.length"
                 label="ConsentsPending"
               />
               <card-widget
                 class="column tile is-child active-consent"
                 type="is-info"
                 icon="cart-outline"
-                :number="2"
+                :number="dashboardData.active.length"
                 label="ConsentsActive"
               />
             </tiles>
           </div>
           <div class="row" style="padding-top: 5%">
-            <BankList :line1="line1" :line2="line2" :haveCheckBox="false"/>
+            <BankList :line1="line1" :line2="line2" :haveCheckBox="false" />
           </div>
-          <div style="margin-top: 10vh" class="row">
-            <Chat style="padding: 4% 4% 4% 0%"/>
+          <div style="margin-top: 12vh" class="row">
+            <Chat style="padding: 4% 4% 4% 0%" />
           </div>
         </div>
       </div>
@@ -82,68 +56,100 @@
 
 <script>
 import DashboardNav from '@/components/DashboardNav'
-import ConsentCardComponent from '@/components/ConsentCardComponent'
 import Tiles from '@/components/Tiles'
 import CardWidget from '@/components/CardWidget'
 import BankList from '@/components/BankList'
 import Video from '@/components/Video'
-import WelcomeCard from '@/components/WelcomeCard'
+// import WelcomeCard from '@/components/WelcomeCard'
 import Chat from '@/components/Chat'
+
+// Consents
+import PendingConsents from '@/components/Consents/PendingConsents.vue'
+import ActiveConsents from '@/components/Consents/ActiveConsents.vue'
+import InactiveConsents from '@/components/Consents/InactiveConsents.vue'
+
+// APIs
+import DashboardAPI from '@/assets/api/dashboard'
 
 export default {
   components: {
     DashboardNav,
-    ConsentCardComponent,
+    // ConsentCardComponent,
     Tiles,
     CardWidget,
     BankList,
     Video,
-    WelcomeCard,
-    Chat
+    // WelcomeCard,
+    Chat,
+    PendingConsents,
+    ActiveConsents,
+    InactiveConsents
   },
   data () {
     return {
       isImageModalActive: false,
       haveCheckBox: false,
       line1: 'Your',
-      line2: 'Accounts'
+      line2: 'Accounts',
+      isActiveTab: 0,
+      dashboardData: null,
+      isLoading: false
     }
+  },
+  methods: {
+    openLoading () {
+      this.isLoading = true
+    },
+    closeLoading () {
+      this.isLoading = false
+    },
+    dashboardTabChanged (index) {
+      this.isActiveTab = index
+    }
+  },
+  mounted () {
+    const here = this
+    here.openLoading()
+    const payload = {}
+    DashboardAPI.postItem(payload)
+      .then(function (response) {
+        here.dashboardData = response.data
+        here.closeLoading()
+      })
+      .catch(error => {
+        console.log(error)
+        here.closeLoading()
+        here.$buefy.snackbar.open({
+          type: 'is-danger',
+          message: 'Failed. Please Retry..',
+          queue: false
+        })
+      })
   }
 }
 </script>
 
 <style scoped>
 .content-right {
-  /* border-left: 1px solid red; */
   height: 100%;
   margin-left: 2rem;
 }
 .content-left {
-  /* border-right: 1px solid red; */
   height: 100%;
-  /* margin-right: 2rem; */
 }
 .pending-consent {
   background-color: #f26c63;
 }
 .active-consent {
-  background-color: #acacac;
-}
-.is-gray {
-  color: #acacac !important;
-}
-.play-video-trigger,
-.play-video-trigger a {
-  color: #f26c63;
-  font-weight: bold;
+  background-color: #99d25c;
 }
 
 .video {
   text-align: center;
 }
 
-.dashboard-consents{
+.dashboard-consents {
   overflow-y: scroll;
-  height:70vh;
+  height: 73vh;
 }
 </style>

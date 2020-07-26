@@ -6,7 +6,6 @@
       <video
         controls
         responsive="true"
-        autoplay="true"
       ><source src="@/assets/sample_video.mp4" type="video/mp4"></video>
     </div>
   </div>

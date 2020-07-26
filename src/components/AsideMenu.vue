@@ -17,7 +17,6 @@
             <div
               @click="menuClick(item)"
               :class="item.class"
-              :data-badge="item.pending"
               class="menu-item"
               @mouseover="showDetails(item.id)"
               @mouseleave="hideDetails(item.id)"
@@ -149,7 +148,6 @@ export default {
   padding-left: 5px;
   padding-right: 10px;
   transition: 0.1s all ease;
-  text-align: left;
 }
 .strana li span:hover {
   cursor: pointer;
@@ -202,11 +200,5 @@ export default {
 
 .item-label{
   text-align: center;
-}
-
-.rows{
-    display: flex;
-    flex-direction: column;
-    margin-top: 0.5rem
 }
 </style>

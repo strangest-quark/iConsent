@@ -45,6 +45,9 @@ export default {
 .logo {
   max-width: 10rem;
 }
+.card:hover {
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
+}
 .card-header-end {
   text-align: right;
 }

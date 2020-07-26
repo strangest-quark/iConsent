@@ -21,6 +21,11 @@ import i18n from '@/plugins/i18n'
 
 import FlagIcon from 'vue-flag-icon'
 
+// Spinners
+import VueSpinners from 'vue-spinners'
+
+Vue.use(VueSpinners)
+
 Vue.use(FlagIcon)
 
 /* Default title tag */
@@ -45,5 +50,11 @@ new Vue({
   router,
   store,
   i18n,
+  watch: {
+    $route: () => {
+      window.Appcues.page()
+      window.Appcues.anonymous()
+    }
+  },
   render: h => h(App)
 }).$mount('#app')
