@@ -5,10 +5,7 @@
     <h1>
       <strong>{{bank.name}}</strong>
     </h1>
-    <small>{{bank.accType}}</small>
-    <small>
-      <i>Ending {{bank.accNo}}</i>
-    </small>
+    <small>{{bank.accType}}  <i>xxxx {{bank.accNo}}</i></small>
   </div>
 </template>
 
