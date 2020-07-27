@@ -19,7 +19,7 @@
             </div>
             <div>
               <div class="row">
-                <h2 class="title is-5">Quickbooks wants to access your savings account details</h2>
+                <h2 class="title is-5">{{consentData.tagline}}</h2>
               </div>
               <hr />
               <div style="width: 100%; padding-top: 2%">
@@ -39,29 +39,29 @@
                     <!-- why -->
                     <div v-if="currentStep==0" class="rows">
                       <span class="row">
-                        <h2 class="question subtitle is-6">Why does quickbook needs this data?</h2>
+                        <h2 class="question subtitle is-6">{{consentData.q1}}</h2>
                       </span>
                       <span class="row">
-                        <p class="answer">Explicit consent for something</p>
+                        <p class="answer">{{consentData.ans1}}</p>
                       </span>
                     </div>
                     <!-- how long -->
                     <div v-if="currentStep==1" class="rows">
                       <span class="row">
-                        <h2 class="question subtitle is-6">What range of my data will be accessed?</h2>
+                        <h2 class="question subtitle is-6">{{consentData.q2}}</h2>
                       </span>
                       <span class="row">
-                        <span class="columns">
+                        <span class="">
                           <span class="column">
-                            <p class="answer">From</p>
+                            <p class="answer">{{consentData.from}}</p>
                             <p class="answer">
-                              <strong>06 July 2020</strong>
+                              <strong>{{consentData.fromDate}}</strong>
                             </p>
                           </span>
                           <span class="column">
-                            <p class="answer">To</p>
+                            <p class="answer">{{consentData.to}}</p>
                             <p class="answer">
-                              <strong>06 July 2021</strong>
+                              <strong>{{consentData.toDate}}</strong>
                             </p>
                           </span>
                         </span>
@@ -70,7 +70,7 @@
                     <!-- what -->
                     <div v-if="currentStep==2" class="rows">
                       <span class="row">
-                        <h2 class="question subtitle is-6">What access will quickbooks have?</h2>
+                        <h2 class="question subtitle is-6">{{consentData.q3}}</h2>
                       </span>
                       <div class="row" style="width: 100%">
                         <div style="padding: 1% 4% 0% 0%">
@@ -80,11 +80,11 @@
                                 <a @mouseover="onHover('card1')" class="card1" href="#">
                                   <img src="@/assets/periodic.png" />
                                   <h2 class="card-text">
-                                    <b>Periodic</b>
+                                    <b>{{consentData.card1}}</b>
                                   </h2>
                                   <div class="hvrbox-layer_top">
                                     <h2 class="hvrbox-text">
-                                      <b>Periodic fetch of data</b>
+                                      <b>{{consentData.hover1}}</b>
                                     </h2>
                                   </div>
                                 </a>
@@ -95,11 +95,11 @@
                                 <a @mouseover="onHover('card2')" class="card1" href="#">
                                   <img src="@/assets/stream.png" />
                                   <h2 class="card-text">
-                                    <b>View</b>
+                                    <b>{{consentData.card2}}</b>
                                   </h2>
                                   <div class="hvrbox-layer_top">
                                     <h2 class="hvrbox-text">
-                                      <b>View your data</b>
+                                      <b>{{consentData.hover2}}</b>
                                     </h2>
                                   </div>
                                 </a>
@@ -110,11 +110,11 @@
                                 <a @mouseover="onHover" class="card1" href="#">
                                   <img src="@/assets/summary.png" />
                                   <h2 class="card-text">
-                                    <b>Summary</b>
+                                    <b>{{consentData.card3}}</b>
                                   </h2>
                                   <div class="hvrbox-layer_top">
                                     <h2 class="hvrbox-text">
-                                      <b>Summary data view</b>
+                                      <b>{{consentData.hover3}}</b>
                                     </h2>
                                   </div>
                                 </a>
@@ -127,12 +127,11 @@
                     <!-- till when -->
                     <div v-if="currentStep==3" class="rows">
                       <span class="row">
-                        <h2 class="question subtitle is-6">Till when this consent is valid?</h2>
+                        <h2 class="question subtitle is-6">{{consentData.q4}}</h2>
                       </span>
                       <span class="row">
                         <p class="answer">
-                          Valid till
-                          <strong>06 July 2021</strong>
+                          {{consentData.validTill}}
                         </p>
                       </span>
                     </div>
@@ -172,9 +171,9 @@
                   </div>
                 </div>
               </div>
-               <div class="row is-hidden-desktop is-hidden-tablet">
-            <BankList :line1="line1" :line2="line2" :haveCheckBox="haveCheckBox" />
-          </div>
+              <div class="row is-hidden-desktop is-hidden-tablet">
+                <BankList :line1="line1" :line2="line2" :haveCheckBox="haveCheckBox" />
+              </div>
             </div>
           </div>
         </div>
@@ -190,7 +189,7 @@
         </div>
       </div>
     </div>
-    <div class="columns is-left">
+    <div v-if="consentData" class="columns is-left">
       <div class="column card-content is-half" align="left">
         <div class="columns is-mobile">
           <div class="column" align="right">
@@ -223,7 +222,7 @@ import StepProgress from 'vue-step-progress'
 import '@/css/step-progress.css'
 
 // APIs
-import DashboardAPI from '@/assets/api/dashboard'
+import ConsentAPI from '@/assets/api/consent'
 
 export default {
   components: {
@@ -241,7 +240,7 @@ export default {
       line1: 'Select',
       line2: 'Accounts',
       isActiveTab: 0,
-      dashboardData: null,
+      consentData: null,
       isLoading: false,
       progressSteps: ['Why', 'How Long', 'What', 'Till When'],
       progressColor: '#03b072',
@@ -292,28 +291,32 @@ export default {
           this.currentStep = 3
         }
       }
+    },
+    getConsentData (params) {
+      const here = this
+      const payload = {}
+      ConsentAPI.postItem(payload, params.id, params.fiu)
+        .then(function (response) {
+          console.log(response)
+          here.consentData = response.data
+          here.closeLoading()
+        })
+        .catch(error => {
+          console.log(error)
+          here.closeLoading()
+          here.$buefy.snackbar.open({
+            type: 'is-danger',
+            message: 'Failed. Please Retry..',
+            queue: false
+          })
+        })
     }
   },
   mounted () {
     const here = this
     here.openLoading()
     here.checkButtonActiveState()
-
-    const payload = {}
-    DashboardAPI.postItem(payload)
-      .then(function (response) {
-        here.dashboardData = response.data
-        here.closeLoading()
-      })
-      .catch(error => {
-        console.log(error)
-        here.closeLoading()
-        here.$buefy.snackbar.open({
-          type: 'is-danger',
-          message: 'Failed. Please Retry..',
-          queue: false
-        })
-      })
+    here.getConsentData(this.$route.params)
   }
 }
 </script>

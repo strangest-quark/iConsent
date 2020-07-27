@@ -4,7 +4,7 @@
         <consents-no-data consentType="pending"/>
      </div>
     <div v-for="i in data" :key="i">
-      <consent-card-component title="Performance" icon="finance">
+      <consent-card-component status="pending" :artifactId="i.consentArtefactID" :fiu="i.fiu">
         <div class="rows">
           <div class="row columns is-mobile is-vcentered">
             <div class="logo column" align="left">

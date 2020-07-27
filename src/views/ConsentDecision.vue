@@ -1,14 +1,14 @@
 <template>
-    <div>
-        <consent-decision />
-    </div>
+  <div>
+    <consents-approval :artifactId="$route.params.id" />
+  </div>
 </template>
 
 <script>
-import ConsentDecision from '@/components/ConsentsApproval.vue'
+import ConsentsApproval from '@/components/ConsentsApproval.vue'
 export default {
   components: {
-    ConsentDecision
+    ConsentsApproval
   }
 }
 </script>

@@ -42,7 +42,7 @@ const routes = [
     component: Accounts
   },
   {
-    path: '/consents/decision',
+    path: '/consents/pending/:fiu/:id',
     name: 'consentdecision',
     component: ConsentDecision
   }

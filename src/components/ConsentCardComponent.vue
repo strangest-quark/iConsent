@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div @click="clickPendingConsent"  class="card">
     <div class="card-content">
       <slot />
     </div>
@@ -24,20 +24,26 @@
 export default {
   name: 'CardComponent',
   props: {
-    title: {
+    status: {
       type: String,
       default: null
     },
-    icon: {
+    artifactId: {
       type: String,
       default: null
     },
-    headerIcon: {
+    fiu: {
       type: String,
       default: null
     }
   },
-  methods: {}
+  methods: {
+    clickPendingConsent () {
+      if (this.status === 'pending') {
+        this.$router.push(`/consents/pending/${this.fiu}/${this.artifactId}`)
+      }
+    }
+  }
 }
 </script>
 
