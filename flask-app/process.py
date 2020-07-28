@@ -4,6 +4,7 @@ from config.config import ProductionConfig
 import boto3
 import botocore
 import requests
+from googletrans import Translator
 
 lambda_client = boto3.client('lambda', region_name='ap-south-1')
 dynamodb = boto3.resource('dynamodb', region_name='ap-south-1')
@@ -17,6 +18,7 @@ config = ProductionConfig
 lang_map = dict()
 image_map = dict()
 s3 = boto3.resource('s3')
+translator = Translator()
 
 
 def process(dashboard):
@@ -162,7 +164,7 @@ def fill_text(text, input_map):
         elif lang_map.get('lan') == 'en-IN':
             fill = k
         else:
-            fill = ""
+            fill = translator.translate(k, dest=lang_map.get('lan')).text
         text = text[:start] + fill + text[end + 1:]
     return text.capitalize()
 
@@ -254,10 +256,12 @@ def consent_res(consentArtefactId, session, fiu, lan):
     consent['validTill'] = lang_map['validTill'] + ' ' + input_map['valid']
     input_map['datalife'] = frequency_proc(input_map['datalife'])
     input_map['frequency'] = frequency_proc(input_map['frequency'])
-    consent['card1'] = input_map['fetchType']
+    consent['card1'] = lang_map[input_map['fetchType']]
     consent['hover1'] = fill_text(lang_map['hover ' + input_map['fetchType']], input_map)
-    consent['card2'] = input_map['mode']
+    consent['card2'] = lang_map[input_map['mode']]
     consent['hover2'] = fill_text(lang_map['hover ' + input_map['mode']], input_map)
+    consent['card3'] = lang_map['data']
+    consent['hover3'] = fill_text(lang_map['hover3'], input_map)
     return consent
 
 

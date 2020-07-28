@@ -8,6 +8,7 @@ package:
     - '!node_modules/node-fetch/**'
     - package.json
     - package-lock.json
+    - flask-app/**
     - serverless.yaml
 
 plugins:
@@ -35,25 +36,38 @@ functions:
     handler: wsgi_handler.handler
     events:
       - http:
-         path: video
-         method: post
-         cors: true
+          path: video
+          method: post
+          cors: true
       - http:
-         path: video
-         method: get
-         cors: true
-         origin:
-         headers:
-           - sessionId
-           - language
+          path: dashboard
+          method: post
+          cors:
+            origin: '*'
+            headers:
+              - sessionId
+              - language
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - X-Amz-User-Agent
       - http:
           path: consent
-          method: get
-          cors: true
-          origin:
-          headers:
-            - consentArtefactId
-            - fiu
-            - language
+          method: post
+          cors:
+            origin: '*'
+            headers:
+              - consentArtefactId
+              - fiu
+              - language
+              - sessionId
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - X-Amz-User-Agent
     layers:
       - arn:aws:lambda:ap-south-1:699850692529:layer:iconsent-dependency-layer:1

@@ -9,10 +9,10 @@
   "EasyTax": "EasyTax",
   "Paisato": "Paisato",
 
-  "Axis Bank": "Axis Bank",
+  "Axis Bank": "Axis",
   "Citibank": "Citibank",
-  "HDFC Bank": "HDFC Bank",
-  "ICICI Bank": "ICICI Bank",
+  "HDFC Bank": "HDFC",
+  "ICICI Bank": "ICICI",
   "SBI": "SBI",
 
   "view": "view",
@@ -20,6 +20,7 @@
   "one time": "one time",
   "periodic": "periodic",
   "savings": "savings",
+  "profile": "profile",
   "summary": "summary",
   "deposit": "deposit",
   "transactions": "transactions",
@@ -34,6 +35,8 @@
   "from": "From",
   "to": "To",
 
+  "lan": "en-IN",
+
   "RECURRING_DEPOSIT": "Recurring Deposit",
   "TERM-DEPOSIT": "Term Deposit",
   "DEPOSIT": "Deposit",
@@ -47,6 +50,9 @@
   "hover view": "Only data view",
   "hover stream": "Stream your data",
   "hover query": "Query your data",
+  "hover3": "{datatype}",
+
+  "data": "data",
 
   "01": "January",
   "02": "February",
@@ -60,6 +66,8 @@
   "10": "October",
   "11": "November",
   "12": "December",
+
+  "and": "and",
 
   "month": "month",
   "months": "months",
