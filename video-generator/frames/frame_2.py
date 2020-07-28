@@ -60,12 +60,14 @@ class Frame2(object):
             else:
                 fill = k
             text = text[:start] + fill + text[end + 1:]
+        if iter == 1 and Frame2.lang_map.get('lan') == 'en-IN':
+            return text.replace('(', '{').replace(')', '}')
         if iter == 1:
             return self.translator.translate(text, dest=Frame2.lang_map.get('lan')).text.replace('(', '{').replace(')', '}')
         else:
             return text
 
-    def concatenate_images(self, imgList):
+    def concatenate_images(self, imgList, txnId):
         W, H = self.config.VIDEO_SIZE
 
         images = [Image.open(self.config.SB_LOGO_PATH_PREFIX + self.image_map.get(img)) for img in imgList]
@@ -110,7 +112,7 @@ class Frame2(object):
         # draw = ImageDraw.Draw(mask)
         # draw.rectangle(transparent_area, fill=0)
         # combined_image.putalpha(mask)
-        combined_image.save(self.config.SB_LOGO_PATH_PREFIX + 'combined_banks.png')
+        combined_image.save(self.config.SB_LOGO_PATH_PREFIX + 'combined-'+txnId+'-banks.png')
         return combined_image
 
 
@@ -134,8 +136,8 @@ class Frame2(object):
         else:
             fip_x_position = W/6-self.config.BANK_ICON_SIZE/3
             fip_y_position = int(H/num_images_pow)
-            self.concatenate_images(fipList)
-            fip_img_path = 'combined_banks.png'
+            self.concatenate_images(fipList, txnId)
+            fip_img_path = 'combined-'+txnId+'-banks.png'
 
         height_final_image = self.config.BANK_ICON_SIZE * int(math.ceil(len(fipList)/2))
 
@@ -160,5 +162,5 @@ class Frame2(object):
         video.audio = new_audioclip
         os.remove(self.config.SB_AUDIO_PATH_PREFIX + 'audio-' + txnId + '-2.mp3')
         os.remove(self.config.SB_LOGO_PATH_PREFIX_WRITE+'-text-2-' + txnId+'.png')
-        os.remove(self.config.SB_LOGO_PATH_PREFIX_WRITE + 'combined_banks.png')
+        os.remove(self.config.SB_LOGO_PATH_PREFIX_WRITE + 'combined-'+txnId+'-banks.png')
         return video, 2

@@ -1,17 +1,26 @@
 {
-  "fip": ["Axis Bank", "Citibank", "HDFC Bank"],
-  "fiu": "Mint",
-  "datatype": ["summary", "profile"],
-  "account": "deposit",
-  "mode": "store",
-  "type": "one time",
-  "language": "malayalam",
-  "dataLife": "1 month",
-  "consentFrom": "2020-07-03",
-  "consentTo": "2021-12-06",
-  "fiFrom": "2018-12-06",
-  "fiTo": "2020-07-03",
-  "datalife": "15 days",
-  "frequency": "1 week",
-  "consentArtefactID": "123"
+    "fiu": "Mint",
+    "fip": [
+      "Axis Bank",
+      "HDFC Bank",
+      "Citibank"
+    ],
+    "datatype": [
+      "transactions",
+      "profile",
+      "summary"
+    ],
+    "account": [
+      "deposit"
+    ],
+    "mode": "store",
+    "type": "periodic",
+    "language": "en",
+    "dataLife": "1 month",
+    "consentFrom": "2020-07-19",
+    "consentTo": "2020-12-30",
+    "fiFrom": "2018-12-06",
+    "fiTo": "2020-07-03",
+    "frequency": "1 month",
+    "consentArtefactID": "41f64f74-7822-44cf-b63b-523e313785a2"
 }

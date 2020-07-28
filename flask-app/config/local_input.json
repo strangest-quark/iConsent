@@ -162,5 +162,6 @@
     "unLinkedBankAccounts": [],
     "status": true,
     "language": "te",
-    "session": "774dbebf6e1ae00575e942a50810a5ea:3f606dc3a59425bd4caef8445a9293d6fad0d6e5caf2dc25871a9e126ffe3f986a6b04ff5a806f9d1395165bb7362f87094e45538b07a59627cb79cb75c686df"
+    "session": "560a11547b98576f8507af19858cca74:7063e6285c9d6231ec536a1a182d7123a8e524de3fd4e5fb118162f318d25a06b66a9a3ddf152d4bf6c73706a0c8e2a32f01d1b96862d407fcfea4d0f10abfa0",
+    "consentArtefactId": "41f64f74-7822-44cf-b63b-523e313785a2"
 }

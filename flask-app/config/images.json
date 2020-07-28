@@ -13,5 +13,26 @@
   "FastBooks": "fastbooks.png",
   "EasyTax": "easytax.png",
   "Paisato": "paisato.png",
-  "Quickbooks": "quickbooks.png"
+  "Quickbooks": "quickbooks.png",
+
+  "one time": "single.png",
+  "periodic": "periodic.png",
+  "summary": "summary.png",
+  "transactions": "transactions.png",
+  "summary,transactions": "transactions_summary.png",
+  "transactions,summary": "transactions_summary.png",
+  "summary,profile": "profile_summary.png",
+  "profile,summary": "profile_summary.png",
+  "profile,transactions": "transactions_profile.png",
+  "transactions,profile": "transactions_profile.png",
+  "summary,transactions,profile": "all_types.png",
+  "summary,profile,transactions": "all_types.png",
+  "profile,summary,transactions": "all_types.png",
+  "profile,transactions,summary": "all_types.png",
+  "transactions,summary,profile": "all_types.png",
+  "transactions,profile,summary": "all_types.png",
+  "view": "view.png",
+  "store": "store.png",
+  "stream": "stream.png",
+  "query": "query.png"
 }

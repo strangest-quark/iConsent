@@ -56,6 +56,8 @@ class Frame3(object):
             else:
                 fill = k
             text = text[:start] + fill + text[end + 1:]
+        if iter == 1 and Frame3.lang_map.get('lan') == 'en-IN':
+            return text.replace('(', '{').replace(')', '}')
         if iter == 1:
             return self.translator.translate(text, dest=Frame3.lang_map.get('lan')).text.replace('(', '{').replace(')', '}')
         else:

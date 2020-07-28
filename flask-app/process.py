@@ -14,7 +14,7 @@ table = dynamodb.Table('iconsent')
 
 fiu_list = ['Quickbooks', 'Mint', 'Monito', 'Zoho', 'Freshworks', 'ClearTax', 'FastBooks', 'EasyTax', 'Paisato']
 non_verified = ['FastBooks', 'EasyTax', 'Paisato']
-fip_list = ['Axis Bank', 'Citibank', 'HDFC Bank', 'ICICI Bank', 'SBI']
+fip_list = ['Axis Bank', 'Citibank', 'HDFC Bank']
 
 config = ProductionConfig
 lang_map = dict()
@@ -103,6 +103,13 @@ def date_proc(ts):
     month = lang_map[d_arr[1]]
     year = d_arr[0]
     return m_day + ' ' + month + ' ' + year
+
+def date_ts_proc(ts):
+    d_arr = ts.split('-')
+    m_day = d_arr[2][0:2]
+    month = d_arr[1]
+    year = d_arr[0]
+    return year + '-' + month + '-' + m_day
 
 
 def consent_artefact_get(consent, session):
@@ -199,12 +206,12 @@ def consent_proc(consent, random_fiu, lan, session, fips):
     video_req['mode'] = consent_artefact['info']['ConsentDetail']['consentMode'].lower()
     video_req['type'] = consent_artefact['info']['ConsentDetail']['fetchType'].lower()
     video_req['language'] = lan
-    video_req['dataLife'] = (str(consent_artefact['info']['ConsentDetail']['DataLife']['value']) + ' ' +
+    video_req['datalife'] = (str(consent_artefact['info']['ConsentDetail']['DataLife']['value']) + ' ' +
                              consent_artefact['info']['ConsentDetail']['DataLife']['unit']).lower()
-    video_req['consentFrom'] = consent_artefact['info']['ConsentDetail']['consentStart']
-    video_req['consentTo'] = consent_artefact['info']['ConsentDetail']['consentExpiry']
-    video_req['fiFrom'] = consent_artefact['info']['ConsentDetail']['FIDataRange']['from']
-    video_req['fiTo'] = consent_artefact['info']['ConsentDetail']['FIDataRange']['to']
+    video_req['consentFrom'] = date_ts_proc(consent_artefact['info']['ConsentDetail']['consentStart'])
+    video_req['consentTo'] = date_ts_proc(consent_artefact['info']['ConsentDetail']['consentExpiry'])
+    video_req['fiFrom'] = date_ts_proc(consent_artefact['info']['ConsentDetail']['FIDataRange']['from'])
+    video_req['fiTo'] = date_ts_proc(consent_artefact['info']['ConsentDetail']['FIDataRange']['to'])
     video_req['frequency'] = (str(consent_artefact['info']['ConsentDetail']['Frequency']['value']) + ' ' +
                               consent_artefact['info']['ConsentDetail']['Frequency']['unit']).lower()
     video_req['consentArtefactID'] = consent['consentArtefactID']
@@ -276,14 +283,18 @@ def consent_res(consentArtefactId, session, lan):
     input_map['datalife'] = frequency_proc(input_map['datalife'])
     input_map['frequency'] = frequency_proc(input_map['frequency'])
     consent['card1'] = lang_map[input_map['fetchType']]
+    consent['card1_icon'] = "https://s3-ap-south-1.amazonaws.com/%s/%s" % (config.LOGO_BUCKET, image_map[input_map['fetchType']])
     consent['hover1'] = fill_text(lang_map['hover ' + input_map['fetchType']], input_map)
     consent['card2'] = lang_map[input_map['mode']]
+    consent['card2_icon'] = "https://s3-ap-south-1.amazonaws.com/%s/%s" % (config.LOGO_BUCKET, image_map[input_map['mode']])
     consent['hover2'] = fill_text(lang_map['hover ' + input_map['mode']], input_map)
     consent['card3'] = lang_map['data']
+    consent['card3_icon'] = "https://s3-ap-south-1.amazonaws.com/%s/%s" % (config.LOGO_BUCKET, image_map[','.join(input_map['datatype'])])
     consent['hover3'] = fill_text(lang_map['hover3'], input_map)
     consent['fiu_logo'] = "https://s3-ap-south-1.amazonaws.com/%s/%s" % (config.LOGO_BUCKET, image_map[fiu])
     consent['video'] =  "https://s3-ap-south-1.amazonaws.com/%s/%s" % (
         config.VIDEO_BUCKET, consentArtefactId + '-' + lan + '.mp4')
+    consent['isVerified'] = fiu not in non_verified
     return consent
 
 

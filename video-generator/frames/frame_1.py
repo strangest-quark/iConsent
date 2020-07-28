@@ -56,6 +56,8 @@ class Frame1(object):
             else:
                 fill = k
             text = text[:start] + fill + text[end + 1:]
+        if iter == 1 and Frame1.lang_map.get('lan') == 'en-IN':
+            return text.replace('(', '{').replace(')', '}')
         if iter == 1:
             return self.translator.translate(text, dest=Frame1.lang_map.get('lan')).text.replace('(', '{').replace(')', '}')
         else:
@@ -70,7 +72,7 @@ class Frame1(object):
             set_position((W/2-150, H/5)).resize(height=self.config.ICON_SIZE)
         arrow_gif = VideoFileClip(self.config.SB_LOGO_PATH_PREFIX + self.image_map.get("left_arrow")). \
             set_position((W/2-30, H/5)).resize(height=self.config.ICON_SIZE)
-        account_logo = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX + self.image_map.get(self.input_map.get("account"))). \
+        account_logo = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX + self.image_map.get(self.input_map.get("account")[0])). \
             set_position((W/2+100, H/5)).resize(height=self.config.ICON_SIZE)
         self.text_to_speech(self.fill_text(self.fill_text(Frame1.lang_map.get('audio1'), 1), 2), Frame1.lang_map.get('lan'), txnId)
         audioclip = AudioFileClip(self.config.SB_AUDIO_PATH_PREFIX + "audio-" + txnId + "-1.mp3")
