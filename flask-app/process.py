@@ -1,5 +1,7 @@
 import json
 import random
+
+from boto3.dynamodb.conditions import Key
 from config.config import ProductionConfig
 import boto3
 import botocore
@@ -119,16 +121,26 @@ def video_invoke(video_req, lan):
         config.VIDEO_BUCKET, video_req['req']['consentArtefactID'] + '-' + lan + '.mp4')
 
 
-def check_if_key_exists(consentArtefactId):
+def check_if_key_exists(consentArtefactIdLan):
     response = table.get_item(
         Key={
-            'consentId': consentArtefactId
+            'consentId': consentArtefactIdLan
         }
     )
     if 'Item' in response.keys():
         res = response['Item']
         res.pop('video_req')
         return True, res
+    else:
+        return False, None
+
+def check_if_lang_exists(consentArtefactId):
+    response = table.query(
+        IndexName="consentArtefactID-index",
+        KeyConditionExpression=Key('consentArtefactID').eq(consentArtefactId)
+    )
+    if 'Items' in response.keys() and len(response['Items']) > 0:
+        return True, json.loads(response['Items'][0]['video_req'])['req']['fiu']
     else:
         return False, None
 
@@ -173,6 +185,10 @@ def consent_proc(consent, random_fiu, lan, session, fips):
     keyExists, res = check_if_key_exists(consent['consentArtefactID'] + '-' + lan)
     if keyExists:
         return res
+    else:
+        keyExists, res = check_if_lang_exists(consent['consentArtefactID'])
+        if keyExists:
+            random_fiu = res
     consent_map = dict()
     consent_artefact = json.loads(consent_artefact_get(consent, session))
     video_req = dict()
@@ -219,7 +235,10 @@ def account_proc(account, random_fip):
     return fip_map
 
 
-def consent_res(consentArtefactId, session, fiu, lan):
+def consent_res(consentArtefactId, session, lan):
+    keyExists, res = check_if_lang_exists(consentArtefactId)
+    if keyExists:
+        fiu = res
     global lang_map
     global image_map
     with open(config.LANG_PATH + lan + ".json", "r") as read_file:
@@ -262,6 +281,9 @@ def consent_res(consentArtefactId, session, fiu, lan):
     consent['hover2'] = fill_text(lang_map['hover ' + input_map['mode']], input_map)
     consent['card3'] = lang_map['data']
     consent['hover3'] = fill_text(lang_map['hover3'], input_map)
+    consent['fiu_logo'] = "https://s3-ap-south-1.amazonaws.com/%s/%s" % (config.LOGO_BUCKET, image_map[fiu])
+    consent['video'] =  "https://s3-ap-south-1.amazonaws.com/%s/%s" % (
+        config.VIDEO_BUCKET, consentArtefactId + '-' + lan + '.mp4')
     return consent
 
 

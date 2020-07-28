@@ -17,8 +17,9 @@
 
   "and": "and",
 
-  "font": "OpenSans-ExtraBold",
+  "font": "NotoSans-SemiCondensedBold",
   "lan": "en-IN",
+
   "fontsize": 30,
   "fontsize1": 25,
   "fontsize2": 30,

@@ -5,11 +5,11 @@ RUN yum install -y yum-utils rpmdevtools
 WORKDIR /tmp
 
 WORKDIR /opt
-ADD video-generator .
-RUN pipenv install -r requirements.txt
+ADD flask-app .
+RUN pipenv install -r req.txt
 RUN mkdir -p python/lib/python3.8/site-packages
-RUN pipenv lock -r > requirements.txt
-RUN pip install -r requirements.txt --no-deps -t python/lib/python3.8/site-packages
+RUN pipenv lock -r > req.txt
+RUN pip install -r req.txt --no-deps -t python/lib/python3.8/site-packages
 
 # run test
 # WORKDIR /opt

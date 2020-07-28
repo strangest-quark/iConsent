@@ -30,9 +30,8 @@ def video():
 def consent():
     session = request.headers['sessionId']
     consentArtefactId = request.headers['consentArtefactId']
-    fiu = request.headers['fiu']
     language = request.headers['language']
-    return jsonify(consent_res(consentArtefactId, session, fiu, language))
+    return jsonify(consent_res(consentArtefactId, session, language))
 
 
 @app.route("/dashboard", methods=['POST'])
