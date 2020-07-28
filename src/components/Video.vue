@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <VideoJS />
+    <VideoJS :url="url" />
   </div>
 </template>
 
@@ -8,6 +8,12 @@
 import VideoJS from '@/components/VideoPlayer'
 
 export default {
+  props: {
+    url: {
+      type: String,
+      default: null
+    }
+  },
   components: {
     VideoJS
   }

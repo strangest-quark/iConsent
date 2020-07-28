@@ -5,15 +5,15 @@
     </div>
     <div v-if="!isLoading" class="columns is-multiline">
       <div class="column">
-        <b-button icon-left="chevron-left" type="is-light">Pending</b-button>
+        <b-button @click="$router.go(-1)" class="pending-button" icon-left="chevron-left" type="is-text">Pending</b-button>
         <div>
           <div class="rows">
             <div class="row columns is-mobile is-vcentered">
               <div class="logo column" align="left">
-                <img src="@/assets/FIU_Logo/quickbooks.jpg" />
+                <img :src="consentData.fiu_logo" />
               </div>
-              <div class="column is-green" align="right">
-                Verified
+              <div v-if="consentData.isVerified" class="column is-green" align="right">
+                {{$t('labelVerified')}}
                 <b-icon icon="shield-check" custom-size="default" />
               </div>
             </div>
@@ -78,7 +78,7 @@
                             <div class="column1">
                               <div class="hvrbox">
                                 <a @mouseover="onHover('card1')" class="card1" href="#">
-                                  <img src="@/assets/periodic.png" />
+                                  <img :src="consentData.card1_icon" />
                                   <h2 class="card-text">
                                     <b>{{consentData.card1}}</b>
                                   </h2>
@@ -93,7 +93,7 @@
                             <div class="column1">
                               <div class="hvrbox">
                                 <a @mouseover="onHover('card2')" class="card1" href="#">
-                                  <img src="@/assets/stream.png" />
+                                  <img :src="consentData.card2_icon" />
                                   <h2 class="card-text">
                                     <b>{{consentData.card2}}</b>
                                   </h2>
@@ -108,7 +108,7 @@
                             <div @mouseover="onHover('card3')" class="column1">
                               <div class="hvrbox">
                                 <a @mouseover="onHover" class="card1" href="#">
-                                  <img src="@/assets/summary.png" />
+                                  <img :src="consentData.card3_icon" />
                                   <h2 class="card-text">
                                     <b>{{consentData.card3}}</b>
                                   </h2>
@@ -184,7 +184,7 @@
             <BankList :line1="line1" :line2="line2" :haveCheckBox="haveCheckBox" />
           </div>
           <div class="row video">
-            <Video />
+            <Video :url="consentData.video" />
           </div>
         </div>
       </div>
@@ -198,7 +198,7 @@
               class="reject"
               size="is-medium"
               @click="rejectConsent"
-              icon-left="close"
+              icon-left="close-circle-outline"
             >Reject</b-button>
           </div>
           <div class="column" align="left">
@@ -213,6 +213,14 @@
         </div>
       </div>
     </div>
+       <b-modal :active.sync="isComponentModalActive"
+                 has-modal-card
+                 trap-focus
+                 :destroy-on-hide="false"
+                 aria-role="dialog"
+                 aria-modal>
+            <modal-form v-bind="formProps"></modal-form>
+        </b-modal>
   </div>
 </template>
 <script>
@@ -242,12 +250,14 @@ export default {
       isActiveTab: 0,
       consentData: null,
       isLoading: false,
-      progressSteps: ['Why', 'How Long', 'What', 'Till When'],
+      progressSteps: [this.$t('stepProgressWhy'), this.$t('stepProgressHowLong'), this.$t('stepProgressWhat'), this.$t('stepProgressTillWhen')],
       progressColor: '#03b072',
       currentStep: 0,
       isCardsDone: false,
       isBackButtonDisabled: false,
-      isNextButtonDisabled: false
+      isNextButtonDisabled: false,
+      userReadFully: false,
+      isComponentModalActive: false
     }
   },
   methods: {
@@ -273,13 +283,31 @@ export default {
     nextCard () {
       this.currentStep += 1
       this.checkButtonActiveState()
+      if (this.currentStep === 3) {
+        this.userReadFully = true
+      }
     },
     previousCard () {
       this.currentStep -= 1
       this.checkButtonActiveState()
     },
-    rejectConsent () {},
-    acceptConsent () {},
+    checkUserProgress () {
+
+    },
+    rejectConsent () {
+      if (this.userReadFully) {
+        // call api
+      } else {
+        // openModel
+      }
+    },
+    acceptConsent () {
+      if (this.userReadFully) {
+        // call api
+      } else {
+        // openModel
+      }
+    },
     onHover (card) {
       if (!this.cardsChecked.includes(card)) {
         this.cardsChecked.push(card)
@@ -474,5 +502,9 @@ h2 {
 }
 .hvrbox.active .hvrbox-text_mobile {
   display: block;
+}
+
+.pending-button{
+  text-decoration:none
 }
 </style>

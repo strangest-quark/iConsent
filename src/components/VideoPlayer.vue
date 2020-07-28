@@ -6,7 +6,7 @@
       <video
         controls
         responsive="true"
-      ><source src="@/assets/sample_video.mp4" type="video/mp4"></video>
+      ><source :src="url" type="video/mp4"></video>
     </div>
   </div>
 </template>
@@ -16,7 +16,12 @@ import 'video.js/dist/video-js.min.css'
 import 'video.js/dist/video.min.js'
 
 export default {
-
+  props: {
+    url: {
+      type: String,
+      default: null
+    }
+  }
 }
 </script>
 

@@ -18,7 +18,12 @@ const messages = {
     dashboardMenulabelRevoked: 'Revoked',
     dashboardMenulabelRejected: 'Rejected',
     dashboardConsentsPending: 'Consents Pending',
-    dashboardConsentsActive: 'Consents Active'
+    dashboardConsentsActive: 'Consents Active',
+    stepProgressWhy: 'Why',
+    stepProgressHowLong: 'How Long',
+    stepProgressWhat: 'What',
+    stepProgressTillWhen: 'Till When',
+    labelVerified: 'Verified'
   },
   ta: {
     welcomeMsg: 'உங்கள் Vue.js பயன்பாட்டிற்கு வருக',
@@ -34,7 +39,12 @@ const messages = {
     dashboardMenulabelRevoked: 'ரத்து செய்யப்பட்டது',
     dashboardMenulabelRejected: 'நிராகரிக்கப்பட்டது',
     dashboardConsentsPending: 'சம்மதம் நிலுவையில்',
-    dashboardConsentsActive: 'சம்மதம் செயலில்'
+    dashboardConsentsActive: 'சம்மதம் செயலில்',
+    stepProgressWhy: 'ஏன்',
+    stepProgressHowLong: 'எவ்வளவு காலம்',
+    stepProgressWhat: 'என்ன',
+    stepProgressTillWhen: 'எப்போது வரை',
+    labelVerified: 'சரிபார்க்கப்பட்டது'
   },
   ml: {
     welcomeMsg: 'നിങ്ങളുടെ Vue.js അപ്ലിക്കേഷനിലേക്ക് സ്വാഗതം',
@@ -50,7 +60,12 @@ const messages = {
     dashboardMenulabelRevoked: 'അസാധുവാക്കി',
     dashboardMenulabelRejected: 'നിരസിച്ചു',
     dashboardConsentsPending: 'സമ്മതം ശേഷിക്കുന്നു',
-    dashboardConsentsActive: 'സമ്മതം സജീവമാണ്'
+    dashboardConsentsActive: 'സമ്മതം സജീവമാണ്',
+    stepProgressWhy: 'എന്തുകൊണ്ട്',
+    stepProgressHowLong: 'എത്രകാലം',
+    stepProgressWhat: 'എന്ത്',
+    stepProgressTillWhen: 'എപ്പോൾ വരെ',
+    labelVerified: 'പരിശോധിച്ചുറപ്പിച്ചു'
 
   },
   hi: {
@@ -67,7 +82,12 @@ const messages = {
     dashboardMenulabelRevoked: 'निरस्त',
     dashboardMenulabelRejected: 'अस्वीकृत',
     dashboardConsentsPending: 'लंबित है',
-    dashboardConsentsActive: 'सक्रिय रहता'
+    dashboardConsentsActive: 'सक्रिय रहता',
+    stepProgressWhy: 'क्यों',
+    stepProgressHowLong: 'कितना लंबा',
+    stepProgressWhat: 'क्या',
+    stepProgressTillWhen: 'कब तक',
+    labelVerified: 'सत्यापित'
   }
 }
 

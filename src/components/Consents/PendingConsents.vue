@@ -3,8 +3,8 @@
      <div v-if="data.length === 0">
         <consents-no-data consentType="pending"/>
      </div>
-    <div v-for="i in data" :key="i">
-      <consent-card-component status="pending" :artifactId="i.consentArtefactID" :fiu="i.fiu">
+    <div class="mx-2 my-2" v-for="i in data" :key="i">
+      <consent-card-component status="pending" :artifactId="i.consentArtefactID">
         <div class="rows">
           <div class="row columns is-mobile is-vcentered">
             <div class="logo column" align="left">

@@ -66,6 +66,7 @@
 <script>
 // APIs
 import LoginAPI from '@/assets/api/login'
+import UserAPI from '@/assets/api/userprofile'
 
 export default {
   data () {
@@ -94,6 +95,23 @@ export default {
     closeLoading () {
       this.isLoading = false
     },
+    getUserDetails () {
+      const here = this
+      const payload = {}
+      UserAPI.postItem(payload)
+        .then(function (response) {
+          console.log(response)
+        })
+        .catch(error => {
+          console.log(error)
+          here.closeLoading()
+          here.$buefy.snackbar.open({
+            type: 'is-danger',
+            message: 'Failed. Please Retry..',
+            queue: false
+          })
+        })
+    },
     signInUser () {
       const here = this
       here.openLoading()
@@ -109,6 +127,7 @@ export default {
             sessionStorage.setItem('user-sessionId', String(response.data.sessionId))
             here.$store.commit('asideHolderHide', true)
             here.$router.push('/').catch(() => {})
+            here.getUserDetails()
             here.closeLoading()
           } else {
             here.closeLoading()

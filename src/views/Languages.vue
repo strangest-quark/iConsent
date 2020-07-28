@@ -78,6 +78,24 @@ export default {
           displayLetter: 'എ',
           displayLanguage: 'മലയാളം',
           class: ''
+        },
+        {
+          flag: 'in',
+          language: 'te',
+          title: 'Telugu',
+          displayMessage: 'స్వాగతం',
+          displayLetter: 'అ',
+          displayLanguage: 'తెలుగు',
+          class: ''
+        },
+        {
+          flag: 'in',
+          language: 'ka',
+          title: 'Kannada',
+          displayMessage: 'ಸ್ವಾಗತ',
+          displayLetter: 'ಎ',
+          displayLanguage: 'ಕನ್ನಡ',
+          class: ''
         }
       ]
     }

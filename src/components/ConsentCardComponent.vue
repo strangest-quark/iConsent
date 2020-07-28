@@ -1,11 +1,11 @@
 <template>
-  <div @click="clickPendingConsent"  class="card">
-    <div class="card-content">
+  <div class="card">
+    <div @click="clickPendingConsent" class="card-content">
       <slot />
     </div>
     <footer class="card-footer">
       <span class="card-footer-item reject">
-        <b-icon icon="close" custom-size="default" />
+        <b-icon icon="close-circle-outline" custom-size="default" />
         <a href="#">Reject</a>
       </span>
        <span class="card-footer-item approve">
@@ -40,7 +40,7 @@ export default {
   methods: {
     clickPendingConsent () {
       if (this.status === 'pending') {
-        this.$router.push(`/consents/pending/${this.fiu}/${this.artifactId}`)
+        this.$router.push(`/consents/pending/${this.artifactId}`)
       }
     }
   }
@@ -52,7 +52,8 @@ export default {
   max-width: 10rem;
 }
 .card:hover {
-  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  box-shadow: 0px 0px 10px rgba(0.2, 0.2, 0.2, 0.2);
 }
 .card-header-end {
   text-align: right;
