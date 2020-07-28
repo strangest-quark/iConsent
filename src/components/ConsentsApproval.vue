@@ -5,7 +5,12 @@
     </div>
     <div v-if="!isLoading" class="columns is-multiline">
       <div class="column">
-        <b-button @click="$router.go(-1)" class="pending-button" icon-left="chevron-left" type="is-text">Pending</b-button>
+        <b-button
+          @click="$router.go(-1)"
+          class="pending-button"
+          icon-left="chevron-left"
+          type="is-text"
+        >Pending</b-button>
         <div>
           <div class="rows">
             <div class="row columns is-mobile is-vcentered">
@@ -51,7 +56,7 @@
                         <h2 class="question subtitle is-6">{{consentData.q2}}</h2>
                       </span>
                       <span class="row">
-                        <span class="">
+                        <span class>
                           <span class="column">
                             <p class="answer">{{consentData.from}}</p>
                             <p class="answer">
@@ -130,9 +135,7 @@
                         <h2 class="question subtitle is-6">{{consentData.q4}}</h2>
                       </span>
                       <span class="row">
-                        <p class="answer">
-                          {{consentData.validTill}}
-                        </p>
+                        <p class="answer">{{consentData.validTill}}</p>
                       </span>
                     </div>
                     <!-- video -->
@@ -213,14 +216,67 @@
         </div>
       </div>
     </div>
-       <b-modal :active.sync="isComponentModalActive"
-                 has-modal-card
-                 trap-focus
-                 :destroy-on-hide="false"
-                 aria-role="dialog"
-                 aria-modal>
-            <modal-form v-bind="formProps"></modal-form>
-        </b-modal>
+    <b-modal
+      :active.sync="isComponentModalActive"
+      has-modal-card
+      trap-focus
+      :destroy-on-hide="false"
+      aria-role="dialog"
+      aria-modal
+    >
+      <div class="modal-card">
+        <section class="modal-card-body">
+          <h4 class="title is-6">Uh oh...</h4>
+          <h4 class="subtitle is-6">Looks like you haven’t read the consent details completely!</h4>
+          <h2 class="title proceed-title is-5">Sure you want to proceed?</h2>
+          <div class="columns is-mobile">
+            <div class="column" align="right">
+              <b-button
+                type="is-rounded"
+                class="reject"
+                @click="rejectConsent"
+                icon-left="close-circle-outline"
+              >Reject</b-button>
+            </div>
+            <div class="column" align="left">
+              <b-button
+                type="is-rounded"
+                class="approve"
+                @click="acceptConsent"
+                icon-left="check-circle-outline"
+              >Approve</b-button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </b-modal>
+    <b-modal
+      :active.sync="isFullyReadModalActive"
+      has-modal-card
+      trap-focus
+      :destroy-on-hide="false"
+      aria-role="dialog"
+      aria-modal
+    >
+      <div class="modal-card">
+        <section class="modal-card-body">
+          <h4 class="title is-6">Awesome!!</h4>
+          <h4 class="subtitle is-6">
+            <div>You have read this consent details fully.</div>
+            <div>Kudos to keeping yourself informed of your data/privacy rights.</div>
+          </h4>
+          <div class="congragulations-model">
+            <div class="columns is-mobile is-centered">
+              <div class="logo column" align="center">
+                <img :src="consentData.fiu_logo" />
+              </div>
+            </div>
+
+            <h4 class="title is-6">Quickbooks can now access your savings accounts!</h4>
+          </div>
+        </section>
+      </div>
+    </b-modal>
   </div>
 </template>
 <script>
@@ -250,14 +306,21 @@ export default {
       isActiveTab: 0,
       consentData: null,
       isLoading: false,
-      progressSteps: [this.$t('stepProgressWhy'), this.$t('stepProgressHowLong'), this.$t('stepProgressWhat'), this.$t('stepProgressTillWhen')],
+      progressSteps: [
+        this.$t('stepProgressWhy'),
+        this.$t('stepProgressHowLong'),
+        this.$t('stepProgressWhat'),
+        this.$t('stepProgressTillWhen')
+      ],
       progressColor: '#03b072',
       currentStep: 0,
       isCardsDone: false,
       isBackButtonDisabled: false,
       isNextButtonDisabled: false,
       userReadFully: false,
-      isComponentModalActive: false
+      forceUserAction: false,
+      isComponentModalActive: false,
+      isFullyReadModalActive: false
     }
   },
   methods: {
@@ -291,21 +354,42 @@ export default {
       this.currentStep -= 1
       this.checkButtonActiveState()
     },
-    checkUserProgress () {
-
-    },
+    checkUserProgress () {},
     rejectConsent () {
-      if (this.userReadFully) {
-        // call api
+      if (this.userReadFully || this.forceUserAction) {
+        alert('API CALL')
       } else {
-        // openModel
+        this.isComponentModalActive = true
+        this.forceUserAction = true
       }
+    },
+    startAnimation () {
+      this.$confetti.start({
+        particles: [
+          {
+            type: 'circle'
+          }
+        ],
+        defaultColors: ['#079AFF', '#F26C63', '#99D25C', '#FAB909']
+      })
+    },
+    stopAnimation () {
+      this.$confetti.stop()
     },
     acceptConsent () {
       if (this.userReadFully) {
+        this.isFullyReadModalActive = true
+        this.startAnimation()
+        const here = this
+        setInterval(function () {
+          here.stopAnimation()
+        }, 4000)
+        // this.isComponentModalActive = false
+      } else if (this.forceUserAction) {
         // call api
       } else {
-        // openModel
+        this.isComponentModalActive = true
+        this.forceUserAction = true
       }
     },
     onHover (card) {
@@ -329,7 +413,7 @@ export default {
           here.consentData = response.data
           here.closeLoading()
         })
-        .catch(error => {
+        .catch((error) => {
           console.log(error)
           here.closeLoading()
           here.$buefy.snackbar.open({
@@ -504,7 +588,18 @@ h2 {
   display: block;
 }
 
-.pending-button{
-  text-decoration:none
+.pending-button {
+  text-decoration: none;
+}
+.proceed-title {
+  margin-top: 1rem !important;
+  text-align: center;
+}
+.modal-card {
+  width: auto;
+  border-radius: 1rem;
+}
+.congragulations-model {
+  text-align: center;
 }
 </style>

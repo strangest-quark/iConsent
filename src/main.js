@@ -24,6 +24,11 @@ import FlagIcon from 'vue-flag-icon'
 // Spinners
 import VueSpinners from 'vue-spinners'
 
+// Confetti
+import VueConfetti from 'vue-confetti'
+
+Vue.use(VueConfetti)
+
 Vue.use(VueSpinners)
 
 Vue.use(FlagIcon)
