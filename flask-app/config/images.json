@@ -1,9 +1,11 @@
 {
-  "Axis Bank": "axis.png",
+  "Axis": "axis.png",
   "Citibank": "citi.png",
-  "HDFC Bank": "hdfc.png",
-  "ICICI Bank": "icici.png",
+  "HDFC": "hdfc.png",
+  "ICICI": "icici.png",
   "SBI": "sbi.png",
+  "Max Life": "maxlife.png",
+  "LIC": "lic.png",
 
   "Mint": "mint.png",
   "Monito":"monito.png",
@@ -15,7 +17,7 @@
   "Paisato": "paisato.png",
   "Quickbooks": "quickbooks.png",
 
-  "one time": "single.png",
+  "onetime": "single.png",
   "periodic": "periodic.png",
   "summary": "summary.png",
   "transactions": "transactions.png",

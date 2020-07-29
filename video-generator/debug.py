@@ -22,7 +22,7 @@ if __name__ == '__main__':
     with open(config.LANG_PATH + config.input_map.get('language') + ".json", "r") as read_file:
         config.lang_map = json.load(read_file)
     video_obj_arr = []
-    for i in range(1, 8):
+    for i in range(1, 2):
         if i == 6 and config.input_map.get('mode') != 'store':
             continue
         else:

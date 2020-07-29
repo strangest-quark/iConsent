@@ -2,25 +2,54 @@ import json
 import random
 
 from boto3.dynamodb.conditions import Key
-from config.config import ProductionConfig
+from config.config import DevelopmentConfig
 import boto3
 import botocore
 import requests
 from googletrans import Translator
 
-lambda_client = boto3.client('lambda', region_name='ap-south-1')
-dynamodb = boto3.resource('dynamodb', region_name='ap-south-1')
+session = boto3.Session(
+    aws_access_key_id='AKIA2F4S2C6YXIBNWDZL',
+    aws_secret_access_key='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',
+)
+
+lambda_client = session.client('lambda', region_name='ap-south-1')
+dynamodb = session.resource('dynamodb', region_name='ap-south-1')
 table = dynamodb.Table('iconsent')
 
-fiu_list = ['Quickbooks', 'Mint', 'Monito', 'Zoho', 'Freshworks', 'ClearTax', 'FastBooks', 'EasyTax', 'Paisato']
-non_verified = ['FastBooks', 'EasyTax', 'Paisato']
-fip_list = ['Axis Bank', 'Citibank', 'HDFC Bank']
+fiu_map = {
+    'insurance_policies': ['ClearTax'],
+    'deposit': ['Quickbooks', 'Zoho', 'Freshworks'],
+    'term-deposit': ['Monito'],
+    'sip': ['Mint'],
+    'other': ['Mint', 'Quickbooks']
+}
 
-config = ProductionConfig
+fip_map = {
+    'insurance_policies': [['LIC', 'XX2323'], ['Max Life', 'XX4587']],
+    'deposit': [['Citibank', 'XX1234'], ['SBI', 'XX4321']],
+    'term-deposit': [['Axis', 'XX5432'], ['SBI', 'XX2345'], ['ICICI', 'XX4345']],
+    'sip': [['HDFC', 'XX3421']],
+    'other': [['SBI', 'XX3213']]
+}
+
+unverified_fiu_map = {
+    'insurance_policies': ['EasyTax'],
+    'deposit': ['Fastbooks'],
+    'term-deposit': ['Paisato'],
+    'sip': ['Paisato'],
+    'other': ['EasyTax', 'Fastbooks']
+}
+
+non_verified = ['EasyTax', 'Fastbooks', 'Paisato']
+
+config = DevelopmentConfig
 lang_map = dict()
 image_map = dict()
 s3 = boto3.resource('s3')
 translator = Translator()
+
+fip_list = ['Citibank', 'LIC', 'Axis Bank', 'HDFC Bank', ]
 
 
 def process(dashboard):
@@ -39,9 +68,6 @@ def process(dashboard):
     paused = dashboard['consents']['paused']
     rejected = dashboard['consents']['rejected']
     revoked = dashboard['consents']['revoked']
-    fius = random.sample(fiu_list,
-                         len(pending) + len(pending) + len(active) + len(inactive) + len(paused) + len(rejected) + len(
-                             revoked))
     fips = random.sample(fip_list, len(accounts))
 
     pending_arr = []
@@ -53,37 +79,37 @@ def process(dashboard):
     fip_arr = []
 
     i = 0
-    for account in accounts:
-        fip_arr.append(account_proc(account, fips[i]))
-        i = i + 1
+    fip_arr = account_proc()
 
     i = 0
     for p in pending:
-        pending_arr.append(consent_proc(p, fius[i], lan, dashboard['session'], fips))
+        pending_arr.append(consent_proc(p, lan, dashboard['session'], True))
+        if i == len(pending) - 1:
+            pending_arr.append(consent_proc(p, lan, dashboard['session'], True, True))
         i = i + 1
 
     for p in paused:
-        paused_arr.append(consent_proc(p, fius[i], lan, dashboard['session'], fips))
+        paused_arr.append(consent_proc(p, lan, dashboard['session']))
         i = i + 1
 
     for p in inactive:
-        inactive_arr.append(consent_proc(p, fius[i], lan, dashboard['session'], fips))
+        inactive_arr.append(consent_proc(p, lan, dashboard['session']))
         i = i + 1
 
     for p in active:
-        active_arr.append(consent_proc(p, fius[i], lan, dashboard['session'], fips))
+        active_arr.append(consent_proc(p, lan, dashboard['session']))
         i = i + 1
 
     for p in paused:
-        paused_arr.append(consent_proc(p, fius[i], lan, dashboard['session'], fips))
+        paused_arr.append(consent_proc(p, lan, dashboard['session']))
         i = i + 1
 
     for p in rejected:
-        rejected_arr.append(consent_proc(p, fius[i], lan, dashboard['session'], fips))
+        rejected_arr.append(consent_proc(p, lan, dashboard['session']))
         i = i + 1
 
     for p in revoked:
-        revoked_arr.append(consent_proc(p, fius[i], lan, dashboard['session'], fips))
+        revoked_arr.append(consent_proc(p, lan, dashboard['session']))
         i = i + 1
 
     res_map = dict()
@@ -103,6 +129,7 @@ def date_proc(ts):
     month = lang_map[d_arr[1]]
     year = d_arr[0]
     return m_day + ' ' + month + ' ' + year
+
 
 def date_ts_proc(ts):
     d_arr = ts.split('-')
@@ -125,7 +152,7 @@ def video_invoke(video_req, lan):
                                Payload=json.dumps(video_req)
                                )
     return "https://s3-ap-south-1.amazonaws.com/%s/%s" % (
-        config.VIDEO_BUCKET, video_req['req']['consentArtefactID'] + '-' + lan + '.mp4')
+        config.VIDEO_BUCKET, video_req['req']['consentartefactid'] + '-' + lan + '.mp4')
 
 
 def check_if_key_exists(consentArtefactIdLan):
@@ -140,6 +167,7 @@ def check_if_key_exists(consentArtefactIdLan):
         return True, res
     else:
         return False, None
+
 
 def check_if_lang_exists(consentArtefactId):
     response = table.query(
@@ -158,11 +186,20 @@ def put_key(consent_map):
     )
 
 
-def fill_text(text, input_map):
+def fill_text(text, input_map, iter):
+    if iter == 0 and lang_map.get('lan') != 'en-IN':
+        return translator.translate(text, dest=lang_map.get('lan')).text
     while '{' in text:
         start = text.find('{')
         end = text.find('}')
-        key = text[start + 1:end]
+        key = text[start + 1:end].lower()
+        if key in ['fip', 'fiu']:
+            if iter == 1:
+                text = list(text)
+                text[start] = '('
+                text[end] = ')'
+                text = ''.join(text)
+                continue
         if isinstance(input_map.get(key), list):
             fill = ''
             i = 0
@@ -180,41 +217,61 @@ def fill_text(text, input_map):
             k = input_map.get(key)
         if k in lang_map:
             fill = lang_map.get(k)
-        elif lang_map.get('lan') == 'en-IN':
-            fill = k
         else:
-            fill = translator.translate(k, dest=lang_map.get('lan')).text
+            fill = k
         text = text[:start] + fill + text[end + 1:]
-    return text.capitalize()
+    if (iter == 1 or iter == 0) and lang_map.get('lan') == 'en-IN':
+        return text.replace('(', '{').replace(')', '}')
+    if iter == 1:
+        return translator.translate(text, dest=lang_map.get('lan')).text.replace('(', '{').replace(')', '}')
+    else:
+        return text.capitalize()
 
 
-def consent_proc(consent, random_fiu, lan, session, fips):
+def get_fip(account):
+    lists = fip_map[account]
+    res = []
+    for element in lists:
+        res.append(element[0])
+    return res
+
+
+def consent_proc(consent, lan, session, isVideo=False, isLast=False):
     keyExists, res = check_if_key_exists(consent['consentArtefactID'] + '-' + lan)
+    consent_artefact = json.loads(consent_artefact_get(consent, session))
+    video_req = dict()
+    video_req['datatype'] = [x.lower() for x in consent_artefact['info']['ConsentDetail']['consentTypes']]
+    video_req['account'] = [x.lower() for x in consent_artefact['info']['ConsentDetail']['fiTypes']]
+    video_req['fip'] = get_fip(video_req['account'][0])
     if keyExists:
         return res
     else:
         keyExists, res = check_if_lang_exists(consent['consentArtefactID'])
         if keyExists:
             random_fiu = res
+        else:
+            if not isLast:
+                fius_map = fiu_map
+            else:
+                fius_map = unverified_fiu_map
+            if video_req['account'][0] in fius_map:
+                random_fiu = random.sample(fius_map[video_req['account'][0]], 1)[0]
+            else:
+                random_fiu = random.sample(fius_map['other'], 1)[0]
     consent_map = dict()
-    consent_artefact = json.loads(consent_artefact_get(consent, session))
-    video_req = dict()
     video_req['fiu'] = random_fiu
-    video_req['fip'] = fips
-    video_req['datatype'] = [x.lower() for x in consent_artefact['info']['ConsentDetail']['consentTypes']]
-    video_req['account'] = [x.lower() for x in consent_artefact['info']['ConsentDetail']['fiTypes']]
     video_req['mode'] = consent_artefact['info']['ConsentDetail']['consentMode'].lower()
     video_req['type'] = consent_artefact['info']['ConsentDetail']['fetchType'].lower()
     video_req['language'] = lan
     video_req['datalife'] = (str(consent_artefact['info']['ConsentDetail']['DataLife']['value']) + ' ' +
                              consent_artefact['info']['ConsentDetail']['DataLife']['unit']).lower()
-    video_req['consentFrom'] = date_ts_proc(consent_artefact['info']['ConsentDetail']['consentStart'])
-    video_req['consentTo'] = date_ts_proc(consent_artefact['info']['ConsentDetail']['consentExpiry'])
-    video_req['fiFrom'] = date_ts_proc(consent_artefact['info']['ConsentDetail']['FIDataRange']['from'])
-    video_req['fiTo'] = date_ts_proc(consent_artefact['info']['ConsentDetail']['FIDataRange']['to'])
+    video_req['consentfrom'] = date_ts_proc(consent_artefact['info']['ConsentDetail']['consentStart'])
+    video_req['consentto'] = date_ts_proc(consent_artefact['info']['ConsentDetail']['consentExpiry'])
+    video_req['fifrom'] = date_ts_proc(consent_artefact['info']['ConsentDetail']['FIDataRange']['from'])
+    video_req['fito'] = date_ts_proc(consent_artefact['info']['ConsentDetail']['FIDataRange']['to'])
     video_req['frequency'] = (str(consent_artefact['info']['ConsentDetail']['Frequency']['value']) + ' ' +
                               consent_artefact['info']['ConsentDetail']['Frequency']['unit']).lower()
-    video_req['consentArtefactID'] = consent['consentArtefactID']
+    video_req['consentartefactid'] = consent['consentArtefactID']
     req = {"req": video_req}
 
     consent_map['consentArtefactID'] = consent['consentArtefactID']
@@ -222,24 +279,50 @@ def consent_proc(consent, random_fiu, lan, session, fips):
     consent_map['fiu'] = lang_map[random_fiu]
     consent_map['validTill'] = lang_map['validTill'] + ' ' + date_proc(consent['expireTime'])
     consent_map['isVerified'] = True
-    consent_map['tagline'] = fill_text(lang_map['tagline'], {"fiu": random_fiu, "type": video_req['account']})
-    if random_fiu in non_verified:
+    consent_map['tagline'] = fill_text(
+        fill_text(lang_map['tagline'], {"fiu": random_fiu, "type": video_req['account']}, 1),
+        {"fiu": random_fiu, "type": video_req['account']}, 2)
+    if video_req['fiu'] in non_verified:
         consent_map['isVerified'] = False
     consent_map['fiu_logo'] = "https://s3-ap-south-1.amazonaws.com/%s/%s" % (config.LOGO_BUCKET, image_map[random_fiu])
-    consent_map['video'] = video_invoke(req, lan)
+    if (isVideo):
+        consent_map['video'] = video_invoke(req, lan)
+    else:
+        consent_map['video'] = "no link"
     consent_map['video_req'] = json.dumps(req)
     put_key(consent_map)
+    print(consent_map)
     consent_map.pop('video_req')
     return consent_map
 
 
-def account_proc(account, random_fip):
-    fip_map = dict()
-    fip_map['fip_logo'] = "https://s3-ap-south-1.amazonaws.com/%s/%s" % (config.LOGO_BUCKET, image_map[random_fip])
-    fip_map['fip_name'] = lang_map[random_fip]
-    fip_map['fip_accType'] = lang_map[account['nickName']]
-    fip_map['endingNumber'] = account['maskedAccountNumber'][-4:]
-    return fip_map
+def account_proc():
+    fip_list = []
+    for key in fip_map:
+        iter_list = fip_map[key]
+        for element in iter_list:
+            fip = dict()
+            fip['fip_logo'] = "https://s3-ap-south-1.amazonaws.com/%s/%s" % (
+                config.LOGO_BUCKET, image_map[element[0]])
+            fip['fip_name'] = lang_map[element[0]]
+            fip['fip_accType'] = lang_map[key]
+            fip['endingNumber'] = element[1]
+            fip_list.append(fip)
+    return fip_list
+
+
+def consent_account_proc(accType):
+    fip_list = []
+    iter_list = fip_map[accType]
+    for element in iter_list:
+        fip = dict()
+        fip['fip_logo'] = "https://s3-ap-south-1.amazonaws.com/%s/%s" % (
+            config.LOGO_BUCKET, image_map[element[0]])
+        fip['fip_name'] = lang_map[element[0]]
+        fip['fip_accType'] = lang_map[accType]
+        fip['endingNumber'] = element[1]
+        fip_list.append(fip)
+    return fip_list
 
 
 def consent_res(consentArtefactId, session, lan):
@@ -266,15 +349,17 @@ def consent_res(consentArtefactId, session, lan):
                       consent_artefact['info']['ConsentDetail']['Frequency']['unit']).lower(),
         "datalife": (str(consent_artefact['info']['ConsentDetail']['DataLife']['value']) + ' ' +
                      consent_artefact['info']['ConsentDetail']['DataLife']['unit']).lower(),
-        "fetchType": consent_artefact['info']['ConsentDetail']['fetchType'].lower()
+        "fetchtype": consent_artefact['info']['ConsentDetail']['fetchType'].lower()
     }
+    print(input_map['datalife'])
+    print(input_map['mode'])
     consent = dict()
-    consent['tagline'] = fill_text(lang_map['tagline'], input_map)
-    consent['q1'] = fill_text(lang_map['q1'], input_map)
-    consent['q2'] = lang_map['q2']
-    consent['q3'] = lang_map['q3']
-    consent['q4'] = fill_text(lang_map['q4'], input_map)
-    consent['ans1'] = fill_text(lang_map['ans1'], input_map).capitalize()
+    consent['tagline'] = fill_text(fill_text(lang_map['tagline'], input_map, 1), input_map, 2)
+    consent['q1'] = fill_text(fill_text(lang_map['q1'], input_map, 1), input_map, 2)
+    consent['q2'] = fill_text(lang_map['q2'], input_map, 0)
+    consent['q3'] = fill_text(lang_map['q3'], input_map, 0)
+    consent['q4'] = fill_text(fill_text(lang_map['q4'], input_map, 1).capitalize(), input_map, 2).capitalize()
+    consent['ans1'] = fill_text(fill_text(lang_map['ans1'], input_map, 1), input_map, 2).capitalize()
     consent['from'] = lang_map['from']
     consent['to'] = lang_map['to']
     consent['fromDate'] = input_map['from']
@@ -282,19 +367,19 @@ def consent_res(consentArtefactId, session, lan):
     consent['validTill'] = lang_map['validTill'] + ' ' + input_map['valid']
     input_map['datalife'] = frequency_proc(input_map['datalife'])
     input_map['frequency'] = frequency_proc(input_map['frequency'])
-    consent['card1'] = lang_map[input_map['fetchType']]
-    consent['card1_icon'] = "https://s3-ap-south-1.amazonaws.com/%s/%s" % (config.LOGO_BUCKET, image_map[input_map['fetchType']])
-    consent['hover1'] = fill_text(lang_map['hover ' + input_map['fetchType']], input_map)
-    consent['card2'] = lang_map[input_map['mode']]
-    consent['card2_icon'] = "https://s3-ap-south-1.amazonaws.com/%s/%s" % (config.LOGO_BUCKET, image_map[input_map['mode']])
-    consent['hover2'] = fill_text(lang_map['hover ' + input_map['mode']], input_map)
-    consent['card3'] = lang_map['data']
-    consent['card3_icon'] = "https://s3-ap-south-1.amazonaws.com/%s/%s" % (config.LOGO_BUCKET, image_map[','.join(input_map['datatype'])])
-    consent['hover3'] = fill_text(lang_map['hover3'], input_map)
+    consent['card1_icon'] = "https://s3-ap-south-1.amazonaws.com/%s/%s" % (
+        config.LOGO_BUCKET, image_map[input_map['fetchtype']])
+    consent['card2_icon'] = "https://s3-ap-south-1.amazonaws.com/%s/%s" % (
+        config.LOGO_BUCKET, image_map[input_map['mode']])
+    consent['card3_icon'] = "https://s3-ap-south-1.amazonaws.com/%s/%s" % (
+        config.LOGO_BUCKET, image_map[','.join(input_map['datatype'])])
+    consent['accounts'] = consent_account_proc(input_map["type"][0])
     consent['fiu_logo'] = "https://s3-ap-south-1.amazonaws.com/%s/%s" % (config.LOGO_BUCKET, image_map[fiu])
-    consent['video'] =  "https://s3-ap-south-1.amazonaws.com/%s/%s" % (
-        config.VIDEO_BUCKET, consentArtefactId + '-' + lan + '.mp4')
+    consent['video'] = "https://s3-ap-south-1.amazonaws.com/%s/%s" % (config.VIDEO_BUCKET, consentArtefactId + '-' + lan + '.mp4')
     consent['isVerified'] = fiu not in non_verified
+    consent["ans4"] = fill_text(fill_text(lang_map['ans4'], input_map, 1),input_map, 2).capitalize()
+    if (input_map['mode'] == 'store'):
+        consent["ans4"] = consent["ans4"] + ' ' + fill_text(fill_text(lang_map['ans4_suffix'], input_map, 1),input_map, 2).capitalize()
     return consent
 
 

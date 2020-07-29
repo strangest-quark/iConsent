@@ -28,7 +28,7 @@ class Frame3(object):
         while '{' in text:
             start = text.find('{')
             end = text.find('}')
-            key = text[start + 1:end]
+            key = text[start + 1:end].lower()
             if key in self.config.static_keys:
                 if iter == 1:
                     text = list(text)
@@ -61,7 +61,7 @@ class Frame3(object):
         if iter == 1:
             return self.translator.translate(text, dest=Frame3.lang_map.get('lan')).text.replace('(', '{').replace(')', '}')
         else:
-            return text
+            return text.capitalize()
 
     def generate_video_part(self, txnId):
         if not self.config.LOCAL:

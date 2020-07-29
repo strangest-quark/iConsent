@@ -32,7 +32,7 @@ class Frame2(object):
         while '{' in text:
             start = text.find('{')
             end = text.find('}')
-            key = text[start + 1:end]
+            key = text[start + 1:end].lower()
             if key in self.config.static_keys:
                 if iter == 1:
                     text = list(text)
@@ -65,7 +65,7 @@ class Frame2(object):
         if iter == 1:
             return self.translator.translate(text, dest=Frame2.lang_map.get('lan')).text.replace('(', '{').replace(')', '}')
         else:
-            return text
+            return text.capitalize()
 
     def concatenate_images(self, imgList, txnId):
         W, H = self.config.VIDEO_SIZE
@@ -112,7 +112,7 @@ class Frame2(object):
         # draw = ImageDraw.Draw(mask)
         # draw.rectangle(transparent_area, fill=0)
         # combined_image.putalpha(mask)
-        combined_image.save(self.config.SB_LOGO_PATH_PREFIX + 'combined-'+txnId+'-banks.png')
+        combined_image.save(self.config.SB_LOGO_PATH_PREFIX_WRITE + 'combined-'+txnId+'-banks.png')
         return combined_image
 
 
@@ -141,7 +141,7 @@ class Frame2(object):
 
         height_final_image = self.config.BANK_ICON_SIZE * int(math.ceil(len(fipList)/2))
 
-        fip_logo = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX + fip_img_path). \
+        fip_logo = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX_WRITE + 'combined-'+txnId+'-banks.png'). \
             set_position((fip_x_position, fip_y_position)).resize(height=height_final_image)
         self.text_to_speech(self.fill_text(self.fill_text(Frame2.lang_map.get('audio2'), 1), 2), Frame2.lang_map.get('lan'), txnId)
         audioclip = AudioFileClip(self.config.SB_AUDIO_PATH_PREFIX + "audio-" + txnId + "-2.mp3")

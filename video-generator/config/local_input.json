@@ -1,26 +1,23 @@
 {
-    "fiu": "Mint",
-    "fip": [
-      "Axis Bank",
-      "HDFC Bank",
-      "Citibank"
-    ],
     "datatype": [
-      "transactions",
-      "profile",
-      "summary"
+      "transactions"
     ],
     "account": [
-      "deposit"
+      "insurance_policies"
     ],
+    "fip": [
+      "LIC",
+      "Max Life"
+    ],
+    "fiu": "ClearTax",
     "mode": "store",
-    "type": "periodic",
-    "language": "en",
-    "dataLife": "1 month",
-    "consentFrom": "2020-07-19",
-    "consentTo": "2020-12-30",
-    "fiFrom": "2018-12-06",
-    "fiTo": "2020-07-03",
-    "frequency": "1 month",
-    "consentArtefactID": "41f64f74-7822-44cf-b63b-523e313785a2"
+    "type": "onetime",
+    "language": "ta",
+    "datalife": "1 month",
+    "consentfrom": "2020-07-29",
+    "consentto": "2020-12-30",
+    "fifrom": "2018-12-06",
+    "fito": "2020-07-03",
+    "frequency": "15 day",
+    "consentartefactid": "f97f07fe-d80f-4a0d-a01d-d0931f96462d"
 }

@@ -32,8 +32,8 @@ def handler(event, context):
         else:
             video_obj_arr.append(eval('Frame' + str(i))(config))
     _start = time.time()
-    txnId = config.input_map['consentArtefactID']
-    out_queue = main(video_obj_arr, txnId, len(video_obj_arr))
+    txnId = config.input_map['consentartefactid']
+    out_queue = main(video_obj_arr, txnId, len(video_obj_arr)+1)
     frames = list(out_queue.queue)
     frames.sort(key=lambda x: x[1])
 

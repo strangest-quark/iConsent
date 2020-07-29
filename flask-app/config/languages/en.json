@@ -9,21 +9,28 @@
   "EasyTax": "EasyTax",
   "Paisato": "Paisato",
 
-  "Axis Bank": "Axis",
+  "Axis": "Axis",
   "Citibank": "Citibank",
-  "HDFC Bank": "HDFC",
-  "ICICI Bank": "ICICI",
+  "HDFC": "HDFC",
+  "ICICI": "ICICI",
   "SBI": "SBI",
+  "Max Life": "Max Life",
+  "LIC": "LIC",
 
   "view": "view",
   "store": "store",
-  "one time": "one time",
+  "onetime": "one time",
+  "stream": "stream",
   "periodic": "periodic",
   "savings": "savings",
   "profile": "profile",
   "summary": "summary",
   "deposit": "deposit",
   "transactions": "transactions",
+  "insurance_policies": "Insurance",
+  "sip": "SIP",
+  "term-deposit": "Term Deposit",
+  "other": "Other",
 
   "tagline": "{fiu} wants to access your linked {type} accounts",
   "warn": "Please read carefully before you accept",
@@ -34,25 +41,14 @@
   "ans1": "For {purpose}",
   "from": "From",
   "to": "To",
-
-  "lan": "en-IN",
-
-  "RECURRING_DEPOSIT": "Recurring Deposit",
-  "TERM-DEPOSIT": "Term Deposit",
-  "DEPOSIT": "Deposit",
+  "ans4": "{fiu} will do {fetchtype} {mode} of your {datatype} data every {frequency}.",
+  "ans4_suffix": "This data will be stored only for {datalife}",
 
   "validTill": "Valid Till",
 
-  "hover periodic": "Fetch every {frequency}",
-  "hover one time": "One time fetch",
-
-  "hover store": "Store for {datalife}",
-  "hover view": "Only data view",
-  "hover stream": "Stream your data",
-  "hover query": "Query your data",
-  "hover3": "{datatype}",
-
   "data": "data",
+
+  "lan": "en-IN",
 
   "01": "January",
   "02": "February",

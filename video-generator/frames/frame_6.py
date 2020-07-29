@@ -56,10 +56,12 @@ class Frame6(object):
             else:
                 fill = k
             text = text[:start] + fill + text[end + 1:]
+        if iter == 1 and Frame6.lang_map.get('lan') == 'en-IN':
+            return text.replace('(', '{').replace(')', '}')
         if iter == 1:
             return self.translator.translate(text, dest=Frame6.lang_map.get('lan')).text.replace('(', '{').replace(')', '}')
         else:
-            return text
+            return text.capitalize()
 
     def generate_video_part(self, txnId):
         if not self.config.LOCAL:

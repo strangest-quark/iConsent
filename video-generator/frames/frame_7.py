@@ -29,7 +29,7 @@ class Frame7(object):
         while '{' in text:
             start = text.find('{')
             end = text.find('}')
-            key = text[start + 1:end]
+            key = text[start + 1:end].lower()
             if key in self.config.static_keys:
                 if iter == 1:
                     text = list(text)
@@ -62,19 +62,19 @@ class Frame7(object):
         if iter == 1:
             return self.translator.translate(text, dest=Frame7.lang_map.get('lan')).text.replace('(', '{').replace(')', '}')
         else:
-            return text
+            return text.capitalize()
 
 
     def generate_video_part(self, txnId):
         if not self.config.LOCAL:
             os.chdir("/var/task/")
         W, H = self.config.VIDEO_SIZE
-        calendar(self.config, 'consentFrom', txnId)
-        calendar(self.config, 'consentTo', txnId)
+        calendar(self.config, 'consentfrom', txnId)
+        calendar(self.config, 'consentto', txnId)
         bgImage = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX + "bg_7.png")
-        calendar_from_logo = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX_WRITE + 'consentFrom-' + txnId + '.png'). \
+        calendar_from_logo = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX_WRITE + 'consentfrom-' + txnId + '.png'). \
             set_position((W/2-170, H/4)).resize(width=self.config.ICON_SIZE)
-        calendar_to_logo = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX_WRITE + 'consentTo-' + txnId + '.png'). \
+        calendar_to_logo = mpy.ImageClip(self.config.SB_LOGO_PATH_PREFIX_WRITE + 'consentto-' + txnId + '.png'). \
             set_position((W/2+80, H/4)).resize(width=self.config.ICON_SIZE)
         self.text_to_speech(self.fill_text(self.fill_text(Frame7.lang_map.get('audio7'), 1), 2), Frame7.lang_map.get('lan'), txnId)
         audioclip = AudioFileClip(self.config.SB_AUDIO_PATH_PREFIX + "audio-" + txnId + "-7.mp3")
@@ -97,6 +97,6 @@ class Frame7(object):
         video.audio = new_audioclip
         os.remove(self.config.SB_AUDIO_PATH_PREFIX + 'audio-' + txnId + '-7.mp3')
         os.remove(self.config.SB_LOGO_PATH_PREFIX_WRITE+'-text-7-' + txnId+'.png')
-        os.remove(self.config.SB_LOGO_PATH_PREFIX_WRITE + 'consentFrom-' + txnId + '.png')
-        os.remove(self.config.SB_LOGO_PATH_PREFIX_WRITE + 'consentTo-' + txnId + '.png')
+        os.remove(self.config.SB_LOGO_PATH_PREFIX_WRITE + 'consentfrom-' + txnId + '.png')
+        os.remove(self.config.SB_LOGO_PATH_PREFIX_WRITE + 'consentto-' + txnId + '.png')
         return video, 7
