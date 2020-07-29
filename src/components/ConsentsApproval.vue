@@ -476,13 +476,10 @@ hr {
   color: #222222;
 }
 .reject {
-  /* background-color: #F26C63 !important; */
-  /* color: white */
   font-weight: bold;
   color: #e11a50;
 }
 .approve {
-  /* background-color: #99D25C !important; */
   font-weight: bold;
   color: #03b072;
 }
