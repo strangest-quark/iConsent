@@ -5,8 +5,6 @@ Vue.use(VueI18n)
 
 const messages = {
   en: {
-    welcomeMsg: 'Welcome to Your Vue.js App',
-    label: 'For a guide and recipes on how to configure / customize this project,',
     menulabelDashboard: 'Dashboard',
     menulabelConsents: 'Consents',
     menulabelAccounts: 'Accounts',
@@ -26,8 +24,6 @@ const messages = {
     labelVerified: 'Verified'
   },
   ta: {
-    welcomeMsg: 'உங்கள் Vue.js பயன்பாட்டிற்கு வருக',
-    guide: 'இந்த திட்டத்தை எவ்வாறு கட்டமைப்பது / தனிப்பயனாக்குவது என்பது குறித்த வழிகாட்டி மற்றும் சமையல் குறிப்புகளுக்கு,',
     menulabelDashboard: 'டாஷ்போர்டு',
     menulabelConsents: 'சம்மதம்',
     menulabelAccounts: 'கணக்குகள்',
@@ -47,8 +43,6 @@ const messages = {
     labelVerified: 'சரிபார்க்கப்பட்டது'
   },
   ml: {
-    welcomeMsg: 'നിങ്ങളുടെ Vue.js അപ്ലിക്കേഷനിലേക്ക് സ്വാഗതം',
-    guide: 'ഈ പ്രോജക്റ്റ് എങ്ങനെ ക്രമീകരിക്കാം / ഇഷ്ടാനുസൃതമാക്കാം എന്നതിനെക്കുറിച്ചുള്ള ഒരു ഗൈഡിനും പാചകക്കുറിപ്പുകൾക്കും',
     menulabelDashboard: 'ഡാഷ്ബോർഡ്',
     menulabelConsents: 'സമ്മതം',
     menulabelAccounts: 'അക്കൗണ്ടുകൾ',
@@ -69,8 +63,6 @@ const messages = {
 
   },
   hi: {
-    welcomeMsg: 'आपका स्वागत है आपका Vue.js ऐप में',
-    guide: 'इस परियोजना को कॉन्फ़िगर / अनुकूलित करने के तरीके पर एक गाइड और व्यंजनों के लिए',
     menulabelDashboard: 'डैशबोर्ड',
     menulabelConsents: 'सहमति',
     menulabelAccounts: 'हिसाब',
@@ -88,6 +80,44 @@ const messages = {
     stepProgressWhat: 'क्या',
     stepProgressTillWhen: 'कब तक',
     labelVerified: 'सत्यापित'
+  },
+  te: {
+    menulabelDashboard: 'డాష్బోర్డ్',
+    menulabelConsents: 'సమ్మతిస్తే',
+    menulabelAccounts: 'అకౌంట్స్',
+    menulabelLanguage: 'భాషా',
+    dashboardMenulabelPending: 'పెండింగ్',
+    dashboardMenulabelActive: 'చురుకుగా',
+    dashboardMenulabelInactive: 'క్రియారహిత',
+    dashboardMenulabelPaused: 'పాజ్',
+    dashboardMenulabelRevoked: 'రద్దు',
+    dashboardMenulabelRejected: 'తిరస్కరించబడిన',
+    dashboardConsentsPending: 'సమ్మతి పెండింగ్‌లో',
+    dashboardConsentsActive: 'సమ్మతించింది',
+    stepProgressWhy: 'ఎందుకు',
+    stepProgressHowLong: 'ఎంతసేపు',
+    stepProgressWhat: 'ఏం',
+    stepProgressTillWhen: 'ఎప్పటి దాకా',
+    labelVerified: 'ధృవీకరించబడిన'
+  },
+  ka: {
+    menulabelDashboard: 'ಡ್ಯಾಶ್‌ಬೋರ್ಡ್',
+    menulabelConsents: 'ಒಪ್ಪಿಗೆ',
+    menulabelAccounts: 'ಖಾತೆಗಳು',
+    menulabelLanguage: 'ಭಾಷೆ',
+    dashboardMenulabelPending: 'ಬಾಕಿ ಉಳಿದಿದೆ',
+    dashboardMenulabelActive: 'ಸಕ್ರಿಯ',
+    dashboardMenulabelInactive: 'ನಿಷ್ಕ್ರಿಯ',
+    dashboardMenulabelPaused: 'ವಿರಾಮಗೊಳಿಸಲಾಗಿದೆ',
+    dashboardMenulabelRevoked: 'ಹಿಂತೆಗೆದುಕೊಳ್ಳಲಾಗಿದೆ',
+    dashboardMenulabelRejected: 'ತಿರಸ್ಕರಿಸಿದ',
+    dashboardConsentsPending: 'ಒಪ್ಪಿಗೆಗಳು ಉಳಿದಿವೆ',
+    dashboardConsentsActive: 'ಸಕ್ರಿಯವಾಗಿದೆ',
+    stepProgressWhy: 'ಏಕೆ',
+    stepProgressHowLong: 'ಎಷ್ಟು ಉದ್ದ',
+    stepProgressWhat: 'ಏನು',
+    stepProgressTillWhen: 'ಯಾವಾಗ',
+    labelVerified: 'ಪರಿಶೀಲಿಸಲಾಗಿದೆ'
   }
 }
 
