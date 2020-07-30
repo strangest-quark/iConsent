@@ -28,6 +28,14 @@
   "to": "വരെ",
   "ans4": "{fiu} will do {fetchtype} {mode} of your {datatype} data every {frequency}.",
   "ans4_suffix": "This data will be stored only for {datalife}",
+  "bank_ques": "Select the accounts you want to give access",
+  "hurray_1": "Awesome!!",
+  "hurray_2": "You have read this consent details fully.",
+  "hurray_3": "Kudos to keeping yourself informed of your data/privacy rights",
+  "hurray_4": "{fiu} can now access your {type}",
+  "warn_1": "Uh oh...",
+  "warn_2": "Looks like you haven’t read the consent details completely",
+  "warn_3": "Sure you want to proceed?",
 
   "lan": "ml",
 
@@ -48,6 +56,8 @@
   "insurance_policies": "Insurance",
   "sip": "SIP",
   "term-deposit": "Term Deposit",
+  "mutual_funds": "Mutual funds",
+  "nps": "Pension",
   "other": "Other",
 
   "01": "ജനുവരി",

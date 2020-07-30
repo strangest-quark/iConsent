@@ -2,19 +2,14 @@ import json
 import random
 
 from boto3.dynamodb.conditions import Key
-from config.config import DevelopmentConfig
+from config.config import ProductionConfig
 import boto3
-import botocore
 import requests
 from googletrans import Translator
 
-session = boto3.Session(
-    aws_access_key_id='AKIA2F4S2C6YXIBNWDZL',
-    aws_secret_access_key='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',
-)
+lambda_client = boto3.client('lambda', region_name='ap-south-1')
+dynamodb = boto3.resource('dynamodb', region_name='ap-south-1')
 
-lambda_client = session.client('lambda', region_name='ap-south-1')
-dynamodb = session.resource('dynamodb', region_name='ap-south-1')
 table = dynamodb.Table('iconsent')
 
 fiu_map = {
@@ -22,6 +17,8 @@ fiu_map = {
     'deposit': ['Quickbooks', 'Zoho', 'Freshworks'],
     'term-deposit': ['Monito'],
     'sip': ['Mint'],
+    'mutual_funds': ['Mint'],
+    'nps': ['ClearTax'],
     'other': ['Mint', 'Quickbooks']
 }
 
@@ -30,7 +27,9 @@ fip_map = {
     'deposit': [['Citibank', 'XX1234'], ['SBI', 'XX4321']],
     'term-deposit': [['Axis', 'XX5432'], ['SBI', 'XX2345'], ['ICICI', 'XX4345']],
     'sip': [['HDFC', 'XX3421']],
-    'other': [['SBI', 'XX3213']]
+    'nps': [['SBI', 'XX3213']],
+    'mutual_funds': [['HDFC', 'XX3421']],
+    'other': [['ICICI', 'XX3213']]
 }
 
 unverified_fiu_map = {
@@ -38,12 +37,14 @@ unverified_fiu_map = {
     'deposit': ['Fastbooks'],
     'term-deposit': ['Paisato'],
     'sip': ['Paisato'],
+    'mutual_funds': ['Paisato'],
+    'nps': ['EasyTax'],
     'other': ['EasyTax', 'Fastbooks']
 }
 
 non_verified = ['EasyTax', 'Fastbooks', 'Paisato']
 
-config = DevelopmentConfig
+config = ProductionConfig
 lang_map = dict()
 image_map = dict()
 s3 = boto3.resource('s3')
@@ -238,14 +239,14 @@ def get_fip(account):
 
 def consent_proc(consent, lan, session, isVideo=False, isLast=False):
     keyExists, res = check_if_key_exists(consent['consentArtefactID'] + '-' + lan)
-    consent_artefact = json.loads(consent_artefact_get(consent, session))
-    video_req = dict()
-    video_req['datatype'] = [x.lower() for x in consent_artefact['info']['ConsentDetail']['consentTypes']]
-    video_req['account'] = [x.lower() for x in consent_artefact['info']['ConsentDetail']['fiTypes']]
-    video_req['fip'] = get_fip(video_req['account'][0])
     if keyExists:
         return res
     else:
+        consent_artefact = json.loads(consent_artefact_get(consent, session))
+        video_req = dict()
+        video_req['datatype'] = [x.lower() for x in consent_artefact['info']['ConsentDetail']['consentTypes']]
+        video_req['account'] = [x.lower() for x in consent_artefact['info']['ConsentDetail']['fiTypes']]
+        video_req['fip'] = get_fip(video_req['account'][0])
         keyExists, res = check_if_lang_exists(consent['consentArtefactID'])
         if keyExists:
             random_fiu = res
@@ -356,10 +357,10 @@ def consent_res(consentArtefactId, session, lan):
     consent = dict()
     consent['tagline'] = fill_text(fill_text(lang_map['tagline'], input_map, 1), input_map, 2)
     consent['q1'] = fill_text(fill_text(lang_map['q1'], input_map, 1), input_map, 2)
-    consent['q2'] = fill_text(lang_map['q2'], input_map, 0)
-    consent['q3'] = fill_text(lang_map['q3'], input_map, 0)
-    consent['q4'] = fill_text(fill_text(lang_map['q4'], input_map, 1).capitalize(), input_map, 2).capitalize()
-    consent['ans1'] = fill_text(fill_text(lang_map['ans1'], input_map, 1), input_map, 2).capitalize()
+    consent['q2'] = lang_map['q2']
+    consent['q3'] = lang_map['q3']
+    consent['q4'] = fill_text(fill_text(lang_map['q4'], input_map, 1).capitalize(), input_map, 2)
+    consent['ans1'] = fill_text(fill_text(lang_map['ans1'], input_map, 1), input_map, 2)
     consent['from'] = lang_map['from']
     consent['to'] = lang_map['to']
     consent['fromDate'] = input_map['from']
@@ -378,7 +379,15 @@ def consent_res(consentArtefactId, session, lan):
     consent['video'] = "https://s3-ap-south-1.amazonaws.com/%s/%s" % (config.VIDEO_BUCKET, consentArtefactId + '-' + lan + '.mp4')
     consent['isVerified'] = fiu not in non_verified
     consent["ans4"] = fill_text(fill_text(lang_map['ans4'], input_map, 1),input_map, 2).capitalize()
-    if (input_map['mode'] == 'store'):
+    consent["bank_ques"] = lang_map['bank_ques']
+    consent["hurray_1"] = lang_map['hurray_1']
+    consent["hurray_2"] = lang_map['hurray_2']
+    consent["hurray_3"] = lang_map['hurray_3']
+    consent["warn_1"] = lang_map['warn_1']
+    consent["warn_2"] = lang_map['warn_2']
+    consent["warn_3"] = lang_map['warn_3']
+    consent['hurray_4'] = fill_text(fill_text(lang_map['hurray_4'], input_map, 1), input_map, 2).capitalize()
+    if input_map['mode'] == 'store':
         consent["ans4"] = consent["ans4"] + ' ' + fill_text(fill_text(lang_map['ans4_suffix'], input_map, 1),input_map, 2).capitalize()
     return consent
 

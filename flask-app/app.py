@@ -30,7 +30,7 @@ def video():
 def consent():
     session = request.headers['sessionId']
     consentArtefactId = request.headers['consentArtefactId']
-    language = request.headers['language']
+    language = request.headers['language'][:2]
     return jsonify(consent_res(consentArtefactId, session, language))
 
 
@@ -42,7 +42,7 @@ def dashboard():
     headers = {'sessionId': session, 'Content-Type': 'application/json'}
     req = requests.get(url, headers=headers)
     dashboard_obj =  json.loads(req.content)
-    dashboard_obj['language'] = request.headers['language']
+    dashboard_obj['language'] = request.headers['language'][:2]
     dashboard_obj['session'] = request.headers['sessionId']
     print(dashboard_obj)
     res_map = process(dashboard_obj)
