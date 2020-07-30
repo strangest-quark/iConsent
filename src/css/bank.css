@@ -16,7 +16,6 @@ h1 {
   grid-template-columns: auto auto;
   grid-column-gap: 10px;
   padding: 10px;
-  width: 500px;
   align-items: center;
 }
 
@@ -26,6 +25,7 @@ h1 {
   grid-gap: var(--gutter) 0;
   grid-template-columns: var(--gutter) 1fr var(--gutter);
   align-content: center;
+  width: 100%;
 }
 
 .banklist>* {
@@ -39,9 +39,8 @@ h1 {
 .hs {
   display: grid;
   grid-gap: calc(var(--gutter) / 2);
-  grid-template-columns: 20px repeat(3, calc(50% - var(--gutter) * 2)) 10px;
+  grid-template-columns: 20px repeat(10, calc(50% - var(--gutter) * 2)) 10px;
   grid-template-rows: minmax(150px, 1fr);
-
   overflow-x: scroll;
   scroll-snap-type: x proximity;
   padding-bottom: calc(0.75 * var(--gutter));
@@ -74,12 +73,14 @@ ul {
 
 .item {
   scroll-snap-align: center;
-  padding: calc(var(--gutter) / 2 * 1.5);
+  padding: calc(var(--gutter) / 2);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: #fff;
+  background:#FBFCFD;
+  box-shadow: 0px 0px 2px #E5E5E5;
+  border: 2px solid #F5F6F9;
   border-radius: 8px;
 }
 

@@ -40,7 +40,7 @@
             </tiles>
           </div>
           <div class="row" style="padding-top: 5%">
-            <BankList :line1="line1" :line2="line2" :haveCheckBox="false" />
+            <BankList :line1="line1" :line2="line2" :accounts="dashboardData.accounts" :haveSide="true" :haveCheckBox="false" :haveType="true" />
           </div>
           <div style="margin-top: 12vh" class="row">
             <Chat style="padding: 4% 4% 4% 0%" />
@@ -114,6 +114,7 @@ export default {
     DashboardAPI.postItem(payload)
       .then(function (response) {
         here.dashboardData = response.data
+        console.log(response)
         here.closeLoading()
       })
       .catch(error => {

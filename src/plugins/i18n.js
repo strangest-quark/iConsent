@@ -18,6 +18,7 @@ const messages = {
     dashboardConsentsPending: 'Consents Pending',
     dashboardConsentsActive: 'Consents Active',
     stepProgressWhy: 'Why',
+    stepProgressBanks: 'For',
     stepProgressHowLong: 'How Long',
     stepProgressWhat: 'What',
     stepProgressTillWhen: 'Till When',
@@ -37,6 +38,7 @@ const messages = {
     dashboardConsentsPending: 'சம்மதம் நிலுவையில்',
     dashboardConsentsActive: 'சம்மதம் செயலில்',
     stepProgressWhy: 'ஏன்',
+    stepProgressBanks: 'கணக்குகள்',
     stepProgressHowLong: 'எவ்வளவு காலம்',
     stepProgressWhat: 'என்ன',
     stepProgressTillWhen: 'எப்போது வரை',
@@ -53,6 +55,7 @@ const messages = {
     dashboardMenulabelPaused: 'താൽക്കാലികമായി നിർത്തി',
     dashboardMenulabelRevoked: 'അസാധുവാക്കി',
     dashboardMenulabelRejected: 'നിരസിച്ചു',
+    stepProgressBanks: 'ബാങ്ക്',
     dashboardConsentsPending: 'സമ്മതം ശേഷിക്കുന്നു',
     dashboardConsentsActive: 'സമ്മതം സജീവമാണ്',
     stepProgressWhy: 'എന്തുകൊണ്ട്',
@@ -76,6 +79,7 @@ const messages = {
     dashboardConsentsPending: 'लंबित है',
     dashboardConsentsActive: 'सक्रिय रहता',
     stepProgressWhy: 'क्यों',
+    stepProgressBanks: 'खाते',
     stepProgressHowLong: 'कितना लंबा',
     stepProgressWhat: 'क्या',
     stepProgressTillWhen: 'कब तक',
@@ -96,6 +100,7 @@ const messages = {
     dashboardConsentsActive: 'సమ్మతించింది',
     stepProgressWhy: 'ఎందుకు',
     stepProgressHowLong: 'ఎంతసేపు',
+    stepProgressBanks: 'ఖాతాల',
     stepProgressWhat: 'ఏం',
     stepProgressTillWhen: 'ఎప్పటి దాకా',
     labelVerified: 'ధృవీకరించబడిన'
@@ -114,6 +119,7 @@ const messages = {
     dashboardConsentsPending: 'ಒಪ್ಪಿಗೆಗಳು ಉಳಿದಿವೆ',
     dashboardConsentsActive: 'ಸಕ್ರಿಯವಾಗಿದೆ',
     stepProgressWhy: 'ಏಕೆ',
+    stepProgressBanks: 'ಖಾತೆಗಳು',
     stepProgressHowLong: 'ಎಷ್ಟು ಉದ್ದ',
     stepProgressWhat: 'ಏನು',
     stepProgressTillWhen: 'ಯಾವಾಗ',
@@ -123,7 +129,7 @@ const messages = {
 
 const i18n = new VueI18n({
   locale: localStorage.getItem('user-language'),
-  fallbackLocale: 'en',
+  fallbackLocale: navigator.language,
   messages
 })
 

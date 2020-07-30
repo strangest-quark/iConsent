@@ -72,67 +72,33 @@
                         </span>
                       </span>
                     </div>
-                    <!-- what -->
+                    <!-- for -->
                     <div v-if="currentStep==2" class="rows">
                       <span class="row">
-                        <h2 class="question subtitle is-6">{{consentData.q3}}</h2>
+                        <h2 class="question subtitle is-6">{{consentData.bank_ques}}</h2>
                       </span>
-                      <div class="row" style="width: 100%">
-                        <div style="padding: 1% 4% 0% 0%">
-                          <div class="row">
-                            <div class="column1">
-                              <div class="hvrbox">
-                                <a @mouseover="onHover('card1')" class="card1" href="#">
-                                  <img :src="consentData.card1_icon" />
-                                  <h2 class="card-text">
-                                    <b>{{consentData.card1}}</b>
-                                  </h2>
-                                  <div class="hvrbox-layer_top">
-                                    <h2 class="hvrbox-text">
-                                      <b>{{consentData.hover1}}</b>
-                                    </h2>
-                                  </div>
-                                </a>
-                              </div>
-                            </div>
-                            <div class="column1">
-                              <div class="hvrbox">
-                                <a @mouseover="onHover('card2')" class="card1" href="#">
-                                  <img :src="consentData.card2_icon" />
-                                  <h2 class="card-text">
-                                    <b>{{consentData.card2}}</b>
-                                  </h2>
-                                  <div class="hvrbox-layer_top">
-                                    <h2 class="hvrbox-text">
-                                      <b>{{consentData.hover2}}</b>
-                                    </h2>
-                                  </div>
-                                </a>
-                              </div>
-                            </div>
-                            <div @mouseover="onHover('card3')" class="column1">
-                              <div class="hvrbox">
-                                <a @mouseover="onHover" class="card1" href="#">
-                                  <img :src="consentData.card3_icon" />
-                                  <h2 class="card-text">
-                                    <b>{{consentData.card3}}</b>
-                                  </h2>
-                                  <div class="hvrbox-layer_top">
-                                    <h2 class="hvrbox-text">
-                                      <b>{{consentData.hover3}}</b>
-                                    </h2>
-                                  </div>
-                                </a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                      <div class="row">
+                        <BankList :line1="line1" :line2="line2" :accounts="consentData.accounts" :haveCheckBox="haveCheckBox" />
                       </div>
                     </div>
-                    <!-- till when -->
+                    <!-- what -->
                     <div v-if="currentStep==3" class="rows">
                       <span class="row">
                         <h2 class="question subtitle is-6">{{consentData.q4}}</h2>
+                      </span>
+                      <div class="row">
+                        <div class="column" style="text-align: center; width: 100%"><img style="padding-left: 25%; padding-right: 25%; text-align: center" :src="consentData.card1_icon" /></div>
+                        <div class="column" style="text-align: center; width: 100%"><img style="padding-left: 25%; padding-right: 25%; text-align: center" :src="consentData.card2_icon" /></div>
+                        <div class="column" style="text-align: center; width: 100%"><img style="padding-left: 25%; padding-right: 25%; text-align: center" :src="consentData.card3_icon" /></div>
+                      </div>
+                    <div class="row" style="display: table;">
+                      <h1 style="font-size: font-size: 1vmax">{{consentData.ans4}}</h1>
+                    </div>
+                      </div>
+                    <!-- till when -->
+                    <div v-if="currentStep==4" class="rows">
+                      <span class="row">
+                        <h2 class="question subtitle is-6">{{consentData.q3}}</h2>
                       </span>
                       <span class="row">
                         <p class="answer">{{consentData.validTill}}</p>
@@ -174,18 +140,12 @@
                   </div>
                 </div>
               </div>
-              <div class="row is-hidden-desktop is-hidden-tablet">
-                <BankList :line1="line1" :line2="line2" :haveCheckBox="haveCheckBox" />
-              </div>
             </div>
           </div>
         </div>
       </div>
       <div class="column is-half content-right is-hidden-mobile" style="padding-left: 5%">
         <div class="rows">
-          <div class="row">
-            <BankList :line1="line1" :line2="line2" :haveCheckBox="haveCheckBox" />
-          </div>
           <div class="row video">
             <Video :url="consentData.video" />
           </div>
@@ -226,9 +186,9 @@
     >
       <div class="modal-card">
         <section class="modal-card-body">
-          <h4 class="title is-6">Uh oh...</h4>
-          <h4 class="subtitle is-6">Looks like you haven’t read the consent details completely!</h4>
-          <h2 class="title proceed-title is-5">Sure you want to proceed?</h2>
+          <h4 class="title is-6">{{consentData.warn_1}}</h4>
+          <h4 class="subtitle is-6">{{consentData.warn_2}}</h4>
+          <h2 class="title proceed-title is-5">{{consentData.warn_3}}</h2>
           <div class="columns is-mobile">
             <div class="column" align="right">
               <b-button
@@ -260,10 +220,10 @@
     >
       <div class="modal-card">
         <section class="modal-card-body">
-          <h4 class="title is-6">Awesome!!</h4>
+          <h4 class="title is-6">{{consentData.hurray_1}}</h4>
           <h4 class="subtitle is-6">
-            <div>You have read this consent details fully.</div>
-            <div>Kudos to keeping yourself informed of your data/privacy rights.</div>
+            <div>{{consentData.hurray_2}}</div>
+            <div>{{consentData.hurray_3}}</div>
           </h4>
           <div class="congragulations-model">
             <div class="columns is-mobile is-centered">
@@ -272,7 +232,7 @@
               </div>
             </div>
 
-            <h4 class="title is-6">Quickbooks can now access your savings accounts!</h4>
+            <h4 class="title is-6">{{consentData.hurray_4}}</h4>
           </div>
         </section>
       </div>
@@ -308,8 +268,9 @@ export default {
       isLoading: false,
       progressSteps: [
         this.$t('stepProgressWhy'),
-        this.$t('stepProgressHowLong'),
+        this.$t('stepProgressBanks'),
         this.$t('stepProgressWhat'),
+        this.$t('stepProgressHowLong'),
         this.$t('stepProgressTillWhen')
       ],
       progressColor: '#03b072',
@@ -336,7 +297,7 @@ export default {
     checkButtonActiveState () {
       this.isNextButtonDisabled = false
       this.isBackButtonDisabled = false
-      if (this.currentStep === 3) {
+      if (this.currentStep === 4) {
         this.isNextButtonDisabled = true
       }
       if (this.currentStep === 0) {
@@ -346,7 +307,7 @@ export default {
     nextCard () {
       this.currentStep += 1
       this.checkButtonActiveState()
-      if (this.currentStep === 3) {
+      if (this.currentStep === 4) {
         this.userReadFully = true
       }
     },
