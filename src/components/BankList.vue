@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div class="left">
+    <div v-if="haveSide" class="left" style="padding-right: 5%">
       <h1>
         {{line1}}
         <br />{{line2}}
@@ -9,10 +9,10 @@
     <div class="right">
       <div class="banklist">
         <ul class="hs full">
-          <Bank v-for="bank in banks" :bank="bank" :haveCheckBox="haveCheckBox" :key="bank.id" />
+          <Bank v-for="(bank, index) in accounts" :bank="bank" :haveCheckBox="haveCheckBox" :haveType="haveType" :key="`bank-${index}`" />
         </ul>
-      </div>
     </div>
+  </div>
   </div>
 </template>
 
@@ -26,7 +26,10 @@ export default {
   props: {
     line1: String,
     line2: String,
-    haveCheckBox: Boolean
+    haveCheckBox: Boolean,
+    haveType: Boolean,
+    accounts: Array,
+    haveSide: Boolean
   },
   data () {
     return {
@@ -36,21 +39,21 @@ export default {
           name: 'Citibank',
           imgName: 'citi.png',
           accType: 'Savings',
-          accNo: 4545
+          accNo: 'xx4545'
         },
         {
           id: 2,
-          name: 'HDFC Bank',
+          name: 'HDFC',
           imgName: 'hdfc.png',
           accType: 'Loan',
-          accNo: 3455
+          accNo: 'xx3455'
         },
         {
           id: 3,
-          name: 'Axis Bank',
+          name: 'Axis',
           imgName: 'axis.png',
           accType: 'Savings',
-          accNo: 9545
+          accNo: 'xx9545'
         }
       ]
     }

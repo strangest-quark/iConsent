@@ -5,7 +5,7 @@ export default {
     return BackendAPI.post('/consent', payload, {
       headers: {
         sessionId: String(sessionStorage.getItem('user-sessionId')),
-        language: localStorage.getItem('user-language'),
+        language: navigator.language,
         consentArtefactId: String(artifactId),
         fiu: String(fiuName)
       }
