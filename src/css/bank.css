@@ -110,3 +110,75 @@ ul {
 .right {
   width: 90%;
 }
+
+.account {
+  padding: calc(var(--gutter) / 2 * 1.5);
+  margin: calc(var(--gutter) / 2 * 1.5);
+  display: flex;
+  background: #fff;
+  border-radius: 8px;
+  align-items: center;
+  scroll-snap-align: center;
+  justify-content: center;
+}
+
+.account img {
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-bottom: 10px;
+  height: 75px;
+}
+
+.accountLogo {
+  display: flex; 
+  float: left;
+}
+
+.accountDetails {
+  padding-left: 20px;
+}
+
+.accountConsents {
+  padding-left: 50px;
+}
+
+.accountConsents h1 {
+  font-size: x-large;
+}
+
+.account a {
+  padding-left: 50px;
+}
+
+.accountList {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: var(--gutter) 0;
+  display: grid;
+  grid-gap: var(--gutter) 0;
+  grid-template-columns: var(--gutter) 1fr var(--gutter);
+  align-content: center;
+  margin: 10px;
+}
+
+.accountList>* {
+  grid-column: 2 / -2;
+}
+
+.accountList>.full {
+  grid-column: 1 / -1;
+}
+
+.vs {
+  overflow-y: auto;
+  scroll-snap-type: y proximity;
+  padding-bottom: calc(0.75 * var(--gutter));
+  margin-bottom: calc(-0.5 * var(--gutter));
+}
+
+.vs:before,
+.vs:after {
+  content: "";
+}
