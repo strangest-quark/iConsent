@@ -1,9 +1,6 @@
 <template>
     <div class="hello">
-        <!-- <h1>{{ $t('welcomeMsg') }}</h1>
-        <p>
-            {{ $t('guide') }}<br>
-        </p> -->
+        <!-- <h1>{{ $t('welcomeMsg') }}</h1> -->
     </div>
 </template>
 

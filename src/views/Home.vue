@@ -57,7 +57,7 @@ export default {
   },
   mounted () {
     this.$router.push('/dashboard').catch(() => {})
-    this.fillChartData()
+    // this.fillChartData()
 
     this.$buefy.snackbar.open({
       message: 'Welcome back',

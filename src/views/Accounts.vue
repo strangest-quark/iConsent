@@ -1,6 +1,6 @@
 <template>
     <div class="accounts">
-        <h1> Accounts </h1>
+        <!-- <h1> Accounts </h1> -->
         <div class="row" style="padding-top: 5%">
             <AccountList :line1="line1" :line2="line2" :haveCheckBox="false" />
         </div>

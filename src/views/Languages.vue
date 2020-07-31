@@ -1,8 +1,8 @@
 <template>
   <div>
     <!-- <Language msg="Welcome to Your Vue.js App" /> -->
-
     <div class="section">
+      <h2 class="subtitle is-6"> <em> The default language maybe same as the browsers language </em> </h2>
       <div class="columns is-multiline">
         <div
           v-for="(i,index) in languages"

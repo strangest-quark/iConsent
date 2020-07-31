@@ -119,17 +119,18 @@ ul {
   border-radius: 8px;
   align-items: center;
   scroll-snap-align: center;
-  justify-content: center;
+  /* justify-content: center; */
 }
 
 .account img {
   padding-left: 20px;
   padding-right: 20px;
   margin-bottom: 10px;
-  height: 75px;
 }
 
 .accountLogo {
+  min-width: 5rem;
+  max-width: 7rem;
   display: flex; 
   float: left;
 }

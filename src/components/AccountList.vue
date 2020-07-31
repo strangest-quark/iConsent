@@ -1,14 +1,12 @@
 <template>
   <div class="accountList">
-    <b-button icon-left="chevron-left" type="is-light">Add Account</b-button>
+    <div class="add-account-button">
+    <b-button icon-left="plus" type="is-text">Add Account</b-button>
+    </div>
     <div>
-      <div>
-        <div>
-          <ul class="vs full">
-            <Account v-for="bank in banks" :bank="bank" :haveCheckBox="haveCheckBox" :key="bank.id" />
-          </ul>
-        </div>
-      </div>
+      <ul class="vs full">
+        <Account v-for="bank in banks" :bank="bank" :haveCheckBox="haveCheckBox" :key="bank.id" />
+      </ul>
     </div>
   </div>
 </template>
@@ -52,3 +50,12 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.add-account-button{
+  text-align: center !important;
+}
+.button{
+    text-decoration: none;
+}
+</style>

@@ -207,7 +207,7 @@
       aria-role="dialog"
       aria-modal
     >
-      <div class="modal-card">
+      <div class="not-read-consent modal-card">
         <section class="modal-card-body">
           <h4 class="title is-6">{{consentData.warn_1}}</h4>
           <h4 class="subtitle is-6">{{consentData.warn_2}}</h4>
@@ -452,7 +452,7 @@ hr {
   opacity: 0.5;
 }
 .question {
-  color: #F26C63;
+  color: #f26c63;
   font-weight: bold;
   margin-bottom: 0.5rem;
 }
@@ -460,7 +460,7 @@ hr {
   color: #222222;
 }
 .reject {
-  /* font-weight: bold; */
+  font-weight: bold;
   color: #666666;
 }
 .approve {
@@ -582,5 +582,33 @@ h2 {
 }
 .congragulations-model {
   text-align: center;
+}
+.not-read-consent {
+  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
 }
 </style>
