@@ -29,4 +29,7 @@ export default {
 .video-js.vjs-fluid{
     height: 80vh;
 }
+video {
+  border-radius: 0.5rem
+}
 </style>

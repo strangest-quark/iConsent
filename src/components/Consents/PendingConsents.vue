@@ -27,7 +27,7 @@
               <h2 class="is-7">{{i.validTill}}</h2>
             </div>
           </div>
-          <div class="row columns is-mobile">
+          <!-- <div class="row columns is-mobile">
             <div @click="isImageModalActive = true" class="play-video-trigger column" align="left">
               <b-icon class="mr-1" icon="play-circle" size="is-small" />
               <a class="is-6">How does it work?</a>
@@ -35,7 +35,7 @@
             <div class="column is-gray is-two-fifths report-fraud" align="right">
               <h2 @click="$router.push()" class="is-8">Report Fraud</h2>
             </div>
-          </div>
+          </div> -->
         </div>
       </consent-card-component>
       <b-modal class="video-modal" :active.sync="isImageModalActive">

@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div @click="clickPendingConsent" class="card">
     <div class="card-content">
       <slot />
     </div>
@@ -10,8 +10,8 @@
       <span @click="acceptConsent" class="card-footer-item approve">
         <b-icon icon="check-circle-outline" custom-size="default" />Approve
       </span> -->
-      <span @click="clickPendingConsent" class="card-footer-item more">
-        Know More <b-icon icon="arrow-right-circle-outline" custom-size="default" />
+      <span class="card-footer-item more">
+        View More <b-icon icon="arrow-right-circle-outline" custom-size="default" />
       </span>
     </footer>
   </div>
@@ -91,6 +91,10 @@ export default {
 .card {
   /* cursor: pointer; */
   box-shadow: 0px 0px 10px rgba(0.2, 0.2, 0.2, 0.2);
+}
+.card:hover {
+  cursor: pointer;
+  box-shadow: 5px 5px 5px rgba(0.2, 0.2, 0.2, 0.2);
 }
 .card-header-end {
   text-align: right;

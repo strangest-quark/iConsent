@@ -78,7 +78,12 @@
                         <h2 class="question subtitle is-6">{{consentData.bank_ques}}</h2>
                       </span>
                       <div class="row">
-                        <BankList :line1="line1" :line2="line2" :accounts="consentData.accounts" :haveCheckBox="haveCheckBox" />
+                        <BankList
+                          :line1="line1"
+                          :line2="line2"
+                          :accounts="consentData.accounts"
+                          :haveCheckBox="haveCheckBox"
+                        />
                       </div>
                     </div>
                     <!-- what -->
@@ -87,14 +92,29 @@
                         <h2 class="question subtitle is-6">{{consentData.q4}}</h2>
                       </span>
                       <div class="row">
-                        <div class="column" style="text-align: center; width: 100%"><img style="padding-left: 25%; padding-right: 25%; text-align: center" :src="consentData.card1_icon" /></div>
-                        <div class="column" style="text-align: center; width: 100%"><img style="padding-left: 25%; padding-right: 25%; text-align: center" :src="consentData.card2_icon" /></div>
-                        <div class="column" style="text-align: center; width: 100%"><img style="padding-left: 25%; padding-right: 25%; text-align: center" :src="consentData.card3_icon" /></div>
+                        <div class="column" style="text-align: center; width: 100%">
+                          <img
+                            style="padding-left: 25%; padding-right: 25%; text-align: center"
+                            :src="consentData.card1_icon"
+                          />
+                        </div>
+                        <div class="column" style="text-align: center; width: 100%">
+                          <img
+                            style="padding-left: 25%; padding-right: 25%; text-align: center"
+                            :src="consentData.card2_icon"
+                          />
+                        </div>
+                        <div class="column" style="text-align: center; width: 100%">
+                          <img
+                            style="padding-left: 25%; padding-right: 25%; text-align: center"
+                            :src="consentData.card3_icon"
+                          />
+                        </div>
                       </div>
-                    <div class="row" style="display: table;">
-                      <h1 style="font-size: font-size: 1vmax">{{consentData.ans4}}</h1>
+                      <div class="row" style="display: table;">
+                        <h1 style="font-size: font-size: 1vmax">{{consentData.ans4}}</h1>
+                      </div>
                     </div>
-                      </div>
                     <!-- till when -->
                     <div v-if="currentStep==4" class="rows">
                       <span class="row">
@@ -144,7 +164,10 @@
           </div>
         </div>
       </div>
-      <div class="column is-half content-right is-hidden-mobile" style="padding-left: 5%">
+      <div
+        class="column video-placement is-half content-right is-hidden-mobile"
+        style="padding-left: 5%"
+      >
         <div class="rows">
           <div class="row video">
             <Video :url="consentData.video" />
@@ -429,7 +452,7 @@ hr {
   opacity: 0.5;
 }
 .question {
-  color: #079aff;
+  color: #F26C63;
   font-weight: bold;
   margin-bottom: 0.5rem;
 }
@@ -437,8 +460,8 @@ hr {
   color: #222222;
 }
 .reject {
-  font-weight: bold;
-  color: #e11a50;
+  /* font-weight: bold; */
+  color: #666666;
 }
 .approve {
   font-weight: bold;
