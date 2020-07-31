@@ -10,9 +10,7 @@
           class="pending-button"
           icon-left="chevron-left"
           type="is-text"
-        >
-        {{$t('buttonPending')}}
-        </b-button>
+        >{{$t('buttonPending')}}</b-button>
         <div>
           <div class="rows">
             <div class="row columns is-mobile is-vcentered">
@@ -157,7 +155,11 @@
                     <b-button v-else @click="previousCard">{{$t('buttonBack')}}</b-button>
                   </div>
                   <div class="column" align="right">
-                    <b-button v-if="isNextButtonDisabled" disabled type="is-primary">{{$t('buttonNext')}}</b-button>
+                    <b-button
+                      v-if="isNextButtonDisabled"
+                      disabled
+                      type="is-primary"
+                    >{{$t('buttonNext')}}</b-button>
                     <b-button v-else @click="nextCard" type="is-primary">{{$t('buttonNext')}}</b-button>
                   </div>
                 </div>
@@ -194,7 +196,7 @@
               type="is-rounded"
               class="approve"
               size="is-medium"
-              @click="acceptConsent"
+              @click="acceptConsent1"
               icon-left="check-circle-outline"
             >{{$t('buttonApprove')}}</b-button>
           </div>
@@ -227,7 +229,7 @@
               <b-button
                 type="is-rounded"
                 class="approve"
-                @click="acceptConsent"
+                @click="acceptConsent2"
                 icon-left="check-circle-outline"
               >{{$t('buttonApprove')}}</b-button>
             </div>
@@ -250,6 +252,28 @@
             <div>{{consentData.hurray_2}}</div>
             <div>{{consentData.hurray_3}}</div>
           </h4>
+          <div class="congragulations-model">
+            <div class="columns is-mobile is-centered">
+              <div class="logo column" align="center">
+                <img :src="consentData.fiu_logo" />
+              </div>
+            </div>
+
+            <h4 class="title is-6">{{consentData.hurray_4}}</h4>
+          </div>
+        </section>
+      </div>
+    </b-modal>
+    <b-modal
+      :active.sync="isAcceptModalActive"
+      has-modal-card
+      trap-focus
+      :destroy-on-hide="false"
+      aria-role="dialog"
+      aria-modal
+    >
+      <div class="modal-card">
+        <section class="modal-card-body">
           <div class="congragulations-model">
             <div class="columns is-mobile is-centered">
               <div class="logo column" align="center">
@@ -306,7 +330,8 @@ export default {
       userReadFully: false,
       forceUserAction: false,
       isComponentModalActive: false,
-      isFullyReadModalActive: false
+      isFullyReadModalActive: false,
+      isAcceptModalActive: false
     }
   },
   methods: {
@@ -343,7 +368,12 @@ export default {
     checkUserProgress () {},
     rejectConsent () {
       if (this.userReadFully || this.forceUserAction) {
-        alert('API CALL')
+        this.$router.go(-1)
+        this.$buefy.snackbar.open({
+          type: 'is-warning',
+          message: 'Consent has been rejected successfully',
+          queue: false
+        })
       } else {
         this.isComponentModalActive = true
         this.forceUserAction = true
@@ -362,21 +392,38 @@ export default {
     stopAnimation () {
       this.$confetti.stop()
     },
-    acceptConsent () {
+    acceptConsent1 () {
       if (this.userReadFully) {
+        this.isComponentModalActive = false
         this.isFullyReadModalActive = true
         this.startAnimation()
         const here = this
-        setInterval(function () {
+        setTimeout(function () {
           here.stopAnimation()
-        }, 4000)
-        // this.isComponentModalActive = false
-      } else if (this.forceUserAction) {
-        // call api
+          here.$buefy.snackbar.open({
+            type: 'is-success',
+            message: 'Consent has been accepted successfully',
+            queue: false
+          })
+          here.$router.go(-1)
+        }, 3000)
       } else {
         this.isComponentModalActive = true
         this.forceUserAction = true
       }
+    },
+    acceptConsent2 () {
+      this.isComponentModalActive = false
+      this.isAcceptModalActive = true
+      const here = this
+      setTimeout(function () {
+        here.$router.go(-1)
+        here.$buefy.snackbar.open({
+          type: 'is-success',
+          message: 'Consent has been accepted successfully',
+          queue: false
+        })
+      }, 3000)
     },
     onHover (card) {
       if (!this.cardsChecked.includes(card)) {
@@ -395,7 +442,6 @@ export default {
       const payload = {}
       ConsentAPI.postItem(payload, params.id, params.fiu)
         .then(function (response) {
-          console.log(response)
           here.consentData = response.data
           here.closeLoading()
         })

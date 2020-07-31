@@ -1,5 +1,5 @@
 <template>
-  <div class="account columns is-mobile is-vcentered">
+  <div class="account columns is-vcentered">
     <div class="accountLogo column">
       <b-checkbox v-if="haveCheckBox" class="checkbox"  :value="true" type="is-success"></b-checkbox>
       <img :src="require('@/assets/' + bank.imgName)" />

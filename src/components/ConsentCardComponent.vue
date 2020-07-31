@@ -4,14 +4,9 @@
       <slot />
     </div>
     <footer v-if="status=='pending'" class="card-footer">
-      <!-- <span @click="rejectConsent" class="card-footer-item reject">
-        <b-icon icon="close-circle-outline" custom-size="default" />Reject
-      </span>
-      <span @click="acceptConsent" class="card-footer-item approve">
-        <b-icon icon="check-circle-outline" custom-size="default" />Approve
-      </span> -->
       <span class="card-footer-item more">
-        {{$t('buttonViewMore')}} <b-icon icon="arrow-right-circle-outline" custom-size="default" />
+        {{$t('buttonViewMore')}}
+        <b-icon icon="arrow-right-circle-outline" custom-size="default" />
       </span>
     </footer>
   </div>
@@ -41,43 +36,6 @@ export default {
     clickPendingConsent () {
       if (this.status === 'pending') {
         this.$router.push(`/consents/pending/${this.artifactId}`)
-      }
-    },
-    rejectConsent () {
-      if (this.forceUserAction) {
-        alert('API CALL')
-      } else {
-        this.isComponentModalActive = true
-        this.forceUserAction = true
-      }
-    },
-    startAnimation () {
-      this.$confetti.start({
-        particles: [
-          {
-            type: 'circle'
-          }
-        ],
-        defaultColors: ['#079AFF', '#F26C63', '#99D25C', '#FAB909']
-      })
-    },
-    stopAnimation () {
-      this.$confetti.stop()
-    },
-    acceptConsent () {
-      if (this.userReadFully) {
-        this.isFullyReadModalActive = true
-        this.startAnimation()
-        const here = this
-        setInterval(function () {
-          here.stopAnimation()
-        }, 4000)
-        // this.isComponentModalActive = false
-      } else if (this.forceUserAction) {
-        // call api
-      } else {
-        this.isComponentModalActive = true
-        this.forceUserAction = true
       }
     }
   }
@@ -110,7 +68,7 @@ export default {
 
 .card-footer-item.more {
   font-weight: bold;
-  color: #079AFF;
+  color: #079aff;
   cursor: pointer;
 }
 .proceed-title {

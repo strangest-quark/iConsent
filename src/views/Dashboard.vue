@@ -114,7 +114,6 @@ export default {
     DashboardAPI.postItem(payload)
       .then(function (response) {
         here.dashboardData = response.data
-        console.log(response)
         here.closeLoading()
       })
       .catch(error => {
