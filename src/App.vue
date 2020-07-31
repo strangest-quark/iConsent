@@ -24,6 +24,9 @@ export default {
     ) {
       this.$router.push('/sign-in').catch(() => {})
     }
+    if (localStorage.getItem('user-language') === null) {
+      localStorage.setItem('user-language', navigator.language)
+    }
   }
 }
 </script>
