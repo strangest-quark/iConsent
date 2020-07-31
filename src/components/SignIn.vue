@@ -19,7 +19,7 @@
                       <label class="label">Phone Number</label>
                       <div class="control has-icons-right">
                         <input
-                        v-model="inputPhoneNumber"
+                          v-model="inputPhoneNumber"
                           type="number"
                           autocomplete="off"
                           name="number"
@@ -33,7 +33,7 @@
                       <label class="label">OTP</label>
                       <div class="control has-icons-right">
                         <input
-                        v-model="inputOTP"
+                          v-model="inputOTP"
                           type="password"
                           pattern="[1-9]*"
                           inputmode="numeric"
@@ -58,6 +58,9 @@
       </div>
       <div class="hero-foot has-text-centered">
         <div class="logo"></div>
+      </div>
+      <div v-if="isLoading" class="is-center">
+        <bounce :loading="isLoading"></bounce>
       </div>
     </section>
   </div>
@@ -84,9 +87,12 @@ export default {
   },
   methods: {
     userStatus () {
-      if (sessionStorage.getItem('user-phonenumber') !== null && sessionStorage.getItem('user-sessionId') !== null) {
+      if (
+        sessionStorage.getItem('user-phonenumber') !== null &&
+        sessionStorage.getItem('user-sessionId') !== null
+      ) {
         this.$store.commit('asideHolderHide', true)
-        this.$router.push('/').catch(() => {})
+        this.$router.push('/dashboard').catch(() => {})
       }
     },
     openLoading () {
@@ -101,8 +107,10 @@ export default {
       UserAPI.postItem(payload)
         .then(function (response) {
           if (response.data.status === true) {
-            sessionStorage.setItem('user-name', String(response.data.userData.firstName))
-            here.$router.push('/dashboard').catch(() => {})
+            sessionStorage.setItem(
+              'user-name',
+              String(response.data.userData.firstName)
+            )
           } else {
             here.$buefy.snackbar.open({
               type: 'is-danger',
@@ -111,7 +119,7 @@ export default {
             })
           }
         })
-        .catch(error => {
+        .catch((error) => {
           console.log(error)
           here.closeLoading()
           here.$buefy.snackbar.open({
@@ -132,11 +140,18 @@ export default {
       LoginAPI.postItem(payload)
         .then(function (response) {
           if (response.data.status === true) {
-            sessionStorage.setItem('user-phonenumber', String(here.inputPhoneNumber))
-            sessionStorage.setItem('user-sessionId', String(response.data.sessionId))
+            sessionStorage.setItem(
+              'user-phonenumber',
+              String(here.inputPhoneNumber)
+            )
+            sessionStorage.setItem(
+              'user-sessionId',
+              String(response.data.sessionId)
+            )
             here.$store.commit('asideHolderHide', true)
             here.getUserDetails()
             here.closeLoading()
+            here.$router.push('/dashboard').catch(() => {})
           } else {
             here.closeLoading()
             here.$buefy.snackbar.open({
@@ -146,7 +161,7 @@ export default {
             })
           }
         })
-        .catch(error => {
+        .catch((error) => {
           console.log(error)
           here.closeLoading()
           here.$buefy.snackbar.open({

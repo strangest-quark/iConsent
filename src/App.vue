@@ -29,7 +29,13 @@ export default {
       this.$router.push('/sign-in').catch(() => {})
     }
     if (localStorage.getItem('user-language') === null) {
-      const language = navigator.userLanguage || navigator.language
+      let language = ''
+      language = navigator.userLanguage || navigator.language
+
+      // setting common english to support all english (India, UK..)
+      if (navigator.language.startsWith('en')) {
+        language = 'en'
+      }
       localStorage.setItem('user-language', language)
       EventBus.$emit('current_user_language', language)
       i18n.locale = language
