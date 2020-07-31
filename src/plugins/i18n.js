@@ -22,7 +22,17 @@ const messages = {
     stepProgressHowLong: 'How Long',
     stepProgressWhat: 'What',
     stepProgressTillWhen: 'Till When',
-    labelVerified: 'Verified'
+    labelVerified: 'Verified',
+    buttonViewMore: 'View More',
+    chatNeedHelp: 'Need Help?',
+    chatSubtitle: 'Our support can help you understand your data rights better',
+    scrollTitleYour: 'Your',
+    scrollTitleAccounts: 'Accounts',
+    buttonPending: 'Pending',
+    buttonBack: 'Back',
+    buttonNext: 'Next',
+    buttonApprove: 'Approve',
+    buttonReject: 'Reject'
   },
   ta: {
     menulabelDashboard: 'டாஷ்போர்டு',
@@ -42,7 +52,17 @@ const messages = {
     stepProgressHowLong: 'எவ்வளவு காலம்',
     stepProgressWhat: 'என்ன',
     stepProgressTillWhen: 'எப்போது வரை',
-    labelVerified: 'சரிபார்க்கப்பட்டது'
+    labelVerified: 'சரிபார்க்கப்பட்டது',
+    buttonViewMore: 'மேலும் பார்க்க',
+    chatNeedHelp: 'உதவி தேவை?',
+    chatSubtitle: 'உங்கள் தரவு உரிமைகளை நன்கு புரிந்துகொள்ள எங்கள் ஆதரவு உதவும்',
+    scrollTitleYour: 'உங்கள்',
+    scrollTitleAccounts: 'கணக்குகள்e',
+    buttonPending: 'நிலுவை',
+    buttonBack: 'பின்னால்',
+    buttonNext: 'அடுத்தது',
+    buttonApprove: 'ஒப்புதல்',
+    buttonReject: 'நிராகரி'
   },
   ml: {
     menulabelDashboard: 'ഡാഷ്ബോർഡ്',
@@ -62,7 +82,17 @@ const messages = {
     stepProgressHowLong: 'എത്രകാലം',
     stepProgressWhat: 'എന്ത്',
     stepProgressTillWhen: 'എപ്പോൾ വരെ',
-    labelVerified: 'പരിശോധിച്ചുറപ്പിച്ചു'
+    labelVerified: 'പരിശോധിച്ചുറപ്പിച്ചു',
+    buttonViewMore: 'കൂടുതൽ കാണു',
+    chatNeedHelp: 'സഹായം ആവശ്യമുണ്ട്?',
+    chatSubtitle: 'നിങ്ങളുടെ ഡാറ്റ അവകാശങ്ങൾ നന്നായി മനസ്സിലാക്കാൻ ഞങ്ങളുടെ പിന്തുണ സഹായിക്കും',
+    scrollTitleYour: 'നിങ്ങളുടെ',
+    scrollTitleAccounts: 'അക്കൗണ്ടുകൾ',
+    buttonPending: 'ശേഷിക്കുന്നു',
+    buttonBack: 'തിരികെ',
+    buttonNext: 'അടുത്തത്',
+    buttonApprove: 'അംഗീകരിക്കുക',
+    buttonReject: 'നിരസിക്കുക'
 
   },
   hi: {
@@ -83,7 +113,17 @@ const messages = {
     stepProgressHowLong: 'कितना लंबा',
     stepProgressWhat: 'क्या',
     stepProgressTillWhen: 'कब तक',
-    labelVerified: 'सत्यापित'
+    labelVerified: 'सत्यापित',
+    buttonViewMore: 'और देखो',
+    chatNeedHelp: 'मदद ज़रूरत है?',
+    chatSubtitle: 'हमारा समर्थन आपके डेटा अधिकारों को बेहतर ढंग से समझने में आपकी सहायता कर सकता है',
+    scrollTitleYour: 'तुम्हारी',
+    scrollTitleAccounts: 'हिसाब किताब',
+    buttonPending: 'विचाराधीन',
+    buttonBack: 'वापस',
+    buttonNext: 'आगे',
+    buttonApprove: 'मंजूर',
+    buttonReject: 'अस्वीकार'
   },
   te: {
     menulabelDashboard: 'డాష్బోర్డ్',
@@ -103,9 +143,19 @@ const messages = {
     stepProgressBanks: 'ఖాతాల',
     stepProgressWhat: 'ఏం',
     stepProgressTillWhen: 'ఎప్పటి దాకా',
-    labelVerified: 'ధృవీకరించబడిన'
+    labelVerified: 'ధృవీకరించబడిన',
+    buttonViewMore: 'మరిన్ని చూడండి',
+    chatNeedHelp: 'సహాయం కావాలి?',
+    chatSubtitle: 'మీ డేటా హక్కులను బాగా అర్థం చేసుకోవడానికి మా మద్దతు మీకు సహాయపడుతుంది',
+    scrollTitleYour: 'మీ',
+    scrollTitleAccounts: 'అకౌంట్స్',
+    buttonPending: 'పెండింగ్',
+    buttonBack: 'తిరిగి',
+    buttonNext: 'తరువాత',
+    buttonApprove: 'ఆమోదించడానికి',
+    buttonReject: 'తిరస్కరించు'
   },
-  ka: {
+  kn: {
     menulabelDashboard: 'ಡ್ಯಾಶ್‌ಬೋರ್ಡ್',
     menulabelConsents: 'ಒಪ್ಪಿಗೆ',
     menulabelAccounts: 'ಖಾತೆಗಳು',
@@ -123,13 +173,23 @@ const messages = {
     stepProgressHowLong: 'ಎಷ್ಟು ಉದ್ದ',
     stepProgressWhat: 'ಏನು',
     stepProgressTillWhen: 'ಯಾವಾಗ',
-    labelVerified: 'ಪರಿಶೀಲಿಸಲಾಗಿದೆ'
+    labelVerified: 'ಪರಿಶೀಲಿಸಲಾಗಿದೆ',
+    buttonViewMore: 'ಇನ್ನಷ್ಟು ವೀಕ್ಷಿಸಿ',
+    chatNeedHelp: 'ಸಹಾಯ ಬೇಕೇ?',
+    chatSubtitle: 'ನಿಮ್ಮ ಡೇಟಾ ಹಕ್ಕುಗಳನ್ನು ಚೆನ್ನಾಗಿ ಅರ್ಥಮಾಡಿಕೊಳ್ಳಲು ನಮ್ಮ ಬೆಂಬಲವು ನಿಮಗೆ ಸಹಾಯ ಮಾಡುತ್ತದೆ',
+    scrollTitleYour: 'ನಿಮ್ಮ',
+    scrollTitleAccounts: 'ಖಾತೆಗಳು',
+    buttonPending: 'ಬಾಕಿ ಉಳಿದಿದೆ',
+    buttonBack: 'ಹಿಂದೆ',
+    buttonNext: 'ಮುಂದೆ',
+    buttonApprove: 'ಅನುಮೋದಿಸಿ',
+    buttonReject: 'ತಿರಸ್ಕರಿಸಿ'
   }
 }
 
 const i18n = new VueI18n({
   locale: localStorage.getItem('user-language'),
-  fallbackLocale: navigator.language,
+  fallbackLocale: 'en',
   messages
 })
 

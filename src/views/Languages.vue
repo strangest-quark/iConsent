@@ -2,7 +2,9 @@
   <div>
     <!-- <Language msg="Welcome to Your Vue.js App" /> -->
     <div class="section">
-      <h2 class="subtitle is-6"> <em> The default language maybe same as the browsers language </em> </h2>
+      <h2 class="subtitle is-6">
+        <em>The default language maybe same as the browsers language</em>
+      </h2>
       <div class="columns is-multiline">
         <div
           v-for="(i,index) in languages"
@@ -90,7 +92,7 @@ export default {
         },
         {
           flag: 'in',
-          language: 'ka',
+          language: 'kn',
           title: 'Kannada',
           displayMessage: 'ಸ್ವಾಗತ',
           displayLetter: 'ಎ',
@@ -101,13 +103,20 @@ export default {
     }
   },
   mounted () {
-    this.setActive(localStorage.getItem('user-language'))
+    if (localStorage.getItem('user-language') === null) {
+      this.setActive(navigator.language)
+    } else {
+      this.setActive(localStorage.getItem('user-language'))
+    }
   },
   methods: {
     setActive (language) {
-    //   if (this.previousActiveLanguage === language) return
-      this.languages.find(item => item.language === this.previousActiveLanguage).class = ''
-      this.languages.find(item => item.language === language).class = 'active'
+      //   if (this.previousActiveLanguage === language) return
+      this.languages.find(
+        (item) => item.language === this.previousActiveLanguage
+      ).class = ''
+      this.languages.find((item) => item.language === language).class =
+        'active'
       this.previousActiveLanguage = language
     },
     activeLanguage (language) {

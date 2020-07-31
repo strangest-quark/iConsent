@@ -11,13 +11,9 @@
               <img :src="i.fiu_logo" />
             </div>
             <div v-if="i.isVerified" class="column is-green" align="right">
-              Verified
+               {{$t('labelVerified')}}
               <b-icon icon="shield-check" custom-size="default" />
             </div>
-            <!-- <div v-else class="column is-gray" align="right">
-              Verified
-              <b-icon icon="shield-check" custom-size="default" />
-            </div> -->
           </div>
           <div class="row">
             <h2 class="title is-6">{{i.tagline}}</h2>

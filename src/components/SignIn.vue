@@ -100,7 +100,15 @@ export default {
       const payload = {}
       UserAPI.postItem(payload)
         .then(function (response) {
-          console.log(response)
+          if (response.data.status === true) {
+            sessionStorage.setItem('user-name', String(response.data.userData.firstName))
+          } else {
+            here.$buefy.snackbar.open({
+              type: 'is-danger',
+              message: response.data.errMessage,
+              queue: false
+            })
+          }
         })
         .catch(error => {
           console.log(error)

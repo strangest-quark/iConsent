@@ -2,9 +2,9 @@
   <div class="row">
     <div v-if="haveSide" class="left" style="padding-right: 5%">
       <h1>
-        {{line1}}
+        {{$t(line1)}}
         <br />
-        {{line2}}
+        {{$t(line2)}}
       </h1>
     </div>
     <div class="right">

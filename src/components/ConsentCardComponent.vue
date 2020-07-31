@@ -11,7 +11,7 @@
         <b-icon icon="check-circle-outline" custom-size="default" />Approve
       </span> -->
       <span class="card-footer-item more">
-        View More <b-icon icon="arrow-right-circle-outline" custom-size="default" />
+        {{$t('buttonViewMore')}} <b-icon icon="arrow-right-circle-outline" custom-size="default" />
       </span>
     </footer>
   </div>

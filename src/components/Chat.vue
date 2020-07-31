@@ -4,11 +4,10 @@
       <div class="left">
         <div class="container">
           <h1>
-            <b>Need Help?</b>
+            <b>{{$t('chatNeedHelp')}}</b>
           </h1>
           <p>
-            Our support can help you
-            <br />understand your data rights better
+            {{$t('chatSubtitle')}}
           </p>
           <b-button type="is-link" style="margin-top: 5%">Chat</b-button>
         </div>

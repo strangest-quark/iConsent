@@ -113,8 +113,7 @@ ul {
 }
 
 .accountLogo {
-  min-width: 5rem;
-  max-width: 7rem;
+  width: 7rem;
   display: flex; 
   float: left;
 }
@@ -124,7 +123,7 @@ ul {
 }
 
 .accountConsents {
-  padding-left: 50px;
+  /* padding-left: 50px; */
 }
 
 .accountConsents h1 {

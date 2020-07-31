@@ -18,8 +18,8 @@ export default {
     return {
       isImageModalActive: false,
       haveCheckBox: false,
-      line1: 'Your',
-      line2: 'Accounts',
+      line1: 'scrollTitleYour',
+      line2: 'scrollTitleAccounts',
       isActiveTab: 0,
       dashboardData: null,
       isLoading: false

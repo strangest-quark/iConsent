@@ -5,9 +5,9 @@
         <b-icon :icon="menuToggleMobileIcon" />
       </a>
       <div class="navbar-item has-control no-left-space-touch">
-        <div class="control">
+        <!-- <div class="control">
           <input class="input" placeholder="Search everywhere..." />
-        </div>
+        </div> -->
       </div>
     </div>
     <div class="navbar-brand is-right">
@@ -24,11 +24,11 @@
           <a class="navbar-item navbar-item-menu-toggle" @click.prevent="menuNavBarToggle">
             <b-icon icon="bell" size="is-default" />
           </a>
-        </div> -->
+        </div>-->
         <nav-bar-menu class="has-divider has-user-avatar">
           <user-avatar />
           <div class="is-user-name">
-            <span>{{ userPhoneNumber() }}</span>
+            <span>{{ userName() }}</span>
           </div>
 
           <div slot="dropdown" class="navbar-dropdown">
@@ -36,14 +36,14 @@
               <b-icon icon="account" custom-size="default" />
               <span>My Profile</span>
             </router-link>
-            <a class="navbar-item">
+            <a disabled class="navbar-item">
               <b-icon icon="settings" custom-size="default"></b-icon>
               <span>Settings</span>
             </a>
-            <a class="navbar-item">
+            <!-- <a class="navbar-item">
               <b-icon icon="email" custom-size="default"></b-icon>
               <span>Messages</span>
-            </a>
+            </a> -->
             <hr class="navbar-divider" />
             <a @click="signOut" class="navbar-item">
               <b-icon icon="logout" custom-size="default"></b-icon>
@@ -79,11 +79,11 @@ export default {
     menuToggleMobileIcon () {
       return this.isAsideMobileExpanded ? 'backburger' : 'forwardburger'
     },
-    ...mapState(['isNavBarVisible', 'isAsideMobileExpanded', 'userName'])
+    ...mapState(['isNavBarVisible', 'isAsideMobileExpanded'])
   },
   methods: {
-    userPhoneNumber () {
-      return sessionStorage.getItem('user-phonenumber')
+    userName () {
+      return sessionStorage.getItem('user-name')
     },
     menuToggleMobile () {
       this.$store.commit('asideMobileStateToggle')

@@ -10,7 +10,9 @@
           class="pending-button"
           icon-left="chevron-left"
           type="is-text"
-        >Pending</b-button>
+        >
+        {{$t('buttonPending')}}
+        </b-button>
         <div>
           <div class="rows">
             <div class="row columns is-mobile is-vcentered">
@@ -151,12 +153,12 @@
 
                 <div class="columns is-mobile is-vcentered">
                   <div class="column" align="left">
-                    <b-button v-if="isBackButtonDisabled" disabled>Back</b-button>
-                    <b-button v-else @click="previousCard">Back</b-button>
+                    <b-button v-if="isBackButtonDisabled" disabled>{{$t('buttonBack')}}</b-button>
+                    <b-button v-else @click="previousCard">{{$t('buttonBack')}}</b-button>
                   </div>
                   <div class="column" align="right">
-                    <b-button v-if="isNextButtonDisabled" disabled type="is-primary">Next</b-button>
-                    <b-button v-else @click="nextCard" type="is-primary">Next</b-button>
+                    <b-button v-if="isNextButtonDisabled" disabled type="is-primary">{{$t('buttonNext')}}</b-button>
+                    <b-button v-else @click="nextCard" type="is-primary">{{$t('buttonNext')}}</b-button>
                   </div>
                 </div>
               </div>
@@ -185,7 +187,7 @@
               size="is-medium"
               @click="rejectConsent"
               icon-left="close-circle-outline"
-            >Reject</b-button>
+            >{{$t('buttonReject')}}</b-button>
           </div>
           <div class="column" align="left">
             <b-button
@@ -194,7 +196,7 @@
               size="is-medium"
               @click="acceptConsent"
               icon-left="check-circle-outline"
-            >Approve</b-button>
+            >{{$t('buttonApprove')}}</b-button>
           </div>
         </div>
       </div>
@@ -219,7 +221,7 @@
                 class="reject"
                 @click="rejectConsent"
                 icon-left="close-circle-outline"
-              >Reject</b-button>
+              >{{$t('buttonReject')}}</b-button>
             </div>
             <div class="column" align="left">
               <b-button
@@ -227,7 +229,7 @@
                 class="approve"
                 @click="acceptConsent"
                 icon-left="check-circle-outline"
-              >Approve</b-button>
+              >{{$t('buttonApprove')}}</b-button>
             </div>
           </div>
         </section>
