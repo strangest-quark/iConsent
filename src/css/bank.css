@@ -36,22 +36,6 @@ h1 {
   grid-column: 1 / -1;
 }
 
-.hs {
-  display: grid;
-  grid-gap: calc(var(--gutter) / 2);
-  grid-template-columns: 20px repeat(10, calc(50% - var(--gutter) * 2)) 10px;
-  grid-template-rows: minmax(150px, 1fr);
-  overflow-x: scroll;
-  scroll-snap-type: x proximity;
-  padding-bottom: calc(0.75 * var(--gutter));
-  margin-bottom: calc(-0.5 * var(--gutter));
-}
-
-.hs:before,
-.hs:after {
-  content: "";
-}
-
 /* Hide scrollbar */
 .hide-scroll {
   overflow-y: hidden;
