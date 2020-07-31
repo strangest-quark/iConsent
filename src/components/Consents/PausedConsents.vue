@@ -3,7 +3,7 @@
      <div v-if="data.length === 0">
         <consents-no-data consentType="paused"/>
      </div>
-    <div v-for="i in data" :key="i">
+    <div class="mx-2 my-2" v-for="i in data" :key="i">
       <consent-card-component title="Performance" icon="finance">
         <div class="rows">
           <div class="row columns is-mobile is-vcentered">
@@ -11,13 +11,9 @@
               <img :src="i.fiu_logo" />
             </div>
             <div v-if="i.isVerified" class="column is-green" align="right">
-              Verified
+               {{$t('labelVerified')}}
               <b-icon icon="shield-check" custom-size="default" />
             </div>
-            <!-- <div v-else class="column is-gray" align="right">
-              Verified
-              <b-icon icon="shield-check" custom-size="default" />
-            </div> -->
           </div>
           <div class="row">
             <h2 class="title is-6">{{i.tagline}}</h2>
@@ -27,7 +23,7 @@
               <h2 class="is-7">{{i.validTill}}</h2>
             </div>
           </div>
-          <div class="row columns is-mobile">
+          <!-- <div class="row columns is-mobile">
             <div @click="isImageModalActive = true" class="play-video-trigger column" align="left">
               <b-icon class="mr-1" icon="play-circle" size="is-small" />
               <a class="is-6">How does it work?</a>
@@ -35,7 +31,7 @@
             <div class="column is-gray is-two-fifths" align="right">
               <h2 class="is-8">Report Fraud</h2>
             </div>
-          </div>
+          </div> -->
         </div>
       </consent-card-component>
       <p></p>

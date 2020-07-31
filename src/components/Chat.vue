@@ -9,7 +9,7 @@
           <p>
             {{$t('chatSubtitle')}}
           </p>
-          <b-button type="is-link" style="margin-top: 5%">Chat</b-button>
+          <b-button type="is-link" style="margin-top: 5%">{{$t('buttonChat')}}</b-button>
         </div>
       </div>
       <div class="right">

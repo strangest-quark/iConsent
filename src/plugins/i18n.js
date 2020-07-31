@@ -32,7 +32,8 @@ const messages = {
     buttonBack: 'Back',
     buttonNext: 'Next',
     buttonApprove: 'Approve',
-    buttonReject: 'Reject'
+    buttonReject: 'Reject',
+    buttonChat: 'Chat'
   },
   ta: {
     menulabelDashboard: 'டாஷ்போர்டு',
@@ -57,12 +58,13 @@ const messages = {
     chatNeedHelp: 'உதவி தேவை?',
     chatSubtitle: 'உங்கள் தரவு உரிமைகளை நன்கு புரிந்துகொள்ள எங்கள் ஆதரவு உதவும்',
     scrollTitleYour: 'உங்கள்',
-    scrollTitleAccounts: 'கணக்குகள்e',
+    scrollTitleAccounts: 'கணக்குகள்',
     buttonPending: 'நிலுவை',
     buttonBack: 'பின்னால்',
     buttonNext: 'அடுத்தது',
     buttonApprove: 'ஒப்புதல்',
-    buttonReject: 'நிராகரி'
+    buttonReject: 'நிராகரி',
+    buttonChat: 'அரட்டை'
   },
   ml: {
     menulabelDashboard: 'ഡാഷ്ബോർഡ്',
@@ -92,7 +94,8 @@ const messages = {
     buttonBack: 'തിരികെ',
     buttonNext: 'അടുത്തത്',
     buttonApprove: 'അംഗീകരിക്കുക',
-    buttonReject: 'നിരസിക്കുക'
+    buttonReject: 'നിരസിക്കുക',
+    buttonChat: 'ചാറ്റ്'
 
   },
   hi: {
@@ -123,7 +126,8 @@ const messages = {
     buttonBack: 'वापस',
     buttonNext: 'आगे',
     buttonApprove: 'मंजूर',
-    buttonReject: 'अस्वीकार'
+    buttonReject: 'अस्वीकार',
+    buttonChat: 'बातचीत'
   },
   te: {
     menulabelDashboard: 'డాష్బోర్డ్',
@@ -153,7 +157,8 @@ const messages = {
     buttonBack: 'తిరిగి',
     buttonNext: 'తరువాత',
     buttonApprove: 'ఆమోదించడానికి',
-    buttonReject: 'తిరస్కరించు'
+    buttonReject: 'తిరస్కరించు',
+    buttonChat: 'కబుర్లు'
   },
   kn: {
     menulabelDashboard: 'ಡ್ಯಾಶ್‌ಬೋರ್ಡ್',
@@ -183,7 +188,8 @@ const messages = {
     buttonBack: 'ಹಿಂದೆ',
     buttonNext: 'ಮುಂದೆ',
     buttonApprove: 'ಅನುಮೋದಿಸಿ',
-    buttonReject: 'ತಿರಸ್ಕರಿಸಿ'
+    buttonReject: 'ತಿರಸ್ಕರಿಸಿ',
+    buttonChat: 'ಚಾಟ್'
   }
 }
 

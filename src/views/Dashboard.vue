@@ -42,7 +42,7 @@
           <div class="row" style="padding-top: 5%">
             <BankList :line1="line1" :line2="line2" :accounts="dashboardData.accounts" :haveSide="true" :haveCheckBox="false" :haveType="true" />
           </div>
-          <div style="margin-top: 12vh" class="row">
+          <div style="margin-top: 8vh" class="row">
             <Chat style="padding: 4% 4% 4% 0%" />
           </div>
         </div>

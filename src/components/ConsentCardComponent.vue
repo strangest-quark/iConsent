@@ -3,7 +3,7 @@
     <div class="card-content">
       <slot />
     </div>
-    <footer class="card-footer">
+    <footer v-if="status=='pending'" class="card-footer">
       <!-- <span @click="rejectConsent" class="card-footer-item reject">
         <b-icon icon="close-circle-outline" custom-size="default" />Reject
       </span>
