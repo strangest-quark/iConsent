@@ -28,7 +28,7 @@
         <nav-bar-menu class="has-divider has-user-avatar">
           <user-avatar />
           <div class="is-user-name">
-            <span>{{ userName() }}</span>
+            <span>{{ userName }}</span>
           </div>
 
           <div slot="dropdown" class="navbar-dropdown">
@@ -67,6 +67,9 @@ export default {
     UserAvatar,
     NavBarMenu
   },
+  props: {
+    userName: String
+  },
   data () {
     return {
       isMenuNavBarActive: false
@@ -82,9 +85,9 @@ export default {
     ...mapState(['isNavBarVisible', 'isAsideMobileExpanded'])
   },
   methods: {
-    userName () {
-      return sessionStorage.getItem('user-name')
-    },
+    // userName () {
+    //   return sessionStorage.getItem('user-name')
+    // },
     menuToggleMobile () {
       this.$store.commit('asideMobileStateToggle')
     },

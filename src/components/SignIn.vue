@@ -102,6 +102,7 @@ export default {
         .then(function (response) {
           if (response.data.status === true) {
             sessionStorage.setItem('user-name', String(response.data.userData.firstName))
+            here.$router.push('/dashboard').catch(() => {})
           } else {
             here.$buefy.snackbar.open({
               type: 'is-danger',
@@ -134,7 +135,6 @@ export default {
             sessionStorage.setItem('user-phonenumber', String(here.inputPhoneNumber))
             sessionStorage.setItem('user-sessionId', String(response.data.sessionId))
             here.$store.commit('asideHolderHide', true)
-            here.$router.push('/').catch(() => {})
             here.getUserDetails()
             here.closeLoading()
           } else {

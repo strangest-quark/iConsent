@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <nav-bar />
+    <nav-bar :userName="userName()" />
     <aside-menu />
     <router-view />
   </div>
@@ -33,6 +33,11 @@ export default {
       localStorage.setItem('user-language', language)
       EventBus.$emit('current_user_language', language)
       i18n.locale = language
+    }
+  },
+  methods: {
+    userName () {
+      return sessionStorage.getItem('user-name')
     }
   }
 }
