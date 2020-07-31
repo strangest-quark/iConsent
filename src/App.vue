@@ -10,6 +10,10 @@
 // @ is an alias to /src
 import NavBar from '@/components/NavBar'
 import AsideMenu from '@/components/AsideMenu'
+import i18n from '@/plugins/i18n'
+
+/* EventBus */
+import EventBus from '@/eventBus'
 
 export default {
   name: 'home',
@@ -25,7 +29,10 @@ export default {
       this.$router.push('/sign-in').catch(() => {})
     }
     if (localStorage.getItem('user-language') === null) {
-      localStorage.setItem('user-language', navigator.language)
+      const language = navigator.userLanguage || navigator.language
+      localStorage.setItem('user-language', language)
+      EventBus.$emit('current_user_language', language)
+      i18n.locale = language
     }
   }
 }

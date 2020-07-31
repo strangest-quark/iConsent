@@ -36,6 +36,7 @@
 
 <script>
 // import Language from '@/components/Language.vue'
+import EventBus from '@/eventBus'
 import i18n from '@/plugins/i18n'
 export default {
   components: {
@@ -103,6 +104,9 @@ export default {
     }
   },
   mounted () {
+    EventBus.$on('current_user_language', (language) => {
+      this.setActive(language)
+    })
     if (localStorage.getItem('user-language') === null) {
       this.setActive(navigator.language)
     } else {
