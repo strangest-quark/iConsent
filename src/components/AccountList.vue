@@ -1,11 +1,11 @@
 <template>
   <div class="accountList">
     <div class="add-account-button">
-    <b-button icon-left="plus" type="is-text">Add Account</b-button>
+    <b-button icon-left="plus" type="is-text">{{$t('buttonAddAccount')}}</b-button>
     </div>
     <div>
       <ul class="vs full">
-        <Account v-for="bank in banks" :bank="bank" :haveCheckBox="haveCheckBox" :key="bank.id" />
+        <Account v-for="bank in $t('banks')" :bank="bank" :haveCheckBox="haveCheckBox" :key="bank.id" />
       </ul>
     </div>
   </div>
@@ -20,33 +20,6 @@ export default {
   },
   props: {
     haveCheckBox: Boolean
-  },
-  data () {
-    return {
-      banks: [
-        {
-          id: 1,
-          name: 'Citibank',
-          imgName: 'citi.png',
-          accType: 'Savings',
-          accNo: 4545
-        },
-        {
-          id: 2,
-          name: 'HDFC Bank',
-          imgName: 'hdfc.png',
-          accType: 'Loan',
-          accNo: 3455
-        },
-        {
-          id: 3,
-          name: 'Axis Bank',
-          imgName: 'axis.png',
-          accType: 'Savings',
-          accNo: 9545
-        }
-      ]
-    }
   }
 }
 </script>

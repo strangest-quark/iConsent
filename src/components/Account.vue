@@ -15,10 +15,10 @@
       <h1>
         <strong>2</strong>
       </h1>
-      <small><strong>Linked Consents</strong></small><br/>
+      <small><strong>{{$t('accountLinkedConsents')}}</strong></small><br/>
     </div>
     <div class="column">
-      <b-button class="delink-button" type="is-text"> Delink </b-button>
+      <b-button class="delink-button" type="is-text"> {{$t('buttonDelink')}} </b-button>
     </div>
   </div>
 </template>

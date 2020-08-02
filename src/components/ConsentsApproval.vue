@@ -1,131 +1,132 @@
 <template>
-  <div class="section is-fluid">
+  <div>
     <div v-if="isLoading" class="is-center">
-      <bounce :loading="isLoading"></bounce>
+      <bounce :loading="true"></bounce>
     </div>
-    <div v-if="!isLoading" class="columns is-multiline">
-      <div class="column">
-        <b-button
-          @click="$router.go(-1)"
-          class="pending-button"
-          icon-left="chevron-left"
-          type="is-text"
-        >{{$t('buttonPending')}}</b-button>
-        <div>
-          <div class="rows">
-            <div class="row columns is-mobile is-vcentered">
-              <div class="logo column" align="left">
-                <img :src="consentData.fiu_logo" />
-              </div>
-              <div v-if="consentData.isVerified" class="column is-green" align="right">
-                {{$t('labelVerified')}}
-                <b-icon icon="shield-check" custom-size="default" />
-              </div>
-            </div>
-            <div>
-              <div class="row">
-                <h2 class="title is-5">{{consentData.tagline}}</h2>
-              </div>
-              <hr />
-              <div style="width: 100%; padding-top: 2%">
-                <step-progress
-                  :steps="progressSteps"
-                  :active-color="progressColor"
-                  :active-thickness="3"
-                  :passive-thickness="3"
-                  :line-thickness="3"
-                  :current-step="currentStep"
-                  icon-class="fa fa-check"
-                ></step-progress>
+    <div class="section is-fluid">
+      <div v-if="consentData" class="columns is-multiline">
+        <div class="column">
+          <b-button
+            @click="$router.go(-1)"
+            class="pending-button"
+            icon-left="chevron-left"
+            type="is-text"
+          >{{$t('buttonPending')}}</b-button>
+          <div>
+            <div class="rows">
+              <div class="row columns is-mobile is-vcentered">
+                <div class="logo column" align="left">
+                  <img :src="consentData.fiu_logo" />
+                </div>
+                <div v-if="consentData.isVerified" class="column is-green" align="right">
+                  {{$t('labelVerified')}}
+                  <b-icon icon="shield-check" custom-size="default" />
+                </div>
               </div>
               <div>
-                <div class="card">
-                  <div class="card-content">
-                    <!-- why -->
-                    <div v-if="currentStep==0" class="rows">
-                      <span class="row">
-                        <h2 class="question subtitle is-6">{{consentData.q1}}</h2>
-                      </span>
-                      <span class="row">
-                        <p class="answer">{{consentData.ans1}}</p>
-                      </span>
-                    </div>
-                    <!-- how long -->
-                    <div v-if="currentStep==1" class="rows">
-                      <span class="row">
-                        <h2 class="question subtitle is-6">{{consentData.q2}}</h2>
-                      </span>
-                      <span class="row">
-                        <span class>
-                          <span class="column">
-                            <p class="answer">{{consentData.from}}</p>
-                            <p class="answer">
-                              <strong>{{consentData.fromDate}}</strong>
-                            </p>
-                          </span>
-                          <span class="column">
-                            <p class="answer">{{consentData.to}}</p>
-                            <p class="answer">
-                              <strong>{{consentData.toDate}}</strong>
-                            </p>
+                <div class="row">
+                  <h2 class="title is-5">{{consentData.tagline}}</h2>
+                </div>
+                <hr />
+                <div style="width: 100%; padding-top: 2%">
+                  <step-progress
+                    :steps="progressSteps"
+                    :active-color="progressColor"
+                    :active-thickness="3"
+                    :passive-thickness="3"
+                    :line-thickness="3"
+                    :current-step="currentStep"
+                    icon-class="fa fa-check"
+                  ></step-progress>
+                </div>
+                <div>
+                  <div class="card">
+                    <div class="card-content">
+                      <!-- why -->
+                      <div v-if="currentStep==0" class="rows">
+                        <span class="row">
+                          <h2 class="question subtitle is-6">{{consentData.q1}}</h2>
+                        </span>
+                        <span class="row">
+                          <p class="answer">{{consentData.ans1}}</p>
+                        </span>
+                      </div>
+                      <!-- how long -->
+                      <div v-if="currentStep==1" class="rows">
+                        <span class="row">
+                          <h2 class="question subtitle is-6">{{consentData.q2}}</h2>
+                        </span>
+                        <span class="row">
+                          <span class>
+                            <span class="column">
+                              <p class="answer">{{consentData.from}}</p>
+                              <p class="answer">
+                                <strong>{{consentData.fromDate}}</strong>
+                              </p>
+                            </span>
+                            <span class="column">
+                              <p class="answer">{{consentData.to}}</p>
+                              <p class="answer">
+                                <strong>{{consentData.toDate}}</strong>
+                              </p>
+                            </span>
                           </span>
                         </span>
-                      </span>
-                    </div>
-                    <!-- for -->
-                    <div v-if="currentStep==2" class="rows">
-                      <span class="row">
-                        <h2 class="question subtitle is-6">{{consentData.bank_ques}}</h2>
-                      </span>
-                      <div class="row">
-                        <BankList
-                          :line1="line1"
-                          :line2="line2"
-                          :accounts="consentData.accounts"
-                          :haveCheckBox="haveCheckBox"
-                        />
                       </div>
-                    </div>
-                    <!-- what -->
-                    <div v-if="currentStep==3" class="rows">
-                      <span class="row">
-                        <h2 class="question subtitle is-6">{{consentData.q4}}</h2>
-                      </span>
-                      <div class="row">
-                        <div class="column" style="text-align: center; width: 100%">
-                          <img
-                            style="padding-left: 25%; padding-right: 25%; text-align: center"
-                            :src="consentData.card1_icon"
-                          />
-                        </div>
-                        <div class="column" style="text-align: center; width: 100%">
-                          <img
-                            style="padding-left: 25%; padding-right: 25%; text-align: center"
-                            :src="consentData.card2_icon"
-                          />
-                        </div>
-                        <div class="column" style="text-align: center; width: 100%">
-                          <img
-                            style="padding-left: 25%; padding-right: 25%; text-align: center"
-                            :src="consentData.card3_icon"
+                      <!-- for -->
+                      <div v-if="currentStep==2" class="rows">
+                        <span class="row">
+                          <h2 class="question subtitle is-6">{{consentData.bank_ques}}</h2>
+                        </span>
+                        <div class="row">
+                          <BankList
+                            :line1="line1"
+                            :line2="line2"
+                            :accounts="consentData.accounts"
+                            :haveCheckBox="haveCheckBox"
                           />
                         </div>
                       </div>
-                      <div class="row" style="display: table;">
-                        <h1 style="font-size: font-size: 1vmax">{{consentData.ans4}}</h1>
+                      <!-- what -->
+                      <div v-if="currentStep==3" class="rows">
+                        <span class="row">
+                          <h2 class="question subtitle is-6">{{consentData.q4}}</h2>
+                        </span>
+                        <div class="row">
+                          <div class="column" style="text-align: center; width: 100%">
+                            <img
+                              style="padding-left: 25%; padding-right: 25%; text-align: center"
+                              :src="consentData.card1_icon"
+                            />
+                          </div>
+                          <div class="column" style="text-align: center; width: 100%">
+                            <img
+                              style="padding-left: 25%; padding-right: 25%; text-align: center"
+                              :src="consentData.card2_icon"
+                            />
+                          </div>
+                          <div class="column" style="text-align: center; width: 100%">
+                            <img
+                              style="padding-left: 25%; padding-right: 25%; text-align: center"
+                              :src="consentData.card3_icon"
+                            />
+                          </div>
+                        </div>
+                        <div class="row" style="display: table;">
+                          <h1 style="font-size: font-size: 1vmax">{{consentData.ans4}}</h1>
+                        </div>
                       </div>
-                    </div>
-                    <!-- till when -->
-                    <div v-if="currentStep==4" class="rows">
-                      <span class="row">
-                        <h2 class="question subtitle is-6">{{consentData.q3}}</h2>
-                      </span>
-                      <span class="row">
-                        <p class="answer">{{consentData.validTill}}</p>
-                      </span>
-                    </div>
-                    <!-- video -->
-                    <!-- <div v-if="currentStep==4" class="rows">
+                      <!-- till when -->
+                      <div v-if="currentStep==4" class="rows">
+                        <span class="row">
+                          <h2 class="question subtitle is-6">{{consentData.q3}}</h2>
+                        </span>
+                        <span class="row">
+                          <p class="answer">{{consentData.validTill}}</p>
+                        </span>
+                      </div>
+                      <!-- video -->
+                      <!-- <div v-if="currentStep==4" class="rows">
                       <span class="row">
                         <h2 class="question subtitle is-6">What range of my data will be accessed?</h2>
                       </span>
@@ -145,82 +146,48 @@
                           </span>
                         </span>
                       </span>
-                    </div>-->
+                      </div>-->
+                    </div>
                   </div>
-                </div>
 
-                <div class="columns is-mobile is-vcentered">
-                  <div class="column" align="left">
-                    <b-button v-if="isBackButtonDisabled" disabled>{{$t('buttonBack')}}</b-button>
-                    <b-button v-else @click="previousCard">{{$t('buttonBack')}}</b-button>
-                  </div>
-                  <div class="column" align="right">
-                    <b-button
-                      v-if="isNextButtonDisabled"
-                      disabled
-                      type="is-primary"
-                    >{{$t('buttonNext')}}</b-button>
-                    <b-button v-else @click="nextCard" type="is-primary">{{$t('buttonNext')}}</b-button>
+                  <div class="columns is-mobile is-vcentered">
+                    <div class="column" align="left">
+                      <b-button v-if="isBackButtonDisabled" disabled>{{$t('buttonBack')}}</b-button>
+                      <b-button v-else @click="previousCard">{{$t('buttonBack')}}</b-button>
+                    </div>
+                    <div class="column" align="right">
+                      <b-button
+                        v-if="isNextButtonDisabled"
+                        disabled
+                        type="is-primary"
+                      >{{$t('buttonNext')}}</b-button>
+                      <b-button v-else @click="nextCard" type="is-primary">{{$t('buttonNext')}}</b-button>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div
-        class="column video-placement is-half content-right is-hidden-mobile"
-        style="padding-left: 5%"
-      >
-        <div class="rows">
-          <div class="row video">
-            <Video :url="consentData.video" />
+        <div
+          class="column video-placement is-half content-right is-hidden-mobile"
+          style="padding-left: 5%"
+        >
+          <div class="rows">
+            <div class="row video">
+              <Video :url="consentData.video" />
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div v-if="consentData" class="columns is-left">
-      <div class="column card-content is-half" align="left">
-        <div class="columns is-mobile">
-          <div class="column" align="right">
-            <b-button
-              type="is-rounded"
-              class="reject"
-              size="is-medium"
-              @click="rejectConsent"
-              icon-left="close-circle-outline"
-            >{{$t('buttonReject')}}</b-button>
-          </div>
-          <div class="column" align="left">
-            <b-button
-              type="is-rounded"
-              class="approve"
-              size="is-medium"
-              @click="acceptConsent1"
-              icon-left="check-circle-outline"
-            >{{$t('buttonApprove')}}</b-button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <b-modal
-      :active.sync="isComponentModalActive"
-      has-modal-card
-      trap-focus
-      :destroy-on-hide="false"
-      aria-role="dialog"
-      aria-modal
-    >
-      <div class="not-read-consent modal-card">
-        <section class="modal-card-body">
-          <h4 class="title is-6">{{consentData.warn_1}}</h4>
-          <h4 class="subtitle is-6">{{consentData.warn_2}}</h4>
-          <h2 class="title proceed-title is-5">{{consentData.warn_3}}</h2>
+      <div v-if="consentData" class="columns is-left">
+        <div class="column card-content is-half" align="left">
           <div class="columns is-mobile">
             <div class="column" align="right">
               <b-button
                 type="is-rounded"
                 class="reject"
+                size="is-medium"
                 @click="rejectConsent"
                 icon-left="close-circle-outline"
               >{{$t('buttonReject')}}</b-button>
@@ -229,63 +196,101 @@
               <b-button
                 type="is-rounded"
                 class="approve"
-                @click="acceptConsent2"
+                size="is-medium"
+                @click="acceptConsent1"
                 icon-left="check-circle-outline"
               >{{$t('buttonApprove')}}</b-button>
             </div>
           </div>
-        </section>
+        </div>
       </div>
-    </b-modal>
-    <b-modal
-      :active.sync="isFullyReadModalActive"
-      has-modal-card
-      trap-focus
-      :destroy-on-hide="false"
-      aria-role="dialog"
-      aria-modal
-    >
-      <div class="modal-card">
-        <section class="modal-card-body">
-          <h4 class="title is-6">{{consentData.hurray_1}}</h4>
-          <h4 class="subtitle is-6">
-            <div>{{consentData.hurray_2}}</div>
-            <div>{{consentData.hurray_3}}</div>
-          </h4>
-          <div class="congragulations-model">
-            <div class="columns is-mobile is-centered">
-              <div class="logo column" align="center">
-                <img :src="consentData.fiu_logo" />
+      <b-modal
+        v-if="consentData"
+        :active.sync="isComponentModalActive"
+        has-modal-card
+        trap-focus
+        :destroy-on-hide="false"
+        aria-role="dialog"
+        aria-modal
+      >
+        <div class="not-read-consent modal-card">
+          <section class="modal-card-body">
+            <h4 class="title is-6">{{consentData.warn_1}}</h4>
+            <h4 class="subtitle is-6">{{consentData.warn_2}}</h4>
+            <h2 class="title proceed-title is-5">{{consentData.warn_3}}</h2>
+            <div class="columns is-mobile">
+              <div class="column" align="right">
+                <b-button
+                  type="is-rounded"
+                  class="reject"
+                  @click="rejectConsent"
+                  icon-left="close-circle-outline"
+                >{{$t('buttonReject')}}</b-button>
+              </div>
+              <div class="column" align="left">
+                <b-button
+                  type="is-rounded"
+                  class="approve"
+                  @click="acceptConsent2"
+                  icon-left="check-circle-outline"
+                >{{$t('buttonApprove')}}</b-button>
               </div>
             </div>
-
-            <h4 class="title is-6">{{consentData.hurray_4}}</h4>
-          </div>
-        </section>
-      </div>
-    </b-modal>
-    <b-modal
-      :active.sync="isAcceptModalActive"
-      has-modal-card
-      trap-focus
-      :destroy-on-hide="false"
-      aria-role="dialog"
-      aria-modal
-    >
-      <div class="modal-card">
-        <section class="modal-card-body">
-          <div class="congragulations-model">
-            <div class="columns is-mobile is-centered">
-              <div class="logo column" align="center">
-                <img :src="consentData.fiu_logo" />
+          </section>
+        </div>
+      </b-modal>
+      <b-modal
+        v-if="consentData"
+        :active.sync="isFullyReadModalActive"
+        has-modal-card
+        trap-focus
+        :destroy-on-hide="false"
+        aria-role="dialog"
+        aria-modal
+      >
+        <div class="modal-card">
+          <section class="modal-card-body">
+            <h4 class="title is-6">{{consentData.hurray_1}}</h4>
+            <h4 class="subtitle is-6">
+              <div>{{consentData.hurray_2}}</div>
+              <div>{{consentData.hurray_3}}</div>
+            </h4>
+            <div class="congragulations-model">
+              <div class="columns is-mobile is-centered">
+                <div class="logo column" align="center">
+                  <img :src="consentData.fiu_logo" />
+                </div>
               </div>
-            </div>
 
-            <h4 class="title is-6">{{consentData.hurray_4}}</h4>
-          </div>
-        </section>
-      </div>
-    </b-modal>
+              <h4 class="title is-6">{{consentData.hurray_4}}</h4>
+            </div>
+          </section>
+        </div>
+      </b-modal>
+      <b-modal
+        v-if="consentData"
+        :active.sync="isAcceptModalActive"
+        has-modal-card
+        trap-focus
+        :destroy-on-hide="false"
+        aria-role="dialog"
+        aria-modal
+      >
+        <div class="modal-card">
+          <section class="modal-card-body">
+            <div class="congragulations-model">
+              <div class="columns is-mobile is-centered">
+                <div class="logo column" align="center">
+                  <img :src="consentData.fiu_logo" />
+                </div>
+              </div>
+
+              <h4 class="title is-6">{{consentData.hurray_4}}</h4>
+            </div>
+          </section>
+        </div>
+      </b-modal>
+    </div>
   </div>
 </template>
 <script>
@@ -334,12 +339,20 @@ export default {
       isAcceptModalActive: false
     }
   },
+  mounted () {
+    this.checkButtonActiveState()
+    this.getConsentData(this.$route.params)
+  },
   methods: {
     openLoading () {
+      console.log('Open Loading', this.isLoading)
       this.isLoading = true
+      console.log('Open Loading', this.isLoading)
     },
     closeLoading () {
+      console.log('Close Loading', this.isLoading)
       this.isLoading = false
+      console.log('Close Loading', this.isLoading)
     },
     dashboardTabChanged (index) {
       this.isActiveTab = index
@@ -440,7 +453,8 @@ export default {
     getConsentData (params) {
       const here = this
       const payload = {}
-      ConsentAPI.postItem(payload, params.id, params.fiu)
+      here.openLoading()
+      ConsentAPI.postItem(payload, params.id)
         .then(function (response) {
           here.consentData = response.data
           here.closeLoading()
@@ -455,12 +469,6 @@ export default {
           })
         })
     }
-  },
-  mounted () {
-    const here = this
-    here.openLoading()
-    here.checkButtonActiveState()
-    here.getConsentData(this.$route.params)
   }
 }
 </script>

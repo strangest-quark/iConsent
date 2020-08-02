@@ -33,7 +33,31 @@ const messages = {
     buttonNext: 'Next',
     buttonApprove: 'Approve',
     buttonReject: 'Reject',
-    buttonChat: 'Chat'
+    buttonChat: 'Chat',
+    buttonDelink: 'Delink',
+    buttonAddAccount: 'Add Account',
+    accountLinkedConsents: 'Linked Consents',
+    banks: [{
+      id: 1,
+      name: 'Citibank',
+      imgName: 'citi.png',
+      accType: 'Savings',
+      accNo: 4545
+    },
+    {
+      id: 2,
+      name: 'HDFC Bank',
+      imgName: 'hdfc.png',
+      accType: 'Loan',
+      accNo: 3455
+    },
+    {
+      id: 3,
+      name: 'Axis Bank',
+      imgName: 'axis.png',
+      accType: 'Savings',
+      accNo: 9545
+    }]
   },
   ta: {
     menulabelDashboard: 'டாஷ்போர்டு',
@@ -64,7 +88,31 @@ const messages = {
     buttonNext: 'அடுத்தது',
     buttonApprove: 'ஒப்புதல்',
     buttonReject: 'நிராகரி',
-    buttonChat: 'அரட்டை'
+    buttonChat: 'அரட்டை',
+    buttonDelink: 'முறிவுசெய்',
+    buttonAddAccount: 'கணக்கு சேர்க்க',
+    accountLinkedConsents: 'செயலில் ஒப்புதல்',
+    banks: [{
+      id: 1,
+      name: 'சிட்டி வங்கி',
+      imgName: 'citi.png',
+      accType: 'சேமிப்பு',
+      accNo: 4545
+    },
+    {
+      id: 2,
+      name: 'எச்டிஎஃப்சி வங்கி',
+      imgName: 'hdfc.png',
+      accType: 'கடன்',
+      accNo: 3455
+    },
+    {
+      id: 3,
+      name: 'ஆக்சிஸ் வங்கி',
+      imgName: 'axis.png',
+      accType: 'சேமிப்பு',
+      accNo: 9545
+    }]
   },
   ml: {
     menulabelDashboard: 'ഡാഷ്ബോർഡ്',
@@ -95,7 +143,31 @@ const messages = {
     buttonNext: 'അടുത്തത്',
     buttonApprove: 'അംഗീകരിക്കുക',
     buttonReject: 'നിരസിക്കുക',
-    buttonChat: 'ചാറ്റ്'
+    buttonChat: 'ചാറ്റ്',
+    buttonDelink: 'പൊട്ടുക',
+    buttonAddAccount: 'അക്കൗണ്ട് ചേർക്കുക',
+    accountLinkedConsents: 'സജീവ സമ്മതം',
+    banks: [{
+      id: 1,
+      name: 'സിറ്റിബാങ്ക്',
+      imgName: 'citi.png',
+      accType: 'സേവിംഗ്സ്',
+      accNo: 4545
+    },
+    {
+      id: 2,
+      name: 'എച്ച്ഡിഎഫ്സി',
+      imgName: 'hdfc.png',
+      accType: 'വായ്പ',
+      accNo: 3455
+    },
+    {
+      id: 3,
+      name: 'ആക്സിസ്',
+      imgName: 'axis.png',
+      accType: 'സേവിംഗ്സ്',
+      accNo: 9545
+    }]
 
   },
   hi: {
@@ -127,7 +199,31 @@ const messages = {
     buttonNext: 'आगे',
     buttonApprove: 'मंजूर',
     buttonReject: 'अस्वीकार',
-    buttonChat: 'बातचीत'
+    buttonChat: 'बातचीत',
+    buttonDelink: 'से अलग',
+    buttonAddAccount: 'खाता जोड़ो',
+    accountLinkedConsents: 'सक्रिय सहमति',
+    banks: [{
+      id: 1,
+      name: 'सिटी बैंक',
+      imgName: 'citi.png',
+      accType: 'जमा पूंजी',
+      accNo: 4545
+    },
+    {
+      id: 2,
+      name: 'एचडीएफसी बैंक',
+      imgName: 'hdfc.png',
+      accType: 'ऋण',
+      accNo: 3455
+    },
+    {
+      id: 3,
+      name: 'ऐक्सिस बैंक',
+      imgName: 'axis.png',
+      accType: 'जमा पूंजी',
+      accNo: 9545
+    }]
   },
   te: {
     menulabelDashboard: 'డాష్బోర్డ్',
@@ -147,7 +243,7 @@ const messages = {
     stepProgressBanks: 'ఖాతాల',
     stepProgressWhat: 'ఏం',
     stepProgressTillWhen: 'ఎప్పటి దాకా',
-    labelVerified: 'ధృవీకరించబడిన',
+    labelVerified: 'నిర్ధారిత',
     buttonViewMore: 'మరిన్ని చూడండి',
     chatNeedHelp: 'సహాయం కావాలి?',
     chatSubtitle: 'మీ డేటా హక్కులను బాగా అర్థం చేసుకోవడానికి మా మద్దతు మీకు సహాయపడుతుంది',
@@ -158,7 +254,31 @@ const messages = {
     buttonNext: 'తరువాత',
     buttonApprove: 'ఆమోదించడానికి',
     buttonReject: 'తిరస్కరించు',
-    buttonChat: 'కబుర్లు'
+    buttonChat: 'కబుర్లు',
+    buttonDelink: 'విరామం',
+    buttonAddAccount: 'ఖాతా జోడించండి',
+    accountLinkedConsents: 'లింక్డ్ సమ్మతులు',
+    banks: [{
+      id: 1,
+      name: 'సిటీబ్యాంకు',
+      imgName: 'citi.png',
+      accType: 'పొదుపు',
+      accNo: 4545
+    },
+    {
+      id: 2,
+      name: 'హెచ్డిఎఫ్సి',
+      imgName: 'hdfc.png',
+      accType: 'అప్పు',
+      accNo: 3455
+    },
+    {
+      id: 3,
+      name: 'యాక్సిస్',
+      imgName: 'axis.png',
+      accType: 'పొదుపు',
+      accNo: 9545
+    }]
   },
   kn: {
     menulabelDashboard: 'ಡ್ಯಾಶ್‌ಬೋರ್ಡ್',
@@ -189,7 +309,31 @@ const messages = {
     buttonNext: 'ಮುಂದೆ',
     buttonApprove: 'ಅನುಮೋದಿಸಿ',
     buttonReject: 'ತಿರಸ್ಕರಿಸಿ',
-    buttonChat: 'ಚಾಟ್'
+    buttonChat: 'ಚಾಟ್',
+    buttonDelink: 'ವಿರಾಮ',
+    buttonAddAccount: 'ಖಾತೆಯನ್ನು ಸೇರಿಸು',
+    accountLinkedConsents: 'ಲಿಂಕ್ಡ್ ಸಮ್ಮತಿಗಳು',
+    banks: [{
+      id: 1,
+      name: 'ಸಿಟಿಬ್ಯಾಂಕ್',
+      imgName: 'citi.png',
+      accType: 'ಉಳಿತಾಯ',
+      accNo: 4545
+    },
+    {
+      id: 2,
+      name: 'ಎಚ್ಡಿಎಫ್ಸಿ',
+      imgName: 'hdfc.png',
+      accType: 'ಸಾಲ',
+      accNo: 3455
+    },
+    {
+      id: 3,
+      name: 'ಆಕ್ಸಿಸ್',
+      imgName: 'axis.png',
+      accType: 'ಉಳಿತಾಯ',
+      accNo: 9545
+    }]
   }
 }
 

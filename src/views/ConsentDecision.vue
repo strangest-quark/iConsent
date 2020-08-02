@@ -1,6 +1,6 @@
 <template>
   <div>
-    <consents-approval :artifactId="$route.params.id" />
+    <consents-approval />
   </div>
 </template>
 
