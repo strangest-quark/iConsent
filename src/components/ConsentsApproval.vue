@@ -26,6 +26,12 @@
               <div class="row">
                 <h2 class="title is-5">{{consentData.tagline}}</h2>
               </div>
+              <div @click="isImageModalActive = true" align="left"
+                class="video-open-button is-hidden-tablet is-hidden-desktop is-hidden-widescreen row"
+              >
+                <b-icon icon="play-circle"></b-icon>
+                <a class="is-vcentered"><strong style="text-decoration: underline">How does it work?</strong></a>
+              </div>
               <hr />
               <div style="width: 100%; padding-top: 2%">
                 <step-progress
@@ -289,6 +295,9 @@
         </section>
       </div>
     </b-modal>
+     <b-modal class="video-modal" :active.sync="isImageModalActive">
+        <Video :url="consentData.video" />
+      </b-modal>
   </div>
 </template>
 <script>
@@ -664,5 +673,15 @@ h2 {
   60% {
     transform: translate3d(4px, 0, 0);
   }
+}
+.video-open-button {
+  margin-top: 0.75rem;
+  color: #f26c63;
+}
+
+a {
+  margin-left: 0.5rem;
+  color: #f26c63;
+  text-decoration: bold;
 }
 </style>
