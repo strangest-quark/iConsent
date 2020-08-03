@@ -30,7 +30,7 @@
                 class="video-open-button is-hidden-tablet is-hidden-desktop is-hidden-widescreen row"
               >
                 <b-icon icon="play-circle"></b-icon>
-                <a class="is-vcentered"><strong style="text-decoration: underline">How does it work?</strong></a>
+                <a class="is-vcentered"><strong style="text-decoration: underline">{{$t('buttonHowDoesItWork')}}</strong></a>
               </div>
               <hr />
               <div style="width: 100%; padding-top: 2%">

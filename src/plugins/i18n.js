@@ -36,6 +36,7 @@ const messages = {
     buttonChat: 'Chat',
     buttonDelink: 'Delink',
     buttonAddAccount: 'Add Account',
+    buttonHowDoesItWork: 'How does it work?',
     accountLinkedConsents: 'Linked Consents',
     banks: [{
       id: 1,
@@ -91,6 +92,7 @@ const messages = {
     buttonChat: 'அரட்டை',
     buttonDelink: 'முறிவுசெய்',
     buttonAddAccount: 'கணக்கு சேர்க்க',
+    buttonHowDoesItWork: 'எப்படி வேலை செய்கிறது?',
     accountLinkedConsents: 'செயலில் ஒப்புதல்',
     banks: [{
       id: 1,
@@ -146,6 +148,7 @@ const messages = {
     buttonChat: 'ചാറ്റ്',
     buttonDelink: 'പൊട്ടുക',
     buttonAddAccount: 'അക്കൗണ്ട് ചേർക്കുക',
+    buttonHowDoesItWork: 'അതെങ്ങനെയാണ് പ്രവര്ത്തിക്കുന്നത്?',
     accountLinkedConsents: 'സജീവ സമ്മതം',
     banks: [{
       id: 1,
@@ -202,6 +205,7 @@ const messages = {
     buttonChat: 'बातचीत',
     buttonDelink: 'से अलग',
     buttonAddAccount: 'खाता जोड़ो',
+    buttonHowDoesItWork: 'कैसे काम करता है?',
     accountLinkedConsents: 'सक्रिय सहमति',
     banks: [{
       id: 1,
@@ -257,6 +261,7 @@ const messages = {
     buttonChat: 'కబుర్లు',
     buttonDelink: 'విరామం',
     buttonAddAccount: 'ఖాతా జోడించండి',
+    buttonHowDoesItWork: 'ఇది ఎలా పని చేస్తుంది?',
     accountLinkedConsents: 'లింక్డ్ సమ్మతులు',
     banks: [{
       id: 1,
@@ -312,6 +317,7 @@ const messages = {
     buttonChat: 'ಚಾಟ್',
     buttonDelink: 'ವಿರಾಮ',
     buttonAddAccount: 'ಖಾತೆಯನ್ನು ಸೇರಿಸು',
+    buttonHowDoesItWork: 'ಇದು ಹೇಗೆ ಕೆಲಸ ಮಾಡುತ್ತದೆ?',
     accountLinkedConsents: 'ಲಿಂಕ್ಡ್ ಸಮ್ಮತಿಗಳು',
     banks: [{
       id: 1,
