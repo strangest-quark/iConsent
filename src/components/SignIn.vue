@@ -191,5 +191,6 @@ input[type="number"] {
 
 .logo {
   max-width: 8rem;
+  margin-top: 0.5rem;
 }
 </style>
