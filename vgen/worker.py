@@ -8,7 +8,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(level
 logger = logging.getLogger(__name__)
 
 
-class DownloadWorker(Thread):
+class Worker(Thread):
 
     def __init__(self, queue, out_que):
         Thread.__init__(self)
@@ -33,7 +33,7 @@ def main(video_obj_arr, txnId, n):
     out_que = Queue()
     # Create 7 worker threads
     for x in range(2):
-        worker = DownloadWorker(queue, out_que)
+        worker = Worker(queue, out_que)
         # Setting daemon to True will let the main thread exit even though the workers are blocking
         worker.daemon = True
         worker.start()

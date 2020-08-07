@@ -1,14 +1,7 @@
 import time
 import json
-from frames.frame_1 import Frame1
-from frames.frame_2 import Frame2
-from frames.frame_3 import Frame3
-from frames.frame_4 import Frame4
-from frames.frame_5 import Frame5
-from frames.frame_6 import Frame6
-from frames.frame_7 import Frame7
-from worker import main
-from config.config import DevelopmentConfig
+from vgen.worker import main
+from vgen.config.config import DevelopmentConfig
 from moviepy.editor import *
 import uuid
 
@@ -17,7 +10,7 @@ config = DevelopmentConfig
 if __name__ == '__main__':
     with open(config.CONFIG_PATH + 'images.json', "r") as read_file:
         config.image_map = json.load(read_file)
-    with open(config.CONFIG_PATH + 'local_input.json', "r") as read_file:
+    with open(config.CONFIG_PATH + 'frame_1.json', "r") as read_file:
         config.input_map = json.load(read_file)
     with open(config.LANG_PATH + config.input_map.get('language') + ".json", "r") as read_file:
         config.lang_map = json.load(read_file)

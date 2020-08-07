@@ -5,8 +5,8 @@ class Config(object):
 
 class DevelopmentConfig(Config):
     LOCAL = True
-    LANG_PATH = '/Users/sn5/git/other/iConsent/flask-app/config/languages/'
-    CONFIG_PATH = '/Users/sn5/git/other/iConsent/flask-app/config/'
+    LANG_PATH = '/Users/sn5/git/other/iConsent/assets/flask-app/config/languages/'
+    CONFIG_PATH = '/Users/sn5/git/other/iConsent/assets/flask-app/config/'
 
 class ProductionConfig(Config):
     LOCAL = False

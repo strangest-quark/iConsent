@@ -35,30 +35,44 @@
   "other": "Other",
 
   "tagline": "{fiu} wants to access your linked {type} accounts",
-  "warn": "Please read carefully before you accept",
-  "q1": "What is the need for this data?",
-  "q2": "What range of my data will be accessed?",
-  "q3": "Till when is this consent valid?",
+
+  "warn": "ನೀವು ಸ್ವೀಕರಿಸುವ ಮೊದಲು ದಯವಿಟ್ಟು ಎಚ್ಚರಿಕೆಯಿಂದ ಓದಿ",
+  "q1": "What is the prupose?",
+  "q2": "ನನ್ನ ಡೇಟಾದ ಯಾವ ಶ್ರೇಣಿಯನ್ನು ಪ್ರವೇಶಿಸಲಾಗುವುದು?",
+  "q3": "ಈ ಒಪ್ಪಿಗೆ ಯಾವಾಗ ಮಾನ್ಯವಾಗಿರುತ್ತದೆ?",
   "q4": "What access does this consent give?",
-  "ans1": "For {purpose}",
+  "ans1": "{purpose}",
   "from": "ರಿಂದ",
   "to": "ತನಕ",
   "ans4": "{fiu} will do {fetchtype} {mode} of your {datatype} data every {frequency}.",
   "ans4_suffix": "This data will be stored only for {datalife}",
-  "bank_ques": "Select the accounts you want to give access",
-  "hurray_1": "Awesome!!",
-  "hurray_2": "You have read this consent details fully.",
-  "hurray_3": "Kudos to keeping yourself informed of your data/privacy rights",
-  "hurray_4": "{fiu} can now access your {type}",
-  "warn_1": "Uh oh...",
-  "warn_2": "Looks like you haven’t read the consent details completely",
-  "warn_3": "Sure you want to proceed?",
+
+  "bank_ques": "ನೀವು ಪ್ರವೇಶವನ್ನು ನೀಡಲು ಬಯಸುವ ಖಾತೆಗಳನ್ನು ಆಯ್ಕೆಮಾಡಿ",
+
+  "hurray_1": "ಅದ್ಭುತ !!",
+  "hurray_2": "ನೀವು ಈ ಒಪ್ಪಿಗೆಯ ವಿವರಗಳನ್ನು ಸಂಪೂರ್ಣವಾಗಿ ಓದಿದ್ದೀರಿ",
+  "hurray_3": "ನಿಮ್ಮ ಡೇಟಾ / ಗೌಪ್ಯತೆ ಹಕ್ಕುಗಳ ಬಗ್ಗೆ ನಿಮಗೆ ತಿಳಿಸಲು ವೈಭವ",
+
+  "hurray_4": "now {fiu} can access your {type} account details",
+
+  "warn_1": "ಇಲ್ಲ ಇಲ್ಲ..",
+  "warn_2": "ನೀವು ಒಪ್ಪಿಗೆಯ ವಿವರಗಳನ್ನು ಸಂಪೂರ್ಣವಾಗಿ ಓದಿಲ್ಲ ಎಂದು ತೋರುತ್ತಿದೆ",
+  "warn_3": "ನೀವು ಮುಂದುವರಿಯಲು ಬಯಸುವಿರಾ?",
 
   "lan": "kn",
 
   "validTill": "ಮಾನ್ಯ",
 
   "and": "and",
+
+  "deposit_1": "ಠೇವಣಿ",
+  "transactions_1": "ವ್ಯವಹಾರಗಳು",
+  "insurance_policies_1": "ವಿಮಾ ಪಾಲಿಸಿಗಳು",
+  "sip_1": "ಸಿಪ್",
+  "mutual_funds_1": "ಮ್ಯೂಚುಯಲ್ ಫಂಡ್ಗಳು",
+  "nps_1": "ಪಿಂಚಣಿ",
+  "term-deposit_1": "ಪದ ಠೇವಣಿ",
+  "other_1": "ಇತರ",
 
   "month": "ತಿಂಗಳು",
   "months": "ತಿಂಗಳುಗಳು",

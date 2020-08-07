@@ -41,7 +41,7 @@
   "text7": "The consent range",
 
   "audio1": "{fiu} wants to access your linked {account} account details",
-  "audio2": "The accounts that you're giving {fiu} consent are, {fip}",
+  "audio2": "The accounts that you're giving consent are, {fip}",
   "audio3": "{fiu} wants to {mode} your {datatype} data",
   "audio4": "Your {datatype} data from {fifrom} to {fito} will be fetched",
   "audio5": "{fiu} will do a {type} {mode} your data every {frequency}",
@@ -62,6 +62,8 @@
   "sip": "SIP",
   "term-deposit": "Term Deposit",
   "other": "Other",
+  "mutual_funds": "Mutual Funds",
+  "nps": "Pension",
 
   "01": "January",
   "02": "February",

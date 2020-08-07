@@ -18,6 +18,7 @@
   "LIC": "ఎల్ఐసి",
 
   "and": "and",
+  "and_n": "మరియు",
 
   "font": "NotoSansTelugu-Bold",
   "lan": "te",
@@ -31,7 +32,7 @@
   "fontsize7": 25,
   "calendar_font_size": 175,
 
-  "text1": "Access your linked {account} account details",
+  "text1": "linked {account} account details",
   "text2": "Linked accounts",
   "text3": "{mode} your {datatype} data",
   "text4": "Your account data range",
@@ -61,6 +62,8 @@
   "sip": "SIP",
   "term-deposit": "Term Deposit",
   "other": "Other",
+  "mutual_funds": "Mutual Funds",
+  "nps": "Pension",
 
   "01": "జనవరి",
   "02": "ఫిబ్రవరి",

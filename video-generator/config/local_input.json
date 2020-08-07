@@ -1,23 +1,24 @@
 {
     "datatype": [
-      "transactions"
+      "transactions",
+      "profile"
     ],
     "account": [
-      "insurance_policies"
+      "deposit"
     ],
     "fip": [
-      "LIC",
-      "Max Life"
+      "Citibank",
+      "SBI"
     ],
-    "fiu": "ClearTax",
-    "mode": "store",
-    "type": "onetime",
-    "language": "ta",
+    "fiu": "Zoho",
+    "mode": "stream",
+    "type": "periodic",
+    "language": "kn",
     "datalife": "1 month",
-    "consentfrom": "2020-07-29",
+    "consentfrom": "2020-07-30",
     "consentto": "2020-12-30",
     "fifrom": "2018-12-06",
     "fito": "2020-07-03",
-    "frequency": "15 day",
-    "consentartefactid": "f97f07fe-d80f-4a0d-a01d-d0931f96462d"
+    "frequency": "1 month",
+    "consentartefactid": "c107cca7-e8fa-4090-a5f5-65a343c72aac"
 }

@@ -4,6 +4,7 @@ import random
 from boto3.dynamodb.conditions import Key
 from config.config import ProductionConfig
 import boto3
+import botocore
 import requests
 from googletrans import Translator
 
@@ -25,10 +26,10 @@ fiu_map = {
 fip_map = {
     'insurance_policies': [['LIC', 'XX2323'], ['Max Life', 'XX4587']],
     'deposit': [['Citibank', 'XX1234'], ['SBI', 'XX4321']],
-    'term-deposit': [['Axis', 'XX5432'], ['SBI', 'XX2345'], ['ICICI', 'XX4345']],
+    'term-deposit': [['ICICI', 'XX4345']],
     'sip': [['HDFC', 'XX3421']],
     'nps': [['SBI', 'XX3213']],
-    'mutual_funds': [['HDFC', 'XX3421']],
+    'mutual_funds': [['HDFC', 'XX3421'], ['Axis', 'XX5432'],['ICICI', 'XX3213']],
     'other': [['ICICI', 'XX3213']]
 }
 
@@ -306,7 +307,7 @@ def account_proc():
             fip['fip_logo'] = "https://s3-ap-south-1.amazonaws.com/%s/%s" % (
                 config.LOGO_BUCKET, image_map[element[0]])
             fip['fip_name'] = lang_map[element[0]]
-            fip['fip_accType'] = lang_map[key]
+            fip['fip_accType'] = lang_map[key+'_1']
             fip['endingNumber'] = element[1]
             fip_list.append(fip)
     return fip_list

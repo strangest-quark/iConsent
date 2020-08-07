@@ -60,8 +60,11 @@
   "sip": "SIP",
   "term-deposit": "Term Deposit",
   "other": "Other",
+  "mutual_funds": "Mutual Funds",
+  "nps": "Pension",
 
   "and": "and",
+  "and_n": "ಮತ್ತು",
   
   "01": "ಜನವರಿ",
   "02": "ಫೆಬ್ರವರಿ",

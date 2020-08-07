@@ -58,10 +58,13 @@
   "transactions": "transactions",
   "profile": "profile",
   "and": "and",
+  "and_n": "और",
   "insurance_policies": "Insurance Policy",
   "sip": "SIP",
   "term-deposit": "Term Deposit",
   "other": "Other",
+  "mutual_funds": "Mutual Funds",
+  "nps": "Pension",
 
   "01": "जनवरी",
   "02": "फरवरी",

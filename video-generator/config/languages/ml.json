@@ -17,6 +17,7 @@
   "EasyTax": "ഈസിടാക്സ്",
   "Paisato": "പൈസാറ്റോ",
 
+  "and_n": "ഒപ്പം",
   "and": "and",
 
   "font": "Gayathri-Bold",
@@ -24,20 +25,20 @@
 
   "fontsize": 20,
   "fontsize1": 20,
-  "fontsize2": 15,
-  "fontsize3": 15,
+  "fontsize2": 20,
+  "fontsize3": 20,
   "fontsize4": 20,
   "fontsize5": 20,
   "fontsize6": 15,
   "fontsize7": 20,
   "calendar_font_size": 180,
 
-  "text1": "Access your linked {account} account details",
+  "text1": "linked {account} account details",
   "text2": "Linked accounts",
   "text3": "{mode} your {datatype} data",
   "text4": "Your account data range",
   "text5": "{type} {mode} every {frequency}",
-  "text6": "Will {mode} your data for {datalife}",
+  "text6": "{mode} your data for {datalife}",
   "text7": "The consent range",
 
   "audio1": "{fiu} wants to access your linked {account} account details",
@@ -62,6 +63,8 @@
   "sip": "SIP",
   "term-deposit": "Term Deposit",
   "other": "Other",
+  "mutual_funds": "Mutual Funds",
+  "nps": "Pension",
 
   "01": "ജനുവരി",
   "02": "ഫെബ്രുവരി",

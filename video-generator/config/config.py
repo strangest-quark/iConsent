@@ -18,13 +18,13 @@ class Config(object):
 
 class DevelopmentConfig(Config):
     LOCAL = True
-    SB_LOGO_PATH_PREFIX = '/Users/sn5/git/other/iConsent/video-generator/assets/logo/'
-    SB_AUDIO_PATH_PREFIX = '/Users/sn5/git/other/iConsent/video-generator/assets/'
-    SB_VIDEO_PATH_PREFIX = '/Users/sn5/git/other/iConsent/video-generator/assets/'
-    LANG_PATH = '/Users/sn5/git/other/iConsent/video-generator/config/languages/'
-    CONFIG_PATH = '/Users/sn5/git/other/iConsent/video-generator/config/'
-    FONT_PATH = '/Users/sn5/git/other/iConsent/video-generator/assets/fonts/'
-    SB_LOGO_PATH_PREFIX_WRITE='/Users/sn5/git/other/iConsent/video-generator/assets/logo/'
+    SB_LOGO_PATH_PREFIX = '/Users/sn5/git/other/iConsent/aa-hack/video-generator/assets/logo/'
+    SB_AUDIO_PATH_PREFIX = '/Users/sn5/git/other/iConsent/aa-hack/video-generator/assets/'
+    SB_VIDEO_PATH_PREFIX = '/Users/sn5/git/other/iConsent/aa-hack/video-generator/assets/'
+    LANG_PATH = '/Users/sn5/git/other/iConsent/aa-hack/video-generator/config/languages/'
+    CONFIG_PATH = '/Users/sn5/git/other/iConsent/aa-hack/video-generator/config/'
+    FONT_PATH = '/Users/sn5/git/other/iConsent/aa-hack/video-generator/assets/fonts/'
+    SB_LOGO_PATH_PREFIX_WRITE='/Users/sn5/git/other/iConsent/aa-hack/video-generator/assets/logo/'
 
 class ProductionConfig(Config):
     LOCAL = False

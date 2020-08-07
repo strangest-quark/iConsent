@@ -19,6 +19,7 @@
   "LIC": "எல்.ஐ.சி.",
 
   "and": "and",
+  "and_n": "மற்றும்",
 
   "font": "NotoSansTamil-ExtraCondensedBlack",
   "lan": "ta",
@@ -28,21 +29,21 @@
   "fontsize2": 20,
   "fontsize3": 20,
   "fontsize4": 20,
-  "fontsize5": 20,
+  "fontsize5": 15,
   "fontsize6": 20,
   "fontsize7": 20,
   "calendar_font_size": 200,
 
-  "text1": "Will access linked {account} account details",
+  "text1": "Linked {account} account details",
   "text2": "Linked accounts",
-  "text3": "{mode} your {datatype} data",
+  "text3": "will {mode} your {datatype} data",
   "text4": "Your account data range",
-  "text5": "Will {mode} data {type} every {frequency}",
+  "text5": "will {mode} {type} every {frequency}",
   "text6": "Will {mode} your data for {datalife}",
   "text7": "The consent range",
 
   "audio1": "{fiu} wants to access your linked {account} account details",
-  "audio2": "The accounts that you're giving consent to {fiu} are, {fip}",
+  "audio2": "The accounts that you're giving consent to are, {fip}",
   "audio3": "{fiu} wants to {mode} your {datatype} data",
   "audio4": "Your {datatype} data from {fifrom} to {fito} will be fetched",
   "audio5": "{fiu} will do a {type} {mode} your data every {frequency}",
@@ -63,6 +64,8 @@
   "sip": "SIP",
   "term-deposit": "Term Deposit",
   "other": "Other",
+  "mutual_funds": "Mutual Funds",
+  "nps": "Pension",
 
   "01": "ஜனவரி",
   "02": "பிப்ரவரி",
