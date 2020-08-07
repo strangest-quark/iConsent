@@ -1,4 +1,6 @@
-# iConsent
+<h1 align="center">
+iConsent
+</h1>
 
 <p align="center">
   <a href="https://www.patreon.com/iConsent" alt="Patreon"><img src="https://img.shields.io/badge/Sponsor on Patreon-iConsent-red.svg?logo=patreon" /></a>
