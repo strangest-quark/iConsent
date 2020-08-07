@@ -11,7 +11,7 @@ config = DevelopmentConfig
 if __name__ == '__main__':
     with open(config.CONFIG_PATH + 'images.json', "r") as read_file:
         config.image_map = json.load(read_file)
-    with open(config.CONFIG_PATH + '/frames/frame_1.json', "r") as read_file:
+    with open(config.CONFIG_PATH + '/frames/frame_2.json', "r") as read_file:
         config.frame_map = json.load(read_file)
     with open(config.CONFIG_PATH + '/local_input.json', "r") as read_file:
         config.input_map = json.load(read_file)

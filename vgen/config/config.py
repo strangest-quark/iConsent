@@ -9,27 +9,35 @@ class Config(object):
     WHITE = (255, 255, 255)
     WHITE_GIZEH = (1, 1, 1)
     DURATION = 5
-    ICON_HEIGHT=150
-    ICON_WIDTH=100
-    ICON_SIZE=100
-    BANK_ICON_SIZE = 120
+    ICON_HEIGHT = 150
+    ICON_WIDTH = 100
+    ICON_SIZE = 100
+    GRID_ICON_SIZE = 120
+    DEFAULT_FRAME_DURATION = 5
     static_keys = ['fip', 'fiu']
+    span = [[(-50, 0)], [(-170, 0), (80, 0)], [(-150, 0), (-30, 0), (100, 0)]]
+    grid = {
+        "center": 2,
+        "left": 6,
+        "right": 1
+    }
 
 
 class DevelopmentConfig(Config):
     LOCAL = True
-    SB_LOGO_PATH_PREFIX = '/Users/sn5/git/other/iConsent/vgen/assets/logo/'
+    SB_LOGO_PATH_PREFIX = '/Users/sn5/git/other/iConsent/video-generator/assets/logo/'
     SB_AUDIO_PATH_PREFIX = '/Users/sn5/git/other/iConsent/vgen/assets/'
     SB_VIDEO_PATH_PREFIX = '/Users/sn5/git/other/iConsent/vgen/assets/'
     LANG_PATH = '/Users/sn5/git/other/iConsent/vgen/config/languages/'
     CONFIG_PATH = '/Users/sn5/git/other/iConsent/vgen/config/'
-    FONT_PATH = '/Users/sn5/git/other/iConsent/vgen/assets/fonts/'
-    SB_LOGO_PATH_PREFIX_WRITE='/Users/sn5/git/other/iConsent/vgen/assets/logo/'
+    FONT_PATH = '/Users/sn5/git/other/iConsent/video-generator/assets/fonts/'
+    SB_LOGO_PATH_PREFIX_WRITE = '/Users/sn5/git/other/iConsent/vgen/assets/'
+
 
 class ProductionConfig(Config):
     LOCAL = False
     SB_LOGO_PATH_PREFIX = '/var/task/assets/logo/'
-    SB_LOGO_PATH_PREFIX_WRITE='/tmp/'
+    SB_LOGO_PATH_PREFIX_WRITE = '/tmp/'
     SB_AUDIO_PATH_PREFIX = '/tmp/'
     SB_VIDEO_PATH_PREFIX = '/tmp/'
     LANG_PATH = '/var/task/config/languages/'

@@ -1,0 +1,7 @@
+{
+  "text": "One time view",
+  "imageGroup": ["single.png", "view.png"],
+  "type": "span",
+  "audio": "One time view of your data",
+  "bg": "bg_3.png"
+}

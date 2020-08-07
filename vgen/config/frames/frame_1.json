@@ -1,9 +1,8 @@
 {
-  "text": "Hi there!",
-  "image_group": ["onetime.png"],
-  "image_group_gridX": 1,
-  "image_group_gridY": 1,
-  "image_position": "center",
-  "audio": "Hello",
+  "text": "One time view",
+  "imageGroup": ["axis.png", "sbi.png", "icici.png"],
+  "type": "grid",
+  "gridPosition": "center",
+  "audio": "Axis, SBI and ICICI Bank",
   "bg": "bg_1.png"
 }
