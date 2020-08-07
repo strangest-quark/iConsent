@@ -1,0 +1,9 @@
+{
+  "text": "Hi there!",
+  "image_group": ["onetime.png"],
+  "image_group_gridX": 1,
+  "image_group_gridY": 1,
+  "image_position": "center",
+  "audio": "Hello",
+  "bg": "bg_1.png"
+}
