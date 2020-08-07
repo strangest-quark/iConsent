@@ -1,5 +1,4 @@
 {
-  "text": "One time view",
   "imageGroup": ["axis.png", "sbi.png", "icici.png"],
   "type": "grid",
   "gridPosition": "center",
