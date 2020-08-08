@@ -35,6 +35,13 @@ Based out of serverless framework. Custom lambda layer for text rendering will b
 
 WIP for frame-by-frame config for modular components of iConsent. Run modules/debug.py to test the modules separately. Fine grained config to play with in modules/config/
 
+## Sponsors
+<a href="https://www.patreon.com/iConsent" alt="Patreon"><img src="https://img.shields.io/badge/Sponsor on Patreon-iConsent-red.svg?logo=patreon"/></a>
+  
+This project is full open source and free for any commercial/non-commercial purpose. A quick `powered by iConsent` attribution on sites using iConsent would be a huge boost!
+Support us on [Patreon](https://www.patreon.com/iConsent) to get an exclusive shoutout here and other added perks!
+
+
 ## Maintainers
 
 |     Sowmiya     |      Ikram      |    Pramothini  |
