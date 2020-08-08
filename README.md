@@ -8,7 +8,7 @@ iConsent
   <a href="https://github.com/strangest-quark/iConsent/actions?query=workflow%3AVue" alt="Video Generator"><img src="https://github.com/strangest-quark/iConsent/workflows/Video%20Geneartor/badge.svg" /></a>
   <br>
   <a href="https://iconsent.netlify.app/" alt="Netlify Status"><img src="https://api.netlify.com/api/v1/badges/679ce57f-f995-4feb-a1b1-b084a79075b6/deploy-status" /></a>
-  <a href="https://www.patreon.com/iConsent" alt="Patreon"><img src="https://img.shields.io/badge/Sponsor on Patreon-iConsent-red.svg?logo=patreon" /></a>
+  <a href="https://www.patreon.com/iConsent" alt="Patreon"><img src="https://img.shields.io/badge/Sponsor us-iConsent-red.svg?logo=patreon" /></a>
 </p>
 
 ## Setup
