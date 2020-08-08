@@ -12,9 +12,9 @@ RUN pipenv lock -r > req.txt
 RUN pip install -r req.txt --no-deps -t python/lib/python3.8/site-packages
 
 # run test
-WORKDIR /opt
-COPY . .
-RUN pipenv run python debug.py
+#WORKDIR /opt
+#COPY . .
+#RUN pipenv run python debug.py
 
 # package lambda layer
 WORKDIR /opt
