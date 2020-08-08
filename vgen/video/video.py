@@ -7,7 +7,6 @@ from vgen.audio.text_to_speech import TextToSpeech
 from vgen.text.fill_text import FillText
 from vgen.image.grid_image import grid_image
 from googletrans import Translator
-import uuid
 
 
 class Video(object):
@@ -18,7 +17,6 @@ class Video(object):
         self.image_map = config.image_map
         self.frame_map = config.frame_map
         self.config = config
-        self.translator = Translator()
         self.fill_text = FillText(config)
         self.text_to_speech = TextToSpeech(config)
 
