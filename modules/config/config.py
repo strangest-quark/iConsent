@@ -26,12 +26,12 @@ class Config(object):
 class DevelopmentConfig(Config):
     LOCAL = True
     SB_LOGO_PATH_PREFIX = '/Users/sn5/git/other/iConsent/video-generator/assets/logo/'
-    SB_AUDIO_PATH_PREFIX = '/Users/sn5/git/other/iConsent/vgen/assets/'
-    SB_VIDEO_PATH_PREFIX = '/Users/sn5/git/other/iConsent/vgen/assets/'
-    LANG_PATH = '/Users/sn5/git/other/iConsent/vgen/config/languages/'
-    CONFIG_PATH = '/Users/sn5/git/other/iConsent/vgen/config/'
+    SB_AUDIO_PATH_PREFIX = '/Users/sn5/git/other/iConsent/modules/assets/'
+    SB_VIDEO_PATH_PREFIX = '/Users/sn5/git/other/iConsent/modules/assets/'
+    LANG_PATH = '/Users/sn5/git/other/iConsent/modules/config/languages/'
+    CONFIG_PATH = '/Users/sn5/git/other/iConsent/modules/config/'
     FONT_PATH = '/Users/sn5/git/other/iConsent/video-generator/assets/fonts/'
-    SB_LOGO_PATH_PREFIX_WRITE = '/Users/sn5/git/other/iConsent/vgen/assets/'
+    SB_LOGO_PATH_PREFIX_WRITE = '/Users/sn5/git/other/iConsent/modules/assets/'
 
 
 class ProductionConfig(Config):

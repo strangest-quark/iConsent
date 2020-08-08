@@ -1,10 +1,10 @@
 import time
 import json
-from vgen.worker import main
-from vgen.config.config import DevelopmentConfig
+from modules.worker import main
+from modules.config.config import DevelopmentConfig
 from moviepy.editor import *
 import uuid
-from vgen.video.video import Video
+from modules.video.video import Video
 
 config = DevelopmentConfig
 

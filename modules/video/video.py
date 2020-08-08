@@ -2,10 +2,10 @@ import moviepy.editor as mpy
 # TODO: import only necessary ones
 from moviepy.editor import *
 import os
-from vgen.image.text_image import straight_text
-from vgen.audio.text_to_speech import TextToSpeech
-from vgen.text.fill_text import FillText
-from vgen.image.grid_image import grid_image
+from modules.image.text_image import straight_text
+from modules.audio.text_to_speech import TextToSpeech
+from modules.text.fill_text import FillText
+from modules.image.grid_image import grid_image
 from googletrans import Translator
 
 
