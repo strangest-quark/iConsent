@@ -3,9 +3,12 @@ iConsent
 </h1>
 
 <p align="center">
-  <a href="https://app.netlify.com/sites/iconsent/deploys" alt="Netlify Status"><img src="https://api.netlify.com/api/v1/badges/679ce57f-f995-4feb-a1b1-b084a79075b6/deploy-status" /></a>
+  <a href="https://github.com/strangest-quark/iConsent/actions?query=workflow%3AVue" alt="Vue"><img src="https://github.com/strangest-quark/iConsent/workflows/Vue/badge.svg" /></a>
+  <a href="https://github.com/strangest-quark/iConsent/actions?query=workflow%3AFlask" alt="Flask"><img src="https://github.com/strangest-quark/iConsent/workflows/Flask/badge.svg" /></a>
+  <a href="https://github.com/strangest-quark/iConsent/actions?query=workflow%3AVue" alt="Video Generator"><img src="https://github.com/strangest-quark/iConsent/workflows/Vue/badge.svg" /></a>
   <br>
-    <a href="https://www.patreon.com/iConsent" alt="Patreon"><img src="https://img.shields.io/badge/Sponsor on Patreon-iConsent-red.svg?logo=patreon" /></a>
+  <a href="https://app.netlify.com/sites/iconsent/deploys" alt="Netlify Status"><img src="https://api.netlify.com/api/v1/badges/679ce57f-f995-4feb-a1b1-b084a79075b6/deploy-status" /></a>
+  <a href="https://www.patreon.com/iConsent" alt="Patreon"><img src="https://img.shields.io/badge/Sponsor on Patreon-iConsent-red.svg?logo=patreon" /></a>
 </p>
 
 ## Setup
@@ -23,7 +26,7 @@ Modify aa-hack/video-generator/config/local_input.json
     python debug.py
  
 ## Deployments
-Based out of serverless framework
+Based out of serverless framework. Custom lambda layer for text rendering will be needed to set this up in lambda. Reach out to maintainers for details.
 
     cd aa-hack/video-generator
     sls deploy
